@@ -2,204 +2,299 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>企業色相環 - Corporate Color Health</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- メインスタイル -->
+  <title>企業色相環 | Corporate Color Health</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#eaf1fb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-bg: #f8fafc;
       --card-bg: #fff;
-      --primary: #3887ff;
-      --border: #e4e8ee;
-      --text: #212529;
-      --accent: #59c3c3;
-      --nav: #f1f5f9;
-      --sector-red: #FF5555;
-      --sector-blue: #5555FF;
-      --sector-green: #55FF55;
-      --sector-yellow: #FFFF55;
-      --sector-purple: #AA55FF;
-      --sector-orange: #FFAA55;
+      --accent: #3388FF;
+      --accent-light: #eaf1fb;
+      --gray: #eef2f7;
+      --border: #e3e7ee;
+      --text: #1b2230;
+      --text-sub: #767a89;
+      --primary: #3388FF;
+      --radius: 20px;
+      --shadow: 0 2px 18px #a0c1e820, 0 1px 1px #bddcff19;
     }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Noto Sans JP', 'Segoe UI', 'Helvetica Neue', Arial, 'sans-serif';
+    html,body {
+      min-height:100vh; margin:0; padding:0;
+      font-family:'Noto Sans JP', 'Roboto', Arial, sans-serif;
       background: var(--main-bg);
       color: var(--text);
-      min-height: 100vh;
-      font-size: 17px;
+      letter-spacing: 0.01em;
     }
+    body { padding-bottom: 34px; }
     header {
-      background: var(--nav);
-      box-shadow: 0 2px 8px rgba(44, 54, 87, 0.03);
-      padding: 0 0 4px 0;
+      background: var(--accent-light);
+      border-bottom: 1.5px solid var(--border);
+      position: sticky; top:0; z-index: 10;
     }
-    .container {
-      max-width: 720px;
-      margin: 2rem auto;
-      padding: 1.2rem;
-      background: var(--card-bg);
-      border-radius: 14px;
-      box-shadow: 0 2px 8px rgba(44, 54, 87, 0.07);
+    .nav {
+      display:flex; justify-content:space-between; align-items:center;
+      gap:0.1em; padding: 0.6em 0.5em 0.12em 0.5em;
+      border-radius:0 0 var(--radius) var(--radius);
+      box-shadow: none;
+      background: transparent;
     }
-    nav {
-      display: flex;
-      gap: 1.6rem;
-      padding: 1.2rem 1rem 0.5rem 1rem;
-      font-size: 1.1rem;
+    .nav-menu {
+      display: flex; gap:0.2em;
+      flex:1;
+      justify-content: space-around;
     }
-    nav a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: 600;
-      padding: 0.3rem 0.7rem;
-      border-radius: 10px;
-      transition: background 0.2s;
-    }
-    nav a.active, nav a:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-    h1 {
-      font-size: 1.65rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.06em;
-    }
-    .select-row {
-      margin: 1.5rem 0 1rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-    label {
+    .nav-link {
+      display:inline-block;
       font-weight: 500;
-      margin-bottom: 0.2em;
+      font-size: 1.03em;
+      color: var(--primary);
+      background: none;
+      border: none;
+      border-radius: 1em 1em 0 0;
+      padding:0.5em 1.1em 0.3em 1.1em;
+      margin: 0 0.06em;
+      position:relative;
+      cursor:pointer;
+      transition: background 0.12s, color 0.12s;
+      outline:none;
+      text-decoration: none;
     }
-    select {
-      padding: 0.5em 0.8em;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      font-size: 1rem;
-      background: #f6fafd;
-      max-width: 320px;
+    .nav-link.active, .nav-link:focus {
+      background: #fff;
+      color: var(--primary);
+      box-shadow: 0 2px 12px #3388ff19;
+      border-bottom: 3px solid var(--primary);
+      z-index:2;
+    }
+    .nav-link:not(.active):hover {
+      color: #2477e0;
+      background: #e6f1ff;
+    }
+    .logo { font-weight:700; font-size:1.19em; color:var(--primary);}
+    main {
+      max-width: 480px;
+      margin: 0 auto; padding: 0.3em 0.7em 2.2em 0.7em;
+    }
+    .section {
+      margin:1.2em 0 1.5em 0;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25em 1.15em 1.5em 1.15em;
+    }
+    .title-main {
+      font-size:1.3em;
+      font-weight:700;
+      color: var(--text);
+      margin: 0.4em 0 0.25em 0;
+      line-height: 1.17;
+      letter-spacing: 0.03em;
+    }
+    .subtitle {
+      font-size:1.05em;
+      color: var(--text-sub);
+      margin: 0 0 1.1em 0;
+      font-weight: 500;
+    }
+    .form-row {
+      margin: 0.7em 0 1.1em 0;
+      display: flex; flex-direction: column; gap: 0.35em;
+    }
+    .label {
+      font-size:1em;
+      font-weight:500;
+      color: #458;
+      margin-bottom: 0.07em;
+    }
+    .select-custom {
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 0.72em 2.2em 0.72em 1.1em;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      font-size: 1.08em;
+      background: var(--gray) url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.8em center/1.3em 1.3em;
+      font-family:inherit;
+      font-weight:500;
+      color:var(--text);
+      box-shadow:0 1px 3px #b9dbff18;
       outline: none;
-      transition: border 0.2s;
+      transition: border 0.15s;
     }
-    select:focus {
-      border: 1.5px solid var(--primary);
+    .select-custom:focus {
+      border: 1.6px solid var(--primary);
+      background-color: #f8fafd;
     }
-    .viz-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .viz-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 240px;
-      flex: 1;
+    .viz-container { margin:1.3em 0 0.8em 0; }
+    .colorwheel-wrap {
+      margin: 0 auto; width: 100%; max-width: 320px; background: var(--accent-light);
+      border-radius: 100vw; display:flex; justify-content:center; align-items:center;
+      box-shadow: 0 1px 8px #3388ff10;
     }
     canvas {
-      background: #f3f5fa;
-      border-radius: 50%;
-      box-shadow: 0 1px 5px #d6e2ed44;
-      margin-bottom: 1.1em;
-      max-width: 270px;
-      height: auto;
-      width: 100%;
+      margin:1.4em 0 0.8em 0; display: block; width:100%; max-width: 240px; height:auto; background: #f4f8fc; border-radius:50%; 
+      box-shadow: 0 2px 6px #b3d7fc22;
+    }
+    .soundness-wrap {
+      margin: 1.2em 0 1.4em 0;
+      text-align:center;
+      padding: 0.7em 0 0.1em 0;
     }
     .soundness-bar {
-      margin: 0.8em 0 0.5em 0;
-      width: 210px;
-      max-width: 100%;
-      height: 18px;
-      border-radius: 7px;
-      background: linear-gradient(to right, #fff, #000);
-      position: relative;
+      width: 98%;
+      height: 19px;
+      border-radius: 14px;
+      background: linear-gradient(to right, #fff 0%, #c6d1de 22%, #666 100%);
       border: 1.2px solid var(--border);
-      box-shadow: 0 1px 2px #b1b7bf30;
+      margin: 0.37em 0 0.36em 0;
+      box-shadow: 0 1px 5px #8ebcff15;
+      position: relative;
     }
     .soundness-marker {
-      position: absolute;
-      top: -4px;
-      width: 16px;
-      height: 26px;
-      background: #3887ffcc;
-      border-radius: 5px;
-      border: 2px solid #fff;
-      left: 0;
-      box-shadow: 0 1px 5px #8ec6ff80;
-      transition: left 0.3s cubic-bezier(.4,1,.2,1);
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 13px;
-      font-weight: 600;
+      position: absolute; top: -5px;
+      width: 31px; height: 31px;
+      background: #3388FF;
+      border-radius: 50%;
+      border: 2.5px solid #fff;
+      box-shadow: 0 1px 8px #3388ff44;
+      display: flex; align-items:center; justify-content: center;
+      font-size: 1.09em;
+      font-weight:700;
       color: #fff;
+      left: 0;
+      transition: left 0.2s cubic-bezier(.42,1.33,.32,.92);
+      z-index:2;
       pointer-events: none;
+      user-select: none;
     }
     .soundness-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-top: 0.18em;
-      margin-bottom: 0.35em;
-      color: #7a7c85;
+      display: flex; justify-content: space-between;
+      font-size: 0.98em;
+      margin: 0.08em 0 0.03em 0;
+      color: #8ca1c7;
+      font-weight:500;
+      letter-spacing:0.03em;
+      padding: 0 0.07em;
     }
-    .company-info {
-      font-size: 1.08rem;
-      margin-top: 0.7em;
-      margin-bottom: 0.5em;
+    .soundness-score {
+      font-size: 1.18em;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0.21em 0 0.2em 0;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 8px #a3d7fc29;
     }
-    .meta-info {
-      font-size: 0.92rem;
-      color: #777;
-      margin-bottom: 0.3em;
+    .company-info-card {
+      margin: 0.35em 0 0.25em 0;
+      padding: 1.0em 1.0em 1.1em 1.0em;
+      border-radius: 16px;
+      background: #f6f8fb;
+      box-shadow: 0 1px 8px #bddcff18;
     }
-    .source-info {
-      background: #f7fbfe;
-      border-left: 4px solid #a5b7ff;
-      padding: 0.6em 1.1em;
-      margin: 0.5em 0 1.2em 0;
-      font-size: 0.97rem;
-      color: #636c82;
-      border-radius: 7px;
+    .company-main {
+      font-weight:700;
+      font-size:1.12em;
+      color: #25386a;
+      margin-bottom: 0.13em;
     }
-    /* モバイルファースト対応 */
+    .company-code {
+      color: #3388ff; font-weight: 600; font-size: 1em; margin-left: 0.3em;
+      text-decoration: underline dotted;
+    }
+    .company-url {
+      color: #3388ff; font-weight:500; text-decoration: underline;
+      margin-left: 0.1em; font-size: 0.99em;
+    }
+    .company-meta {
+      font-size:0.98em; color: #657098; margin-bottom: 0.07em;
+    }
+    .company-meta2 {
+      font-size:0.98em; color: #7a879b;
+    }
+    .company-site-link {
+      display: inline-block; margin: 0.11em 0 0.07em 0; font-size: 0.98em; 
+      font-weight:500; color: #2d8dd4;
+      border-bottom: 1.6px solid #b6e0ff;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background .17s;
+      padding: 0.06em 0.26em;
+    }
+    .company-site-link:active, .company-site-link:hover {
+      background: #eaf1fb;
+      color: #16427c;
+    }
+    .meta-info-row {
+      margin: 1.15em 0 0.4em 0;
+      color: #888fa4;
+      font-size: 1.01em;
+    }
+    .source-info-row {
+      margin: 0.16em 0 0 0;
+      font-size: 0.98em;
+      background: #ecf6ff;
+      border-left: 4px solid #3388ff33;
+      padding: 0.7em 0.7em 0.8em 0.99em;
+      border-radius: 10px;
+      color: #4c6182;
+      word-break:break-all;
+      letter-spacing: 0.01em;
+      line-height: 1.7;
+    }
+    .info-label {
+      color: #508ad1; font-weight:600; margin-right:0.18em;
+    }
+    .info-link {
+      color: #3388ff; text-decoration: underline; font-size:0.99em; font-weight:500;
+      margin-left:0.14em; border-bottom: 1.2px dotted #3388ff55;
+      border-radius: 3px;
+      transition: background .17s;
+      padding: 0.02em 0.19em;
+    }
+    .info-link:active, .info-link:hover {
+      background: #eaf1fb;
+      color: #16427c;
+    }
+    /* スクロールバーも美しく */
+    ::-webkit-scrollbar { width: 9px; background: #f8fafd;}
+    ::-webkit-scrollbar-thumb { background: #e4e8f3; border-radius: 6px;}
     @media (max-width: 600px) {
-      .container { padding: 1rem 0.3rem; }
-      nav { font-size: 1rem; gap: 1rem; }
-      .viz-row { flex-direction: column; gap: 1.3rem; }
-      canvas { max-width: 98vw; }
-      .soundness-bar { width: 96vw; }
+      main { padding: 0.3em 0.09em 2.2em 0.09em;}
+      .section { padding: 1em 0.35em 1.12em 0.35em;}
+      .colorwheel-wrap { max-width: 99vw;}
+      canvas { max-width: 89vw; }
     }
+    /* 軽いタップアニメ */
+    .nav-link, .company-site-link, .info-link { touch-action: manipulation; }
+    .nav-link:active, .company-site-link:active, .info-link:active { filter: brightness(0.95);}
   </style>
 </head>
 <body>
   <header>
-    <nav>
-      <a href="#" class="active">企業色相環</a>
-      <a href="#">概要</a>
-      <a href="#">計算方法</a>
-      <a href="#">企業一覧</a>
+    <nav class="nav">
+      <div class="logo" aria-label="Corporate Color Health">企業色相環</div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link active" aria-current="page">企業色相環</a>
+        <a href="about.html" class="nav-link">概要</a>
+        <a href="methodology.html" class="nav-link">計算方法</a>
+        <a href="companies.html" class="nav-link">企業一覧</a>
+      </div>
     </nav>
   </header>
   <main>
-    <div class="container">
-      <h1>企業色相環 <span style="font-size:0.85em; font-weight:400; color:#8c97ab">Corporate Color Health</span></h1>
-      <p style="color:#444; font-size:1.07rem;">企業の多次元特性を「色相環」と「健全度バー」で直感的に可視化。<br>
+    <section class="section" id="mainSection">
+      <h1 class="title-main">企業色相環 <span style="font-size:0.89em; color:#90a2b5; font-weight:500;">Corporate Color Health</span></h1>
+      <div class="subtitle">
+        企業の多次元特性を<b>色相環</b>と<b>健全度バー</b>で直感的に可視化。<br>
         気になる企業を選ぶだけで、ビジュアルで比較・分析ができます。
-      </p>
-      <!-- 企業選択セレクトボックス -->
-      <div class="select-row">
-        <label for="companySelect">企業を選択:</label>
-        <select id="companySelect">
+      </div>
+      <div class="form-row">
+        <label for="companySelect" class="label">企業を選択</label>
+        <select id="companySelect" class="select-custom" aria-label="企業を選択">
           <option value="ntt">NTT（日本電信電話）</option>
           <option value="sony">ソニーグループ</option>
           <option value="toyota">トヨタ自動車</option>
@@ -207,179 +302,117 @@
           <option value="hitachi">日立製作所</option>
         </select>
       </div>
-      <!-- ビジュアライズ領域 -->
-      <div class="viz-row">
-        <div class="viz-col">
-          <!-- 色相環Canvas -->
+      <div class="viz-container">
+        <div class="colorwheel-wrap">
           <canvas id="colorWheel" width="240" height="240" aria-label="企業多次元特性の色相環"></canvas>
         </div>
-        <div class="viz-col">
-          <!-- 健全度バー -->
-          <div class="soundness-labels">
-            <span>健全</span>
-            <span>不健全</span>
-          </div>
-          <div class="soundness-bar" id="soundnessBar">
-            <div class="soundness-marker" id="soundnessMarker"></div>
-          </div>
-          <div id="soundnessValue" style="font-size:1.05em; color:#555;"></div>
-        </div>
       </div>
-      <!-- 企業基本情報表示 -->
-      <div class="company-info" id="companyInfo"></div>
-      <!-- 透明性情報 -->
-      <div class="meta-info" id="metaInfo"></div>
-      <div class="source-info" id="sourceInfo"></div>
-    </div>
+      <div class="soundness-wrap">
+        <div class="soundness-labels">
+          <span>健全</span>
+          <span>不健全</span>
+        </div>
+        <div class="soundness-bar" id="soundnessBar">
+          <div class="soundness-marker" id="soundnessMarker"></div>
+        </div>
+        <div class="soundness-score" id="soundnessValue"></div>
+      </div>
+      <div class="company-info-card" id="companyInfo"></div>
+      <div class="meta-info-row" id="metaInfo"></div>
+      <div class="source-info-row" id="sourceInfo"></div>
+    </section>
   </main>
-  <!-- メイン機能JS: データ定義・描画ロジック -->
   <script>
-    // サンプルデータ：本来は外部JSON読み込み、ここではインライン
+    // サンプルデータ（後でfetchに切替可）
     const companies = {
       ntt: {
         company_info: {
-          code: "9432",
-          name: "NTT（日本電信電話）",
-          sector: "情報・通信",
-          market: "東証プライム",
-          established: 1985,
-          employees: 303550,
-          url: "https://www.ntt.co.jp/"
+          code: "9432", name: "NTT（日本電信電話）",
+          sector: "情報・通信", market: "東証プライム",
+          established: 1985, employees: 303550, url: "https://www.ntt.co.jp/"
         },
         quarterly_data: [
           {
-            quarter: "2023Q3",
-            date_updated: "2023-11-30",
+            quarter: "2023Q3", date_updated: "2023-11-30",
             source: "2023年第2四半期決算短信, 2023年有価証券報告書",
-            dimensions: {
-              innovation: 0.75, stability: 0.68, social: 0.45,
-              autonomy: 0.62, tradition: 0.58, global: 0.70
-            },
+            dimensions: { innovation: 0.75, stability: 0.68, social: 0.45, autonomy: 0.62, tradition: 0.58, global: 0.70 },
             soundness: 0.85,
-            confidence_levels: {
-              innovation: "medium", stability: "high", social: "medium",
-              autonomy: "medium", tradition: "high", global: "high", soundness: "high"
-            }
+            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "high", global: "high", soundness: "high" }
           }
         ]
       },
       sony: {
         company_info: {
-          code: "6758",
-          name: "ソニーグループ",
-          sector: "電気機器",
-          market: "東証プライム",
-          established: 1946,
-          employees: 108900,
-          url: "https://www.sony.com/ja/"
+          code: "6758", name: "ソニーグループ",
+          sector: "電気機器", market: "東証プライム",
+          established: 1946, employees: 108900, url: "https://www.sony.com/ja/"
         },
         quarterly_data: [
           {
-            quarter: "2023Q3",
-            date_updated: "2023-12-01",
+            quarter: "2023Q3", date_updated: "2023-12-01",
             source: "2023年第2四半期決算短信",
-            dimensions: {
-              innovation: 0.79, stability: 0.60, social: 0.56,
-              autonomy: 0.72, tradition: 0.61, global: 0.85
-            },
+            dimensions: { innovation: 0.79, stability: 0.60, social: 0.56, autonomy: 0.72, tradition: 0.61, global: 0.85 },
             soundness: 0.83,
-            confidence_levels: {
-              innovation: "high", stability: "high", social: "medium",
-              autonomy: "high", tradition: "medium", global: "high", soundness: "high"
-            }
+            confidence_levels: { innovation: "high", stability: "high", social: "medium", autonomy: "high", tradition: "medium", global: "high", soundness: "high" }
           }
         ]
       },
       toyota: {
         company_info: {
-          code: "7203",
-          name: "トヨタ自動車",
-          sector: "輸送用機器",
-          market: "東証プライム",
-          established: 1937,
-          employees: 370870,
-          url: "https://global.toyota/jp/"
+          code: "7203", name: "トヨタ自動車",
+          sector: "輸送用機器", market: "東証プライム",
+          established: 1937, employees: 370870, url: "https://global.toyota/jp/"
         },
         quarterly_data: [
           {
-            quarter: "2023Q3",
-            date_updated: "2023-12-03",
+            quarter: "2023Q3", date_updated: "2023-12-03",
             source: "2023年第2四半期決算短信",
-            dimensions: {
-              innovation: 0.68, stability: 0.74, social: 0.59,
-              autonomy: 0.57, tradition: 0.77, global: 0.95
-            },
+            dimensions: { innovation: 0.68, stability: 0.74, social: 0.59, autonomy: 0.57, tradition: 0.77, global: 0.95 },
             soundness: 0.90,
-            confidence_levels: {
-              innovation: "medium", stability: "high", social: "medium",
-              autonomy: "medium", tradition: "high", global: "high", soundness: "high"
-            }
+            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "high", global: "high", soundness: "high" }
           }
         ]
       },
       mitsui: {
         company_info: {
-          code: "8031",
-          name: "三井物産",
-          sector: "卸売業",
-          market: "東証プライム",
-          established: 1947,
-          employees: 46335,
-          url: "https://www.mitsui.com/jp/ja/"
+          code: "8031", name: "三井物産",
+          sector: "卸売業", market: "東証プライム",
+          established: 1947, employees: 46335, url: "https://www.mitsui.com/jp/ja/"
         },
         quarterly_data: [
           {
-            quarter: "2023Q3",
-            date_updated: "2023-11-28",
+            quarter: "2023Q3", date_updated: "2023-11-28",
             source: "2023年第2四半期決算短信",
-            dimensions: {
-              innovation: 0.59, stability: 0.72, social: 0.62,
-              autonomy: 0.49, tradition: 0.65, global: 0.82
-            },
+            dimensions: { innovation: 0.59, stability: 0.72, social: 0.62, autonomy: 0.49, tradition: 0.65, global: 0.82 },
             soundness: 0.80,
-            confidence_levels: {
-              innovation: "medium", stability: "high", social: "medium",
-              autonomy: "medium", tradition: "medium", global: "high", soundness: "medium"
-            }
+            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "medium", global: "high", soundness: "medium" }
           }
         ]
       },
       hitachi: {
         company_info: {
-          code: "6501",
-          name: "日立製作所",
-          sector: "電気機器",
-          market: "東証プライム",
-          established: 1910,
-          employees: 323540,
-          url: "https://www.hitachi.co.jp/"
+          code: "6501", name: "日立製作所",
+          sector: "電気機器", market: "東証プライム",
+          established: 1910, employees: 323540, url: "https://www.hitachi.co.jp/"
         },
         quarterly_data: [
           {
-            quarter: "2023Q3",
-            date_updated: "2023-11-25",
+            quarter: "2023Q3", date_updated: "2023-11-25",
             source: "2023年第2四半期決算短信",
-            dimensions: {
-              innovation: 0.74, stability: 0.65, social: 0.54,
-              autonomy: 0.60, tradition: 0.62, global: 0.80
-            },
+            dimensions: { innovation: 0.74, stability: 0.65, social: 0.54, autonomy: 0.60, tradition: 0.62, global: 0.80 },
             soundness: 0.78,
-            confidence_levels: {
-              innovation: "medium", stability: "high", social: "medium",
-              autonomy: "medium", tradition: "medium", global: "high", soundness: "medium"
-            }
+            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "medium", global: "high", soundness: "medium" }
           }
         ]
       }
     };
-
-    // 色相環の描画関数
+    // 色相環描画
     function drawColorWheel(canvasId, dimensionData) {
       const canvas = document.getElementById(canvasId);
       const ctx = canvas.getContext('2d');
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
-      const radius = Math.min(centerX, centerY) - 12;
+      const radius = Math.min(centerX, centerY) - 16;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const dimensions = [
@@ -400,83 +433,84 @@
         ctx.lineTo(centerX, centerY);
         ctx.fillStyle = dim.color;
         ctx.globalAlpha = 0.93;
+        ctx.shadowColor = "#b3b3b336";
+        ctx.shadowBlur = 3;
         ctx.fill();
+        ctx.shadowBlur = 0;
         ctx.globalAlpha = 1.0;
-        ctx.strokeStyle = '#eee';
+        ctx.strokeStyle = '#fff';
         ctx.lineWidth = 2.5;
         ctx.stroke();
         // ラベル
-        const labelRadius = radius * 1.08 + 12;
+        const labelRadius = radius * 1.09 + 11;
         const labelX = centerX + Math.cos(startAngle + sectorAngle / 2) * labelRadius;
-        const labelY = centerY + Math.sin(startAngle + sectorAngle / 2) * labelRadius + 2;
-        ctx.fillStyle = '#555';
-        ctx.font = '13px "Noto Sans JP", Arial';
+        const labelY = centerY + Math.sin(startAngle + sectorAngle / 2) * labelRadius + 1.7;
+        ctx.save();
+        ctx.fillStyle = '#666c7b';
+        ctx.font = '13.5px "Noto Sans JP", Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(dim.name, labelX, labelY);
+        ctx.restore();
       });
-      // 中心丸
+      // 中心ホワイト丸
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 18, 0, 2 * Math.PI);
+      ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
       ctx.fillStyle = "#fff";
-      ctx.globalAlpha = 0.93;
+      ctx.shadowColor = "#bfc6d1cc";
+      ctx.shadowBlur = 8;
+      ctx.globalAlpha = 0.96;
       ctx.fill();
       ctx.globalAlpha = 1.0;
+      ctx.shadowBlur = 0;
       ctx.strokeStyle = "#bfc6d1";
       ctx.lineWidth = 1.4;
       ctx.stroke();
     }
 
-    // 健全度バーの描画
     function updateSoundnessBar(barId, markerId, value) {
       const bar = document.getElementById(barId);
       const marker = document.getElementById(markerId);
-      // 0-1スケールで幅位置を調整
       const barWidth = bar.clientWidth;
-      const markerLeft = Math.max(0, Math.min(barWidth - 16, Math.round(value * (barWidth - 16))));
+      const markerLeft = Math.max(0, Math.min(barWidth - 31, Math.round(value * (barWidth - 31))));
       marker.style.left = markerLeft + 'px';
-      marker.textContent = (Math.round(value * 100)) + '';
+      marker.textContent = Math.round(value * 100);
     }
 
-    // 企業基本情報表示
     function showCompanyInfo(info) {
-      const html = `
-        <b>${info.name}</b> <span style="font-size:0.98em; color:#7ba5e0">[${info.code}]</span><br>
-        業種: ${info.sector} ／ 市場: ${info.market} ／ 設立: ${info.established}<br>
-        従業員数: ${info.employees.toLocaleString()}名<br>
-        <a href="${info.url}" target="_blank" rel="noopener" style="color:#3c7ddb">公式サイト</a>
+      document.getElementById('companyInfo').innerHTML = `
+        <div class="company-main">${info.name}<span class="company-code">[${info.code}]</span></div>
+        <div class="company-meta">業種: ${info.sector} ／ 市場: ${info.market}</div>
+        <div class="company-meta2">設立: ${info.established} ／ 従業員数: ${info.employees.toLocaleString()}名</div>
+        <a class="company-site-link" href="${info.url}" target="_blank" rel="noopener">公式サイト</a>
       `;
-      document.getElementById('companyInfo').innerHTML = html;
     }
 
-    // メタ情報・透明性表示
     function showMetaAndSource(qdata) {
-      document.getElementById('metaInfo').innerHTML = 
-        `最新四半期: <b>${qdata.quarter}</b> ／ <span>データ更新: ${qdata.date_updated}</span>`;
-      document.getElementById('sourceInfo').innerHTML =
-        `<b>出典:</b> ${qdata.source} <br>
-         <b>データ確信度:</b> <span style="color:#488;">${qdata.confidence_levels.soundness}</span>
-         ／ <a href="#" style="color:#5e90fc; text-decoration:underline; font-size:0.95em;">計算方法</a>`;
+      document.getElementById('metaInfo').innerHTML = `
+        最新四半期: <b>${qdata.quarter}</b> ／ <span>データ更新: ${qdata.date_updated}</span>
+      `;
+      document.getElementById('sourceInfo').innerHTML = `
+        <span class="info-label">出典:</span>${qdata.source}<br>
+        <span class="info-label">データ信頼度:</span>
+        <span style="color:#08c471;font-weight:600;">${qdata.confidence_levels.soundness}</span>
+        <a href="methodology.html" class="info-link">計算方法</a>
+      `;
     }
 
-    // サンプル企業初期化
     function renderCompany(companyKey) {
       const company = companies[companyKey];
       const qdata = company.quarterly_data[0];
       drawColorWheel('colorWheel', qdata.dimensions);
       updateSoundnessBar('soundnessBar', 'soundnessMarker', qdata.soundness);
-      document.getElementById('soundnessValue').textContent =
-        `健全度スコア：${(qdata.soundness * 100).toFixed(1)} / 100`;
+      document.getElementById('soundnessValue').textContent = `健全度スコア：${(qdata.soundness * 100).toFixed(1)} / 100`;
       showCompanyInfo(company.company_info);
       showMetaAndSource(qdata);
     }
 
-    // ドロップダウンの変更イベント
     document.getElementById('companySelect').addEventListener('change', function(e) {
       renderCompany(this.value);
     });
-
-    // ページ初期化
     window.addEventListener('DOMContentLoaded', () => {
       renderCompany('ntt');
     });
