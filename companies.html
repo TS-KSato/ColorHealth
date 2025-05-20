@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>企業一覧 | 企業色相環</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root{--main-bg:#f8fafc;--card-bg:#fff;--primary:#3887ff;--border:#e4e8ee;--text:#212529;--accent:#59c3c3;--nav:#f1f5f9;}
+    html,body{min-height:100vh;margin:0;padding:0;font-family:'Noto Sans JP','Segoe UI',Arial,sans-serif;background:var(--main-bg);color:var(--text);}
+    header{background:var(--nav);box-shadow:0 2px 8px #2c36572b;padding:0 0 4px 0;}
+    nav{display:flex;gap:1.6rem;padding:1.2rem 1rem 0.5rem 1rem;font-size:1.1rem;}
+    nav a{text-decoration:none;color:var(--primary);font-weight:600;padding:0.3rem 0.7rem;border-radius:10px;transition:background .2s;}
+    nav a.active,nav a:hover{background:var(--accent);color:#fff;}
+    .container{max-width:750px;margin:2rem auto;background:var(--card-bg);padding:1.7rem 1.2rem 1.7rem 1.2rem;border-radius:14px;box-shadow:0 2px 8px #2c365710;}
+    h1{font-size:1.32rem;margin-bottom:1.2rem;}
+    .filter-row{display:flex;gap:0.7em;flex-wrap:wrap;margin:1.2em 0 1.6em 0;}
+    .filter-row input, .filter-row select{padding:0.44em 0.8em;font-size:1em;border:1px solid var(--border);border-radius:7px;}
+    .company-list{margin:1.3em 0 0 0;}
+    .company-card{background:#f7fbfe;border:1.2px solid #e4e8ee;border-radius:10px;padding:1em 1.3em;margin-bottom:1.05em;box-shadow:0 1px 3px #d0e0fa17;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .14s;}
+    .company-card:hover{box-shadow:0 2px 14px #bddcff28;}
+    .company-link{color:var(--primary);font-weight:600;text-decoration:none;}
+    .company-meta{font-size:0.99em;color:#686868;}
+    .mini-bar{background:linear-gradient(to right,#fff,#000);height:9px;border-radius:4px;position:relative;width:85px;margin-left:1.2em;}
+    .mini-marker{position:absolute;top:-2.5px;width:12px;height:13px;background:#3887ff;border-radius:3px;border:1.2px solid #fff;left:0;box-shadow:0 1px 3px #59c3c322;}
+    @media (max-width:600px) { .container{padding:1.1rem 0.25rem;} nav{font-size:1rem; gap:1rem;} .company-card{padding:0.6em 0.4em;} .mini-bar{width:50vw;}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">企業色相環</a>
+      <a href="about.html">概要</a>
+      <a href="methodology.html">計算方法</a>
+      <a href="companies.html" class="active">企業一覧</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <h1>企業一覧・検索</h1>
+      <div class="filter-row">
+        <input type="text" id="filterName" placeholder="社名キーワード">
+        <select id="filterSector">
+          <option value="">業種を選択</option>
+          <option value="情報・通信">情報・通信</option>
+          <option value="電気機器">電気機器</option>
+          <option value="輸送用機器">輸送用機器</option>
+          <option value="卸売業">卸売業</option>
+        </select>
+        <select id="filterMarket">
+          <option value="">市場区分</option>
+          <option value="東証プライム">東証プライム</option>
+        </select>
+        <button id="filterBtn" style="background:var(--primary);color:#fff;border:none;padding:0.44em 1.3em;border-radius:7px;font-weight:600;cursor:pointer;">検索</button>
+        <button id="resetBtn" style="background:#e0e5ed;color:#222;border:none;padding:0.44em 1.3em;border-radius:7px;margin-left:0.5em;">リセット</button>
+      </div>
+      <div class="company-list" id="companyList"></div>
+    </div>
+  </main>
+  <script>
+    // サンプルデータ（本来は外部json, ここはindex.htmlと一致させる）
+    const companies = [
+      {
+        key: "ntt",
+        info: { code:"9432", name:"NTT（日本電信電話）", sector:"情報・通信", market:"東証プライム"},
+        soundness: 0.85
+      },
+      {
+        key: "sony",
+        info: { code:"6758", name:"ソニーグループ", sector:"電気機器", market:"東証プライム"},
+        soundness: 0.83
+      },
+      {
+        key: "toyota",
+        info: { code:"7203", name:"トヨタ自動車", sector:"輸送用機器", market:"東証プライム"},
+        soundness: 0.90
+      },
+      {
+        key: "mitsui",
+        info: { code:"8031", name:"三井物産", sector:"卸売業", market:"東証プライム"},
+        soundness: 0.80
+      },
+      {
+        key: "hitachi",
+        info: { code:"6501", name:"日立製作所", sector:"電気機器", market:"東証プライム"},
+        soundness: 0.78
+      }
+    ];
+
+    // 検索・フィルタ
+    function renderCompanies() {
+      const name = document.getElementById('filterName').value.trim();
+      const sector = document.getElementById('filterSector').value;
+      const market = document.getElementById('filterMarket').value;
+      const list = document.getElementById('companyList');
+      let filtered = companies.filter(c => 
+        (!name || c.info.name.includes(name) || c.info.code.includes(name))
+        && (!sector || c.info.sector === sector)
+        && (!market || c.info.market === market)
+      );
+      if (filtered.length === 0) {
+        list.innerHTML = `<div style="color:#a66;font-size:1.1em;">該当する企業が見つかりません。</div>`;
+        return;
+      }
+      list.innerHTML = filtered.map(c => `
+        <div class="company-card">
+          <div>
+            <a class="company-link" href="company.html?key=${c.key}">${c.info.name}</a>
+            <div class="company-meta">${c.info.sector}・${c.info.market}・[${c.info.code}]</div>
+          </div>
+          <div class="mini-bar" title="健全度スコア">
+            <div class="mini-marker" style="left:${Math.round((c.soundness||0)*73)}px;"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+    document.getElementById('filterBtn').onclick = renderCompanies;
+    document.getElementById('resetBtn').onclick = function() {
+      document.getElementById('filterName').value = "";
+      document.getElementById('filterSector').value = "";
+      document.getElementById('filterMarket').value = "";
+      renderCompanies();
+    };
+    // 初期表示
+    window.addEventListener('DOMContentLoaded', renderCompanies);
+  </script>
+</body>
+</html>

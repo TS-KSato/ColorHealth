@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>企業色相環とは - About | Corporate Color Health</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --main-bg: #f8fafc;
+      --card-bg: #fff;
+      --primary: #3887ff;
+      --border: #e4e8ee;
+      --text: #212529;
+      --accent: #59c3c3;
+      --nav: #f1f5f9;
+    }
+    html, body { min-height:100vh; margin:0; padding:0; font-family:'Noto Sans JP','Segoe UI',Arial,sans-serif; background:var(--main-bg); color:var(--text); }
+    header { background:var(--nav); box-shadow:0 2px 8px #2c36572b; padding:0 0 4px 0; }
+    nav { display:flex; gap:1.6rem; padding:1.2rem 1rem 0.5rem 1rem; font-size:1.1rem; }
+    nav a { text-decoration:none; color:var(--primary); font-weight:600; padding:0.3rem 0.7rem; border-radius:10px; transition:background .2s; }
+    nav a.active, nav a:hover { background:var(--accent); color:#fff; }
+    .container { max-width:680px; margin:2rem auto; background:var(--card-bg); padding:2rem 1.2rem; border-radius:14px; box-shadow:0 2px 8px #2c365710; }
+    h1 { font-size:1.5rem; margin-bottom:1.1rem; }
+    .about-section { font-size:1.12rem; line-height:1.8; margin-bottom:2rem;}
+    .about-points { margin:1.7em 0 2.2em 1.4em; }
+    .about-points li { margin-bottom:0.8em; font-size:1.03em; }
+    .about-img { text-align:center; margin:2em 0 0 0; }
+    .about-img img { width:220px; max-width:90vw; opacity:0.88; }
+    @media (max-width:600px) { .container{padding:1.3rem 0.4rem;} nav{font-size:1rem; gap:1rem;} }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">企業色相環</a>
+      <a href="about.html" class="active">概要</a>
+      <a href="methodology.html">計算方法</a>
+      <a href="companies.html">企業一覧</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <h1>「企業色相環」とは？</h1>
+      <div class="about-section">
+        <p>
+          <b>企業色相環</b>は、個人投資家や企業分析に関心のある全ての人に向けて、企業の多次元的な特徴を色と形で"直感的"に伝えるための新しい可視化サイトです。<br>
+          <br>
+          従来の数値やレーティングだけでは捉えきれない「変革性・安定性・社会性・自律性・伝統性・国際性」の6次元を独自の色相環（カラーホイール）で表現し、<b>健全度</b>は白～黒のグラデーションバーで一目で確認できます。
+        </p>
+        <ul class="about-points">
+          <li>✔ <b>6色のセクター</b>で多様な企業性格を可視化</li>
+          <li>✔ <b>健全度バー</b>で経営の総合健全性をシンプルに判定</li>
+          <li>✔ <b>透明性</b>重視の計算方法とデータ出典明記</li>
+          <li>✔ スマホ・PC問わず見やすい明快なデザイン</li>
+        </ul>
+        <p>
+          投資判断や企業理解の新しい「インスピレーション」としてご活用ください。
+        </p>
+      </div>
+      <div class="about-img">
+        <!-- 擬似アイコン例（SVG） -->
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <circle cx="90" cy="90" r="75" fill="#fff" stroke="#c3dafb" stroke-width="3"/>
+          <path d="M90 90 L90 15 A75 75 0 0 1 165 90 Z" fill="#FF5555" />
+          <path d="M90 90 L165 90 A75 75 0 0 1 126.45 156.45 Z" fill="#5555FF" />
+          <path d="M90 90 L126.45 156.45 A75 75 0 0 1 53.55 156.45 Z" fill="#55FF55" />
+          <path d="M90 90 L53.55 156.45 A75 75 0 0 1 15 90 Z" fill="#FFFF55" />
+          <path d="M90 90 L15 90 A75 75 0 0 1 53.55 23.55 Z" fill="#AA55FF" />
+          <path d="M90 90 L53.55 23.55 A75 75 0 0 1 90 15 Z" fill="#FFAA55" />
+          <circle cx="90" cy="90" r="22" fill="#fff" stroke="#bfc6d1" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <p style="margin-top:1.5em; color:#6c7ba3; font-size:0.99em;">Corporate Color Health Project ©︎ 2024</p>
+    </div>
+  </main>
+</body>
+</html>

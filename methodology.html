@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>計算方法 - Methodology | 企業色相環</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root { --main-bg:#f8fafc; --card-bg:#fff; --primary:#3887ff; --border:#e4e8ee; --text:#212529; --accent:#59c3c3; --nav:#f1f5f9;}
+    html,body{min-height:100vh;margin:0;padding:0;font-family:'Noto Sans JP','Segoe UI',Arial,sans-serif;background:var(--main-bg);color:var(--text);}
+    header{background:var(--nav);box-shadow:0 2px 8px #2c36572b;padding:0 0 4px 0;}
+    nav{display:flex;gap:1.6rem;padding:1.2rem 1rem 0.5rem 1rem;font-size:1.1rem;}
+    nav a{text-decoration:none;color:var(--primary);font-weight:600;padding:0.3rem 0.7rem;border-radius:10px;transition:background .2s;}
+    nav a.active,nav a:hover{background:var(--accent);color:#fff;}
+    .container{max-width:700px;margin:2rem auto;background:var(--card-bg);padding:2rem 1.2rem;border-radius:14px;box-shadow:0 2px 8px #2c365710;}
+    h1{font-size:1.45rem;margin-bottom:1.2rem;}
+    .method-block{font-size:1.09rem;line-height:1.8;}
+    .method-table{margin:1.5em 0;width:100%;border-collapse:collapse;}
+    .method-table th,.method-table td{padding:0.7em 1em;border-bottom:1px solid #e3e9f1;font-size:0.98em;text-align:left;}
+    .method-table th{background:#f2f7fb;}
+    .formula{background:#f5faff;border-left:4px solid #59c3c3;padding:0.5em 1em;margin:1em 0;font-size:1.08em;}
+    .disclaimer{margin:1.5em 0 0 0;color:#777;font-size:0.97em;}
+    @media (max-width:600px) { .container{padding:1.3rem 0.4rem;} nav{font-size:1rem; gap:1rem;} .method-table th,.method-table td{padding:0.5em 0.4em;} }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">企業色相環</a>
+      <a href="about.html">概要</a>
+      <a href="methodology.html" class="active">計算方法</a>
+      <a href="companies.html">企業一覧</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <h1>算出ロジック・定義</h1>
+      <div class="method-block">
+        <p>
+          <b>企業色相環</b>で用いられる各次元と健全度スコアは、<b>公開企業データ・財務諸表・非財務（ESG）情報・公式発表等</b>をもとに独自アルゴリズムでスコア化しています。<br>
+          数値は0～1で標準化され、定量・定性の双方を反映しています。
+        </p>
+        <table class="method-table">
+          <tr><th>次元</th><th>色</th><th>主な指標例</th></tr>
+          <tr><td>変革性</td><td style="color:#FF5555">赤</td><td>R&D投資比率、新規事業数、イノベーション推進体制</td></tr>
+          <tr><td>安定性</td><td style="color:#5555FF">青</td><td>自己資本比率、連続黒字年数、財務安定性</td></tr>
+          <tr><td>社会性</td><td style="color:#55FF55">緑</td><td>従業員多様性、地域・社会貢献活動、女性管理職比率</td></tr>
+          <tr><td>自律性</td><td style="color:#FFFF55">黄</td><td>内部昇進比率、独立取締役数、グループ依存度</td></tr>
+          <tr><td>伝統性</td><td style="color:#AA55FF">紫</td><td>創業年、保守的経営指標、ブランド継承性</td></tr>
+          <tr><td>国際性</td><td style="color:#FFAA55">橙</td><td>海外売上比率、グローバル拠点数、多言語開示状況</td></tr>
+        </table>
+        <div class="formula">
+          <b>健全度スコア:</b><br>
+          <code>
+            Soundness = 総合財務健全性 × (1 - リスク指標) × 信頼度補正
+          </code>
+        </div>
+        <p>
+          <b>信頼度</b>（Confidence level）は、各データソースの鮮度・公表形態・客観性により「high / medium / low」で表示しています。
+        </p>
+      </div>
+      <div class="disclaimer">
+        ※ 算出アルゴリズム・指標例はプロトタイプ段階です。指標詳細やご意見は開発チームまでご連絡ください。
+      </div>
+    </div>
+  </main>
+</body>
+</html>
