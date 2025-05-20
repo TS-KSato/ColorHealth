@@ -5,47 +5,191 @@
   <title>企業詳細 | 企業色相環</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root{--main-bg:#f8fafc;--card-bg:#fff;--primary:#3887ff;--border:#e4e8ee;--text:#212529;--accent:#59c3c3;--nav:#f1f5f9;}
-    html,body{min-height:100vh;margin:0;padding:0;font-family:'Noto Sans JP','Segoe UI',Arial,sans-serif;background:var(--main-bg);color:var(--text);}
-    header{background:var(--nav);box-shadow:0 2px 8px rgba(44,54,87,0.17);padding:0 0 4px 0;}
-    nav{display:flex;gap:1.6rem;padding:1.2rem 1rem 0.5rem 1rem;font-size:1.1rem;}
-    nav a{text-decoration:none;color:var(--primary);font-weight:600;padding:0.3rem 0.7rem;border-radius:10px;transition:background .2s, color .2s;}
-    nav a.active,nav a:hover{background:var(--accent);color:#fff;}
-    .container{max-width:700px;margin:2rem auto;background:var(--card-bg);padding:2rem 1.2rem;border-radius:14px;box-shadow:0 2px 8px rgba(44,54,87,0.06);}
-    h1{font-size:1.29rem;margin-bottom:1.1rem;}
-    .basic-info{margin-bottom:1.3em;font-size:1.06em;}
-    .quarter-row{display:flex;gap:0.8em;align-items:center;margin-bottom:1em;}
-    .quarter-label{font-weight:500;font-size:1em;color:#488;}
-    .quarter-select{padding:0.3em 0.9em;font-size:1em;border:1px solid var(--border);border-radius:7px;cursor:pointer;transition:border-color 0.2s;}
-    .quarter-select:hover{border-color:#a5cbff;}
-    .viz-row{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:flex-start;}
-    .viz-col{display:flex;flex-direction:column;align-items:center;min-width:240px;flex:1;}
-    .canvas-container{background:#f3f5fa;border-radius:50%;box-shadow:0 1px 5px rgba(214,226,237,0.27);margin-bottom:1.1em;width:240px;height:240px;display:flex;justify-content:center;align-items:center;position:relative;}
-    canvas{display:block;width:100%;height:100%;}
-    .soundness-bar{margin:0.8em 0 0.5em 0;width:210px;max-width:100%;height:18px;border-radius:7px;background:linear-gradient(to right, #FFFFFF 0%, #E6E6E6 20%, #CCCCCC 40%, #999999 60%, #666666 80%, #000000 100%);position:relative;border:1.2px solid var(--border);box-shadow:0 2px 4px rgba(0,0,0,0.1);}
-    .soundness-marker{position:absolute;top:-4px;width:16px;height:26px;background:#3887ffcc;border-radius:5px;border:2px solid #fff;left:0;box-shadow:0 1px 5px rgba(142,198,255,0.5);transition:left 0.3s cubic-bezier(.4,1,.2,1);z-index:2;display:flex;justify-content:center;align-items:center;font-size:13px;font-weight:600;color:#fff;pointer-events:none;}
-    .soundness-labels{display:flex;justify-content:space-between;font-size:13px;margin-top:0.18em;margin-bottom:0.35em;color:#7a7c85;}
-    .meta-info{font-size:0.96em;color:#555;margin-top:0.8em;}
-    .source-info{background:#f7fbfe;border-left:4px solid #a5b7ff;padding:0.6em 1.1em;margin:0.7em 0 1.2em 0;font-size:0.96em;color:#636c82;border-radius:7px;}
-    .confidence-list{margin:0.9em 0 0 0;font-size:0.99em;}
-    .confidence-list span{display:inline-block;margin:0.18em 1.05em 0.18em 0;padding:0.15em 0.65em;border-radius:5px;font-size:0.96em;background:#eaf2ff;transition:background 0.2s;}
-    .confidence-list span:hover{background:#d8e7ff;}
-    .dimension-label{position:absolute;font-size:13px;color:#555;font-weight:500;pointer-events:none;}
-    
-    /* レスポンシブ改善 */
-    @media (max-width:768px){
-      .container{padding:1.5rem 1rem;}
-      .viz-row{gap:1.5rem;}
-      .canvas-container{width:220px;height:220px;}
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #f5f5f5;
+      font-family: 'Noto Sans JP', 'Segoe UI', Arial, sans-serif;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    @media (max-width:600px){
-      .container{padding:1.1rem 0.8rem;margin:1rem auto;}
-      nav{font-size:1rem;gap:1rem;padding:1rem 0.8rem 0.4rem 0.8rem;}
-      .viz-row{flex-direction:column;gap:1.3rem;align-items:center;}
-      .viz-col{width:100%;align-items:center;}
-      .canvas-container{width:200px;height:200px;}
-      .soundness-bar{width:90%;max-width:280px;}
-      h1{font-size:1.2rem;}
+    header {
+      background: #fff;
+      box-shadow: 0 2px 8px #bbb4;
+      padding-bottom: 2px;
+      width: 100vw;
+      min-width: 320px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.5rem 1rem 0.5rem 1rem;
+      font-size: 1.1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #3887ff;
+      font-weight: 600;
+      padding: 0.4rem 1.2rem;
+      border-radius: 10px;
+      transition: background .2s;
+    }
+    nav a.active, nav a:hover {
+      background: #59c3c3;
+      color: #fff;
+    }
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 30px #bbb7, 0 1.5px 10px #bbb3;
+      margin: 2.5rem auto;
+      padding: 2.7rem 2.3rem 2.4rem 2.3rem;
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: .05em;
+    }
+    .basic-info {
+      font-size: 1.13em;
+      margin-bottom: 1.1em;
+      text-align: center;
+      color: #446;
+    }
+    .quarter-row {
+      display: flex;
+      gap: 1em;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.7em;
+      width: 100%;
+    }
+    .quarter-label {
+      font-weight: 600;
+      font-size: 1.08em;
+      color: #459;
+      letter-spacing: .03em;
+    }
+    .quarter-select {
+      padding: 0.37em 1.1em;
+      font-size: 1.02em;
+      border: 1.2px solid #e4e8ee;
+      border-radius: 8px;
+    }
+    .viz-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.7rem;
+      width: 100%;
+    }
+    .viz-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 260px;
+      width: 100%;
+    }
+    canvas {
+      background: #f7fafd;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px #aab5c050;
+      margin-bottom: 1.2em;
+      width: 290px;
+      height: 290px;
+      max-width: 90vw;
+      display: block;
+    }
+    .soundness-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-top: 0.18em;
+      margin-bottom: 0.5em;
+      color: #6a6c7a;
+      width: 210px;
+      max-width: 90vw;
+    }
+    .soundness-bar {
+      margin: 0.7em 0 0.6em 0;
+      width: 210px;
+      max-width: 90vw;
+      height: 18px;
+      border-radius: 9px;
+      background: linear-gradient(to right,#fff,#000);
+      position: relative;
+      border: 1.4px solid #e4e8ee;
+      box-shadow: 0 1px 8px #b1b7bf44;
+      display: block;
+    }
+    .soundness-marker {
+      position: absolute;
+      top: -5px;
+      width: 18px;
+      height: 28px;
+      background: #3887ffcc;
+      border-radius: 7px;
+      border: 2px solid #fff;
+      left: 0;
+      box-shadow: 0 2px 7px #8ec6ff80;
+      transition: left 0.3s cubic-bezier(.4,1,.2,1);
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      pointer-events: none;
+    }
+    #soundnessValue {
+      font-size: 1.16em;
+      color: #446;
+      font-weight: bold;
+      margin-bottom: 0.6em;
+      text-align: center;
+    }
+    .meta-info, .source-info, .confidence-list {
+      font-size: 1.03em;
+      color: #555;
+      margin-top: 0.5em;
+      text-align: center;
+      width: 100%;
+    }
+    .source-info {
+      background: #f7fbfe;
+      border-left: 4px solid #a5b7ff;
+      padding: 0.8em 1.2em;
+      margin: 1em 0 1.2em 0;
+      border-radius: 8px;
+      color: #436c82;
+      font-size: 0.97em;
+    }
+    .confidence-list span {
+      display: inline-block;
+      margin: 0.18em 0.5em;
+      padding: 0.17em 0.7em;
+      border-radius: 6px;
+      background: #eaf2ff;
+      font-size: 0.98em;
+    }
+    @media (max-width: 600px) {
+      nav { font-size: 0.99rem; gap: 1rem; }
+      .container { padding: 1.1rem 0.2rem; }
+      .viz-row { gap: 1.2rem; }
+      canvas, .soundness-bar, .soundness-labels { width: 95vw !important; max-width: 95vw; }
     }
   </style>
 </head>
@@ -64,15 +208,14 @@
       <div class="basic-info" id="basicInfo"></div>
       <div class="quarter-row">
         <span class="quarter-label">四半期データ:</span>
-        <select id="quarterSelect" class="quarter-select"></select>
+        <select class="quarter-select" id="quarterSelect"></select>
       </div>
       <div class="viz-row">
         <div class="viz-col">
-          <div class="canvas-container">
-            <canvas id="colorWheel" width="240" height="240" aria-label="企業多次元特性の色相環"></canvas>
-          </div>
+          <canvas id="colorWheel" width="290" height="290" aria-label="企業多次元特性の色相環"></canvas>
         </div>
         <div class="viz-col">
+          <div style="font-size:1.18em;font-weight:bold;margin-bottom:0.2em;">健全度</div>
           <div class="soundness-labels">
             <span>健全</span>
             <span>不健全</span>
@@ -80,7 +223,7 @@
           <div class="soundness-bar" id="soundnessBar">
             <div class="soundness-marker" id="soundnessMarker"></div>
           </div>
-          <div id="soundnessValue" style="font-size:1.05em; color:#555;"></div>
+          <div id="soundnessValue"></div>
         </div>
       </div>
       <div class="meta-info" id="metaInfo"></div>
@@ -88,11 +231,7 @@
       <div class="confidence-list" id="confidenceList"></div>
     </div>
   </main>
-
   <script>
-    // データキャッシュ
-    const companiesCache = {};
-    
     // サンプルデータ定義（実際は各社json読み込み想定）
     const companies = {
       ntt: {
@@ -246,46 +385,22 @@
       }
     };
 
-    // URLからkey取得（最適化）
+    // URLからkey取得
     function getCompanyKey() {
-      const params = new URLSearchParams(window.location.search);
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
       return params.get("key") || "ntt";
     }
 
-    // 会社データをキャッシュに保存して取得（実装例）
-    function getCompanyData(key) {
-      if (!companiesCache[key] && companies[key]) {
-        companiesCache[key] = companies[key];
-      }
-      return companiesCache[key] || companies.ntt;
-    }
-
-    // 色相環Canvas描画（最適化）
+    // 色相環Canvas描画
     function drawColorWheel(canvasId, dimensionData) {
       const canvas = document.getElementById(canvasId);
-      if (!canvas || !canvas.getContext) return;
-      
       const ctx = canvas.getContext('2d');
-      
-      // デバイスピクセル比の対応
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.getBoundingClientRect();
-      
-      // キャンバスサイズを論理ピクセルに設定
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      
-      // スケールを調整して高解像度対応
-      ctx.scale(dpr, dpr);
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
       const radius = Math.min(centerX, centerY) - 12;
-      
-      // クリア
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 次元定義を一度だけ作成
       const dimensions = [
         { name: '変革性', color: '#FF5555', value: dimensionData.innovation || 0 },
         { name: '安定性', color: '#5555FF', value: dimensionData.stability || 0 },
@@ -294,70 +409,31 @@
         { name: '伝統性', color: '#AA55FF', value: dimensionData.tradition || 0 },
         { name: '国際性', color: '#FFAA55', value: dimensionData.global || 0 }
       ];
-      
-      // セクター角度を一度だけ計算
       const sectorAngle = (2 * Math.PI) / dimensions.length;
-      
-      // 背景円（オプション）
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = "#f8fafc";
-      ctx.fill();
-      
-      // ガイドライン（オプション）
-      for (let r = 0.2; r <= 1; r += 0.2) {
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius * r, 0, 2 * Math.PI);
-        ctx.strokeStyle = "#eee";
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-      
-      // セクター描画
       dimensions.forEach((dim, i) => {
-        const startAngle = i * sectorAngle - Math.PI / 2; // 上から開始
-        const endAngle = (i + 1) * sectorAngle - Math.PI / 2;
-        
-        // 各セクターのパス
+        const startAngle = i * sectorAngle;
+        const endAngle = (i + 1) * sectorAngle;
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, radius * dim.value, startAngle, endAngle, false);
         ctx.lineTo(centerX, centerY);
-        
-        // 塗りつぶし
         ctx.fillStyle = dim.color;
         ctx.globalAlpha = 0.93;
         ctx.fill();
-        
-        // 境界線
         ctx.globalAlpha = 1.0;
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#eee';
+        ctx.lineWidth = 2.5;
         ctx.stroke();
-        
         // ラベル
-        const labelRadius = radius + 20;
-        const labelAngle = startAngle + sectorAngle / 2;
-        const labelX = centerX + Math.cos(labelAngle) * (radius * 0.8);
-        const labelY = centerY + Math.sin(labelAngle) * (radius * 0.8);
-        
-        // ラベル配置（オプション）
-        const dimensionDiv = document.createElement('div');
-        dimensionDiv.className = 'dimension-label';
-        dimensionDiv.textContent = dim.name;
-        dimensionDiv.style.left = `${labelX}px`;
-        dimensionDiv.style.top = `${labelY}px`;
-        
-        // 中心からの線（オプション）
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(centerX + Math.cos(startAngle) * radius, 
-                  centerY + Math.sin(startAngle) * radius);
-        ctx.strokeStyle = "#ddd";
-        ctx.lineWidth = 1;
-        ctx.stroke();
+        const labelRadius = radius * 1.08 + 12;
+        const labelX = centerX + Math.cos(startAngle + sectorAngle / 2) * labelRadius;
+        const labelY = centerY + Math.sin(startAngle + sectorAngle / 2) * labelRadius + 2;
+        ctx.fillStyle = '#555';
+        ctx.font = '13px "Noto Sans JP", Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(dim.name, labelX, labelY);
       });
-      
       // 中心丸
       ctx.beginPath();
       ctx.arc(centerX, centerY, 18, 0, 2 * Math.PI);
@@ -368,147 +444,79 @@
       ctx.strokeStyle = "#bfc6d1";
       ctx.lineWidth = 1.4;
       ctx.stroke();
-      
-      // 次元名表示（内部に移動）
-      dimensions.forEach((dim, i) => {
-        const angle = i * sectorAngle - Math.PI / 2 + sectorAngle / 2;
-        const labelRadius = radius * 1.08;
-        const labelX = centerX + Math.cos(angle) * labelRadius;
-        const labelY = centerY + Math.sin(angle) * labelRadius;
-        
-        ctx.fillStyle = '#555';
-        ctx.font = '13px "Noto Sans JP", Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(dim.name, labelX, labelY);
-      });
     }
 
-    // 健全度バー描画（最適化）
+    // 健全度バー描画
     function updateSoundnessBar(barId, markerId, value) {
       const bar = document.getElementById(barId);
       const marker = document.getElementById(markerId);
-      if (!bar || !marker) return;
-      
       const barWidth = bar.clientWidth;
-      // 範囲を制限し、計算を最適化
-      const markerLeft = Math.min(Math.max(0, value * barWidth - 8), barWidth - 16);
-      
-      // 値を一度だけ計算
-      const scoreValue = Math.round(value * 100);
-      
-      // 効率的なスタイル適用
-      marker.style.left = `${markerLeft}px`;
-      marker.textContent = String(scoreValue);
-      
-      // 色の動的変更（オプション）
-      if (scoreValue > 80) {
-        marker.style.backgroundColor = 'rgba(56, 142, 255, 0.8)';
-      } else if (scoreValue > 50) {
-        marker.style.backgroundColor = 'rgba(56, 135, 255, 0.8)';
-      } else {
-        marker.style.backgroundColor = 'rgba(150, 150, 150, 0.8)';
-      }
+      const markerLeft = Math.max(0, Math.min(barWidth - 16, Math.round(value * (barWidth - 16))));
+      marker.style.left = markerLeft + 'px';
+      marker.textContent = (Math.round(value * 100)) + '';
     }
 
-    // HTML生成関数（DOMの効率的な更新用）
-    function generateCompanyInfoHTML(info) {
-      return `
+    // 企業基本情報
+    function showCompanyInfo(info) {
+      const html = `
         <b>${info.name}</b> <span style="font-size:0.98em; color:#7ba5e0">[${info.code}]</span><br>
         業種: ${info.sector} ／ 市場: ${info.market} ／ 設立: ${info.established}<br>
         従業員数: ${info.employees.toLocaleString()}名<br>
         <a href="${info.url}" target="_blank" rel="noopener" style="color:#3c7ddb">公式サイト</a>
       `;
+      document.getElementById('basicInfo').innerHTML = html;
     }
 
-    function generateQuarterOptionsHTML(quarterlyData, selectedIdx) {
-      return quarterlyData.map((q, i) => 
-        `<option value="${i}" ${i === selectedIdx ? 'selected' : ''}>${q.quarter}</option>`
-      ).join('');
-    }
-
-    function generateMetaInfoHTML(qdata) {
-      return `データ期: <b>${qdata.quarter}</b> ／ <span>更新: ${qdata.date_updated}</span>`;
-    }
-
-    function generateSourceInfoHTML(qdata) {
-      return `<b>出典:</b> ${qdata.source} <br>
+    // メタ情報・出典
+    function showMetaAndSource(qdata) {
+      document.getElementById('metaInfo').innerHTML =
+        `データ期: <b>${qdata.quarter}</b> ／ <span>更新: ${qdata.date_updated}</span>`;
+      document.getElementById('sourceInfo').innerHTML =
+        `<b>出典:</b> ${qdata.source} <br>
          <b>確信度:</b> <span style="color:#488;">${qdata.confidence_levels.soundness}</span>
          ／ <a href="methodology.html" style="color:#5e90fc; text-decoration:underline; font-size:0.95em;">計算方法</a>`;
     }
 
-    function generateConfidenceListHTML(levels) {
+    // 確信度リスト
+    function showConfidenceList(levels) {
       const disp = {
         high: '高',
         medium: '中',
         low: '低'
       };
-      return `<b>各指標のデータ信頼度:</b> ${
-        Object.entries(levels)
-          .filter(([k, _]) => k !== 'soundness') // 重複を避ける
-          .map(([k, v]) => `<span>${k}：${disp[v]||v}</span>`)
-          .join('')
-      }`;
+      const html = Object.entries(levels).map(([k, v]) =>
+        `<span>${k}：${disp[v]||v}</span>`).join('');
+      document.getElementById('confidenceList').innerHTML =
+        `<b>各指標のデータ信頼度:</b> ${html}`;
     }
 
-    // 企業情報レンダリング（最適化）
+    // 企業情報レンダリング
     function renderCompany(companyKey, quarterIdx=0) {
-      const company = getCompanyData(companyKey);
-      if (!company) return;
-      
-      // 四半期データのバリデーション
-      quarterIdx = Math.min(Math.max(0, quarterIdx), company.quarterly_data.length - 1);
+      const company = companies[companyKey] || companies.ntt;
+      document.getElementById('companyName').textContent = company.company_info.name + " の色相環";
+      showCompanyInfo(company.company_info);
+      // 四半期リスト
+      const sel = document.getElementById('quarterSelect');
+      sel.innerHTML = company.quarterly_data.map((q, i) =>
+        `<option value="${i}">${q.quarter}</option>`).join('');
+      sel.value = quarterIdx;
       const qdata = company.quarterly_data[quarterIdx];
-      
-      // DOM更新を効率化（一括でHTMLを生成）
-      document.getElementById('companyName').textContent = `${company.company_info.name} の色相環`;
-      document.getElementById('basicInfo').innerHTML = generateCompanyInfoHTML(company.company_info);
-      document.getElementById('quarterSelect').innerHTML = generateQuarterOptionsHTML(company.quarterly_data, quarterIdx);
-      document.getElementById('soundnessValue').textContent = `健全度スコア：${(qdata.soundness * 100).toFixed(1)} / 100`;
-      document.getElementById('metaInfo').innerHTML = generateMetaInfoHTML(qdata);
-      document.getElementById('sourceInfo').innerHTML = generateSourceInfoHTML(qdata);
-      document.getElementById('confidenceList').innerHTML = generateConfidenceListHTML(qdata.confidence_levels);
-      
-      // ビジュアル要素の更新
-      requestAnimationFrame(() => {
-        drawColorWheel('colorWheel', qdata.dimensions);
-        updateSoundnessBar('soundnessBar', 'soundnessMarker', qdata.soundness);
-      });
+      drawColorWheel('colorWheel', qdata.dimensions);
+      updateSoundnessBar('soundnessBar', 'soundnessMarker', qdata.soundness);
+      document.getElementById('soundnessValue').textContent =
+        `健全度スコア：${(qdata.soundness * 100).toFixed(1)} / 100`;
+      showMetaAndSource(qdata);
+      showConfidenceList(qdata.confidence_levels);
     }
 
-    // イベントハンドラー
-    function handleQuarterChange(e) {
+    // 四半期切り替え
+    document.getElementById('quarterSelect').addEventListener('change', function(e){
       const key = getCompanyKey();
-      const quarterIdx = parseInt(this.value, 10) || 0;
-      renderCompany(key, quarterIdx);
-    }
+      renderCompany(key, parseInt(this.value,10)||0);
+    });
 
-    // イベントリスナーの初期化
-    function initEventListeners() {
-      const quarterSelect = document.getElementById('quarterSelect');
-      if (quarterSelect) {
-        quarterSelect.addEventListener('change', handleQuarterChange);
-      }
-      
-      // リサイズ対応（オプション）
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          const key = getCompanyKey();
-          const quarterIdx = parseInt(document.getElementById('quarterSelect').value, 10) || 0;
-          
-          // キャンバスのみ再描画
-          const company = getCompanyData(key);
-          const qdata = company.quarterly_data[quarterIdx];
-          drawColorWheel('colorWheel', qdata.dimensions);
-        }, 250); // デバウンス
-      });
-    }
-
-    // 初期表示（DOMContentLoadedで一度だけ実行）
+    // 初期表示
     window.addEventListener('DOMContentLoaded', () => {
-      initEventListeners();
       const key = getCompanyKey();
       renderCompany(key, 0);
     });
