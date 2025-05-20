@@ -1,0 +1,292 @@
+# 企業色相環サイト - 要件定義書
+project:
+  name: 企業色相環
+  version: 1.0.0
+  description: 企業の特性を色相環で、健全性を白黒のグラデーションで表現する情報サイト
+
+purpose:
+  mission: 投資の数値偏重から脱却し、企業の多次元的な価値を直感的に理解できる世界を創る
+  goals:
+    - 企業の多次元的特性を色相環として可視化する
+    - 健全経営度を白黒スケールで直感的に表現する
+    - 初心者でも理解しやすい企業分析の視点を提供する
+    - 時系列での企業特性変化を把握可能にする
+
+target_users:
+  primary:
+    - type: 投資初心者
+      needs: 財務諸表を読み解く専門知識がなくても企業特性を把握したい
+    - type: 価値観重視の投資家
+      needs: 数字だけでは見えない企業特性を重視した投資判断をしたい
+    - type: 多角的視点の投資家
+      needs: 従来の財務分析に新たな視点を加えたい
+  secondary:
+    - type: 投資教育者
+      needs: 新しい切り口で企業分析を教えたい
+    - type: 経営者/起業家
+      needs: 多次元的な企業評価の観点を得たい
+
+business_requirements:
+  - id: BR01
+    description: GitHub Pagesでの無料ホスティングを活用した運用
+  - id: BR02
+    description: 情報の信頼性と透明性を担保した内容提供
+  - id: BR03
+    description: 将来的に月額課金サービスへの発展可能性を考慮した設計
+  - id: BR04
+    description: サイト成果に基づいた段階的な機能拡張の可能性を確保
+
+functional_requirements:
+  core_features:
+    - id: F01
+      name: 企業検索・一覧表示
+      description: 企業を名前、業種、市場区分などで検索・フィルタリングできる機能
+    - id: F02
+      name: 色相環表示
+      description: 6つの次元（変革性、安定性、社会性、自律性、伝統性、国際性）の色相環表示
+    - id: F03
+      name: 健全度表示
+      description: 白（健全）〜黒（不健全）のグラデーションによる健全経営度表示
+    - id: F04
+      name: 時系列表示
+      description: 四半期ごとの色相環・健全度の変化表示（直近8四半期）
+    - id: F05
+      name: 基本情報表示
+      description: 企業の基本情報と色相環各次元の簡易解説表示
+  
+  informational_content:
+    - id: IC01
+      name: 色相環解説
+      description: 色相環の各次元の意味や見方の解説コンテンツ
+    - id: IC02
+      name: 計算方法開示
+      description: 各指標の算出方法と情報源の詳細説明
+    - id: IC03
+      name: 使い方ガイド
+      description: ユーザータイプ別の活用方法解説
+    - id: IC04
+      name: サイトの価値観・理念
+      description: サイトの目的、運営方針、価値観の明示
+
+non_functional_requirements:
+  performance:
+    - id: NF01
+      description: ページ読み込み時間が3秒以内であること
+    - id: NF02
+      description: モバイルデバイスでも快適に動作すること
+  
+  usability:
+    - id: NF03
+      description: 直感的なUI/UXで専門知識不要で操作可能であること
+    - id: NF04
+      description: アクセシビリティに配慮した設計であること
+  
+  reliability:
+    - id: NF05
+      description: データの出典と鮮度が明確に表示されていること
+    - id: NF06
+      description: 計算方法の透明性が確保されていること
+  
+  maintainability:
+    - id: NF07
+      description: データの定期更新が容易な構造であること
+    - id: NF08
+      description: 将来的な機能拡張に対応可能な設計であること
+
+constraints:
+  - id: C01
+    description: GitHub Pagesで運用可能な静的サイトであること
+  - id: C02
+    description: HTML5, CSS3, プレーンJavaScriptのみを使用すること
+  - id: C03
+    description: LocalStorageなどのクライアントストレージを使用しないこと
+  - id: C04
+    description: 外部データベースに依存しない設計であること
+
+assumptions:
+  - id: A01
+    description: 企業データは四半期ごとに手動更新する
+  - id: A02
+    description: 初期版では日本の主要上場企業（約200-300社）をカバーする
+  - id: A03
+    description: データ収集・分析は事前に実施し、静的JSONファイルとして準備する
+
+future_considerations:
+  - id: FC01
+    description: ユーザーフィードバックに基づく改良実施
+  - id: FC02
+    description: 有料サービス化のための機能拡充検討
+  - id: FC03
+    description: API提供による外部サービス連携可能性
+
+# 企業色相環サイト - 技術仕様書
+technical_specifications:
+  development_environment:
+    code_repository: GitHub
+    hosting: GitHub Pages
+    version_control: Git
+  
+  technologies:
+    frontend:
+      - HTML5
+      - CSS3 (Flexbox/Gridレイアウト)
+      - JavaScript (ES6+)
+      - Canvas API (色相環描画)
+    tools:
+      - npm (開発依存性管理)
+      - gulp/webpack (ビルド自動化)
+  
+  architecture:
+    type: 静的サイト (SPA風デザイン)
+    pattern: モジュラーJavaScript
+    data_flow: JSONファイルからのデータ読み込み
+
+  file_structure:
+    root:
+      - index.html          # メインページ
+      - about.html          # サイト説明ページ
+      - methodology.html    # 計算方法解説ページ
+      - companies.html      # 企業一覧ページ
+      - company.html        # 個別企業表示ページ (パラメータ利用)
+    css:
+      - styles.css          # メインスタイル
+      - responsive.css      # レスポンシブ対応
+    js:
+      - main.js             # メイン機能
+      - colorwheel.js       # 色相環描画モジュール
+      - search.js           # 検索・フィルター機能
+      - utils.js            # 共通ユーティリティ
+    data:
+      - companies.json      # 企業一覧データ
+      - dimensions.json     # 色相次元定義
+      - sectors.json        # 業種区分データ
+      - companies/          # 企業別データフォルダ
+        - company1.json     # 個別企業データ
+    assets:
+      - images/             # 画像素材
+      - icons/              # アイコン素材
+
+  data_structure:
+    company_list:
+      - id: "company_code"
+        name: "企業名"
+        sector: "業種"
+        market: "市場区分"
+    
+    company_data:
+      company_info:
+        code: "企業コード"
+        name: "企業名"
+        established: "設立年"
+        employees: "従業員数"
+        url: "企業URL"
+      
+      quarterly_data:
+        - quarter: "2023Q3"
+          date_updated: "2023-11-30"
+          source: "2023年第2四半期決算短信, 2023年有価証券報告書"
+          dimensions:
+            innovation: 0.75  # 変革性 (赤)
+            stability: 0.68   # 安定性 (青)
+            social: 0.45      # 社会性 (緑)
+            autonomy: 0.62    # 自律性 (黄)
+            tradition: 0.58   # 伝統性 (紫)
+            global: 0.70      # 国際性 (橙)
+          soundness: 0.85     # 健全度 (白-黒)
+          confidence_levels:  # 算出確信度
+            innovation: "medium"
+            stability: "high"
+            social: "medium"
+            autonomy: "medium" 
+            tradition: "high"
+            global: "high"
+            soundness: "high"
+
+  ui_components:
+    header:
+      - サイトロゴ
+      - ナビゲーションメニュー
+      - 簡易検索ボックス
+    
+    footer:
+      - サイト情報
+      - 免責事項
+      - 連絡先
+      - 更新情報
+    
+    company_search:
+      - 検索ボックス
+      - 業種フィルター
+      - ソートオプション
+    
+    color_wheel_display:
+      - Canvas要素 (色相環描画)
+      - 次元説明ラベル
+      - 時系列選択ドロップダウン
+    
+    soundness_bar:
+      - グラデーションバー (白-黒)
+      - スコア表示
+      - 信頼度インジケーター
+
+  responsive_breakpoints:
+    mobile: "max-width: 480px"
+    tablet: "max-width: 768px"
+    desktop: "min-width: 769px"
+
+  performance_optimizations:
+    - 画像最適化 (WebP形式使用)
+    - CSS/JSの最小化
+    - 遅延読み込み (Lazy Loading)
+    - 効率的なキャンバス描画手法
+
+  accessibility_considerations:
+    - 適切なコントラスト比
+    - スクリーンリーダー対応
+    - キーボードナビゲーション
+    - 代替テキスト提供
+
+  cross_browser_compatibility:
+    - Chrome (最新2バージョン)
+    - Firefox (最新2バージョン)
+    - Safari (最新2バージョン)
+    - Edge (最新2バージョン)
+
+deployment:
+  process:
+    - GitHub Actionsによるビルド自動化
+    - リリース前の検証ステップ
+    - GitHub Pagesへの自動デプロイ
+  
+  update_frequency:
+    code: 必要に応じて随時更新
+    company_data: 四半期ごと
+
+testing:
+  methods:
+    - クロスブラウザテスト
+    - レスポンシブデザインテスト
+    - ユーザビリティテスト
+  
+  tools:
+    - Lighthouse (パフォーマンス評価)
+    - W3C Validator (HTML/CSS検証)
+    - WAVE (アクセシビリティ評価)
+
+documentation:
+  developer:
+    - README.md (プロジェクト概要)
+    - CONTRIBUTING.md (貢献ガイドライン)
+    - コードコメント規約
+  
+  user:
+    - 使い方ガイド
+    - よくある質問
+    - フィードバック方法
+
+metrics_for_success:
+  - ページビュー数
+  - 平均滞在時間
+  - リピート率
+  - SNS共有数
+  - フィードバック数・質
