@@ -1,0 +1,6 @@
+[
+  { "code": "info_comm", "name": "情報・通信", "en": "Information & Communication" },
+  { "code": "electronics", "name": "電気機器", "en": "Electronics" },
+  { "code": "auto", "name": "輸送用機器", "en": "Automobiles" },
+  { "code": "wholesale", "name": "卸売業", "en": "Wholesale" }
+]

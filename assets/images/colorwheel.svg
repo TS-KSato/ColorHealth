@@ -1,0 +1,11 @@
+<!-- assets/icons/colorwheel.svg -->
+<svg width="48" height="48" viewBox="0 0 48 48">
+  <circle cx="24" cy="24" r="22" fill="#fff" stroke="#bfc6d1" stroke-width="2"/>
+  <path d="M24 24 L24 2 A22 22 0 0 1 46 24 Z" fill="#FF5555" />
+  <path d="M24 24 L46 24 A22 22 0 0 1 36.9 41.9 Z" fill="#5555FF" />
+  <path d="M24 24 L36.9 41.9 A22 22 0 0 1 11.1 41.9 Z" fill="#55FF55" />
+  <path d="M24 24 L11.1 41.9 A22 22 0 0 1 2 24 Z" fill="#FFFF55" />
+  <path d="M24 24 L2 24 A22 22 0 0 1 11.1 6.1 Z" fill="#AA55FF" />
+  <path d="M24 24 L11.1 6.1 A22 22 0 0 1 24 2 Z" fill="#FFAA55" />
+  <circle cx="24" cy="24" r="5" fill="#fff" stroke="#aaa" stroke-width="1"/>
+</svg>

@@ -1,0 +1,7 @@
+@media (max-width:600px) {
+  .container { padding: 1.1rem 0.2rem; }
+  nav { font-size: 1rem; gap: 1rem; }
+  .viz-row { flex-direction: column; gap: 1.3rem; }
+  canvas { max-width: 98vw; }
+  .soundness-bar { width: 96vw; }
+}

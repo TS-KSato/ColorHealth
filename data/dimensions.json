@@ -1,0 +1,8 @@
+[
+  { "key": "innovation", "name": "変革性", "color": "#FF5555", "desc": "R&D投資、新規事業、イノベーション" },
+  { "key": "stability",  "name": "安定性", "color": "#5555FF", "desc": "財務健全性、黒字年数" },
+  { "key": "social",     "name": "社会性", "color": "#55FF55", "desc": "多様性、社会貢献、ESG" },
+  { "key": "autonomy",   "name": "自律性", "color": "#FFFF55", "desc": "独立性、社内昇進比" },
+  { "key": "tradition",  "name": "伝統性", "color": "#AA55FF", "desc": "老舗度、ブランド、伝統" },
+  { "key": "global",     "name": "国際性", "color": "#FFAA55", "desc": "海外売上比率、グローバル展開" }
+]

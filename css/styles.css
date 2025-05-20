@@ -1,0 +1,22 @@
+:root {
+  --main-bg: #f8fafc;
+  --card-bg: #fff;
+  --primary: #3887ff;
+  --border: #e4e8ee;
+  --text: #212529;
+  --accent: #59c3c3;
+  --nav: #f1f5f9;
+  --sector-red: #FF5555;
+  --sector-blue: #5555FF;
+  --sector-green: #55FF55;
+  --sector-yellow: #FFFF55;
+  --sector-purple: #AA55FF;
+  --sector-orange: #FFAA55;
+}
+html, body {
+  min-height: 100vh;
+  margin: 0; padding: 0;
+  font-family: 'Noto Sans JP', 'Segoe UI', Arial, sans-serif;
+  background: var(--main-bg);
+  color: var(--text);
+}

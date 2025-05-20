@@ -1,0 +1,37 @@
+[
+  {
+    "key": "ntt",
+    "code": "9432",
+    "name": "NTT（日本電信電話）",
+    "sector": "情報・通信",
+    "market": "東証プライム"
+  },
+  {
+    "key": "sony",
+    "code": "6758",
+    "name": "ソニーグループ",
+    "sector": "電気機器",
+    "market": "東証プライム"
+  },
+  {
+    "key": "toyota",
+    "code": "7203",
+    "name": "トヨタ自動車",
+    "sector": "輸送用機器",
+    "market": "東証プライム"
+  },
+  {
+    "key": "mitsui",
+    "code": "8031",
+    "name": "三井物産",
+    "sector": "卸売業",
+    "market": "東証プライム"
+  },
+  {
+    "key": "hitachi",
+    "code": "6501",
+    "name": "日立製作所",
+    "sector": "電気機器",
+    "market": "東証プライム"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "company_info": {
+    "code": "7203",
+    "name": "トヨタ自動車",
+    "sector": "輸送用機器",
+    "market": "東証プライム",
+    "established": 1937,
+    "employees": 370870,
+    "url": "https://global.toyota/jp/"
+  },
+  "quarterly_data": [
+    {
+      "quarter": "2023Q3",
+      "date_updated": "2023-12-03",
+      "source": "2023年第2四半期決算短信",
+      "dimensions": {
+        "innovation": 0.68,
+        "stability": 0.74,
+        "social": 0.59,
+        "autonomy": 0.57,
+        "tradition": 0.77,
+        "global": 0.95
+      },
+      "soundness": 0.90,
+      "confidence_levels": {
+        "innovation": "medium",
+        "stability": "high",
+        "social": "medium",
+        "autonomy": "medium",
+        "tradition": "high",
+        "global": "high",
+        "soundness": "high"
+      }
+    }
+  ]
+}
