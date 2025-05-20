@@ -4,253 +4,258 @@
   <meta charset="UTF-8">
   <title>企業色相環 | Corporate Color Health</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#eaf1fb">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#f8fafc">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-bg: #f8fafc;
       --card-bg: #fff;
+      --gray-bg: #f4f8fb;
       --accent: #3388FF;
-      --accent-light: #eaf1fb;
-      --gray: #eef2f7;
       --border: #e3e7ee;
       --text: #1b2230;
-      --text-sub: #767a89;
-      --primary: #3388FF;
-      --radius: 20px;
-      --shadow: 0 2px 18px #a0c1e820, 0 1px 1px #bddcff19;
+      --text-sub: #888fa4;
+      --radius: 22px;
+      --shadow: 0 3px 24px #a0c1e81a;
     }
-    html,body {
-      min-height:100vh; margin:0; padding:0;
-      font-family:'Noto Sans JP', 'Roboto', Arial, sans-serif;
+    html, body {
+      margin: 0; padding: 0;
       background: var(--main-bg);
+      font-family: 'Noto Sans JP', 'Roboto', Arial, sans-serif;
       color: var(--text);
-      letter-spacing: 0.01em;
+      font-size: 17px;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
-    body { padding-bottom: 34px; }
     header {
-      background: var(--accent-light);
+      background: #f4f8fb;
       border-bottom: 1.5px solid var(--border);
-      position: sticky; top:0; z-index: 10;
+      position: sticky; top: 0; z-index: 10;
     }
     .nav {
-      display:flex; justify-content:space-between; align-items:center;
-      gap:0.1em; padding: 0.6em 0.5em 0.12em 0.5em;
-      border-radius:0 0 var(--radius) var(--radius);
-      box-shadow: none;
-      background: transparent;
-    }
-    .nav-menu {
-      display: flex; gap:0.2em;
-      flex:1;
-      justify-content: space-around;
+      display: flex; justify-content: space-around; align-items: center;
+      gap: 0.1em; padding: 0.7em 0.1em 0.2em 0.1em;
+      background: #f4f8fb;
     }
     .nav-link {
-      display:inline-block;
-      font-weight: 500;
-      font-size: 1.03em;
-      color: var(--primary);
-      background: none;
+      background: #e2f3f6;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1em;
+      border-radius: 15px;
+      padding: 0.33em 1.18em 0.29em 1.18em;
+      margin: 0 0.13em;
       border: none;
-      border-radius: 1em 1em 0 0;
-      padding:0.5em 1.1em 0.3em 1.1em;
-      margin: 0 0.06em;
-      position:relative;
-      cursor:pointer;
-      transition: background 0.12s, color 0.12s;
-      outline:none;
+      outline: none;
+      transition: background 0.13s, color 0.12s;
+      cursor: pointer;
       text-decoration: none;
+      letter-spacing: 0.04em;
+      box-shadow: 0 1px 3px #b5d5fa1e;
+      border-bottom: 3px solid transparent;
     }
-    .nav-link.active, .nav-link:focus {
-      background: #fff;
-      color: var(--primary);
-      box-shadow: 0 2px 12px #3388ff19;
-      border-bottom: 3px solid var(--primary);
-      z-index:2;
+    .nav-link.active {
+      background: #8de7d1;
+      color: #146daf;
+      border-bottom: 3px solid #3388ff;
+      box-shadow: 0 1px 5px #abd7ef32;
+      pointer-events: none;
     }
     .nav-link:not(.active):hover {
-      color: #2477e0;
-      background: #e6f1ff;
+      background: #d0f6ff;
+      color: #3888ff;
     }
-    .logo { font-weight:700; font-size:1.19em; color:var(--primary);}
     main {
-      max-width: 480px;
-      margin: 0 auto; padding: 0.3em 0.7em 2.2em 0.7em;
+      max-width: 510px;
+      margin: 0 auto; padding: 1.3em 0.7em 2.2em 0.7em;
     }
-    .section {
-      margin:1.2em 0 1.5em 0;
+    .section-card {
       background: var(--card-bg);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 1.25em 1.15em 1.5em 1.15em;
+      padding: 1.23em 1.09em 1.44em 1.09em;
+      margin: 1.6em 0 1.7em 0;
     }
     .title-main {
-      font-size:1.3em;
-      font-weight:700;
+      font-size: 1.26em;
+      font-weight: 700;
       color: var(--text);
-      margin: 0.4em 0 0.25em 0;
-      line-height: 1.17;
-      letter-spacing: 0.03em;
+      margin: 0.4em 0 0.23em 0;
+      letter-spacing: 0.02em;
     }
     .subtitle {
-      font-size:1.05em;
+      font-size: 1.02em;
       color: var(--text-sub);
-      margin: 0 0 1.1em 0;
+      margin: 0 0 1.03em 0;
       font-weight: 500;
     }
-    .form-row {
-      margin: 0.7em 0 1.1em 0;
-      display: flex; flex-direction: column; gap: 0.35em;
-    }
+    .form-row { margin: 0.65em 0 1.18em 0;}
     .label {
-      font-size:1em;
-      font-weight:500;
-      color: #458;
+      font-size: 1em;
+      font-weight: 600;
+      color: #488;
       margin-bottom: 0.07em;
     }
     .select-custom {
       appearance: none;
       -webkit-appearance: none;
-      padding: 0.72em 2.2em 0.72em 1.1em;
+      padding: 0.7em 2.1em 0.7em 1em;
       border-radius: 12px;
-      border: 1.5px solid var(--border);
-      font-size: 1.08em;
-      background: var(--gray) url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.8em center/1.3em 1.3em;
-      font-family:inherit;
-      font-weight:500;
-      color:var(--text);
-      box-shadow:0 1px 3px #b9dbff18;
+      border: 1.3px solid var(--border);
+      font-size: 1.06em;
+      background: #f6fafd url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.8em center/1.3em 1.3em;
+      font-family: inherit;
+      font-weight: 500;
+      color: var(--text);
+      box-shadow: 0 1px 2px #b9dbff15;
       outline: none;
-      transition: border 0.15s;
+      transition: border 0.12s;
+      width: 100%;
     }
     .select-custom:focus {
-      border: 1.6px solid var(--primary);
+      border: 1.3px solid var(--accent);
       background-color: #f8fafd;
     }
-    .viz-container { margin:1.3em 0 0.8em 0; }
-    .colorwheel-wrap {
-      margin: 0 auto; width: 100%; max-width: 320px; background: var(--accent-light);
-      border-radius: 100vw; display:flex; justify-content:center; align-items:center;
-      box-shadow: 0 1px 8px #3388ff10;
+    .viz-cards-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4em;
+      margin: 1.25em 0 1.55em 0;
+    }
+    .colorwheel-card, .soundness-card {
+      background: var(--gray-bg);
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #3388ff10;
+      padding: 1.1em 0.1em 0.7em 0.1em;
+      text-align: center;
+      position: relative;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .soundness-card {
+      min-height: 85px;
+      padding-top: 0.8em;
+    }
+    .cw-label {
+      font-size: 0.97em;
+      color: #6a87a5;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
     canvas {
-      margin:1.4em 0 0.8em 0; display: block; width:100%; max-width: 240px; height:auto; background: #f4f8fc; border-radius:50%; 
-      box-shadow: 0 2px 6px #b3d7fc22;
+      display: block;
+      width: 99%;
+      max-width: 272px;
+      margin: 0 auto 0.7em auto;
+      background: #f9fbfd;
+      border-radius: 50%;
     }
-    .soundness-wrap {
-      margin: 1.2em 0 1.4em 0;
-      text-align:center;
-      padding: 0.7em 0 0.1em 0;
+    .soundness-bar-wrap {
+      width: 94%;
+      margin: 0 auto 0.12em auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7em;
+      min-width: 180px;
+    }
+    .soundness-bar-label {
+      font-size: 0.99em;
+      color: #7f8b9d;
+      min-width: 36px;
+      text-align: center;
     }
     .soundness-bar {
-      width: 98%;
-      height: 19px;
-      border-radius: 14px;
-      background: linear-gradient(to right, #fff 0%, #c6d1de 22%, #666 100%);
-      border: 1.2px solid var(--border);
-      margin: 0.37em 0 0.36em 0;
-      box-shadow: 0 1px 5px #8ebcff15;
+      flex: 1;
+      height: 23px;
+      border-radius: 10px;
       position: relative;
+      background: none;
+      overflow: visible;
     }
     .soundness-marker {
-      position: absolute; top: -5px;
-      width: 31px; height: 31px;
+      position: absolute; top: -7px;
+      width: 32px; height: 32px;
       background: #3388FF;
       border-radius: 50%;
-      border: 2.5px solid #fff;
+      border: 3px solid #fff;
       box-shadow: 0 1px 8px #3388ff44;
-      display: flex; align-items:center; justify-content: center;
-      font-size: 1.09em;
-      font-weight:700;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.11em;
+      font-weight: 700;
       color: #fff;
       left: 0;
-      transition: left 0.2s cubic-bezier(.42,1.33,.32,.92);
-      z-index:2;
+      transition: left 0.18s cubic-bezier(.45,1.1,.21,.97);
+      z-index: 2;
       pointer-events: none;
       user-select: none;
     }
-    .soundness-labels {
-      display: flex; justify-content: space-between;
-      font-size: 0.98em;
-      margin: 0.08em 0 0.03em 0;
-      color: #8ca1c7;
-      font-weight:500;
-      letter-spacing:0.03em;
-      padding: 0 0.07em;
-    }
     .soundness-score {
-      font-size: 1.18em;
+      font-size: 1.11em;
       font-weight: 600;
-      color: var(--primary);
-      margin: 0.21em 0 0.2em 0;
-      letter-spacing: 0.03em;
-      text-shadow: 0 2px 8px #a3d7fc29;
+      color: var(--accent);
+      margin: 0.13em 0 0.16em 0;
+      letter-spacing: 0.01em;
     }
     .company-info-card {
-      margin: 0.35em 0 0.25em 0;
-      padding: 1.0em 1.0em 1.1em 1.0em;
+      margin: 0.25em 0 0.35em 0;
+      padding: 1.15em 1.1em 1.07em 1.1em;
       border-radius: 16px;
       background: #f6f8fb;
-      box-shadow: 0 1px 8px #bddcff18;
+      box-shadow: 0 1px 8px #bddcff13;
     }
     .company-main {
-      font-weight:700;
-      font-size:1.12em;
+      font-weight: 700;
+      font-size: 1.13em;
       color: #25386a;
-      margin-bottom: 0.13em;
+      margin-bottom: 0.10em;
     }
     .company-code {
-      color: #3388ff; font-weight: 600; font-size: 1em; margin-left: 0.3em;
+      color: #3388ff; font-weight: 600; font-size: 1em; margin-left: 0.25em;
       text-decoration: underline dotted;
     }
-    .company-url {
-      color: #3388ff; font-weight:500; text-decoration: underline;
-      margin-left: 0.1em; font-size: 0.99em;
-    }
-    .company-meta {
-      font-size:0.98em; color: #657098; margin-bottom: 0.07em;
-    }
-    .company-meta2 {
-      font-size:0.98em; color: #7a879b;
-    }
+    .company-meta { font-size: 0.98em; color: #657098; margin-bottom: 0.07em;}
+    .company-meta2 { font-size: 0.98em; color: #7a879b;}
     .company-site-link {
       display: inline-block; margin: 0.11em 0 0.07em 0; font-size: 0.98em; 
-      font-weight:500; color: #2d8dd4;
+      font-weight: 500; color: #2d8dd4;
       border-bottom: 1.6px solid #b6e0ff;
       text-decoration: none;
       border-radius: 3px;
       transition: background .17s;
-      padding: 0.06em 0.26em;
+      padding: 0.04em 0.20em;
     }
     .company-site-link:active, .company-site-link:hover {
       background: #eaf1fb;
       color: #16427c;
     }
     .meta-info-row {
-      margin: 1.15em 0 0.4em 0;
+      margin: 1.05em 0 0.4em 0;
       color: #888fa4;
-      font-size: 1.01em;
+      font-size: 1.02em;
     }
     .source-info-row {
-      margin: 0.16em 0 0 0;
-      font-size: 0.98em;
+      margin: 0.13em 0 0 0;
+      font-size: 0.97em;
       background: #ecf6ff;
       border-left: 4px solid #3388ff33;
       padding: 0.7em 0.7em 0.8em 0.99em;
       border-radius: 10px;
       color: #4c6182;
-      word-break:break-all;
+      word-break: break-all;
       letter-spacing: 0.01em;
       line-height: 1.7;
     }
     .info-label {
-      color: #508ad1; font-weight:600; margin-right:0.18em;
+      color: #508ad1; font-weight: 600; margin-right: 0.18em;
     }
     .info-link {
-      color: #3388ff; text-decoration: underline; font-size:0.99em; font-weight:500;
-      margin-left:0.14em; border-bottom: 1.2px dotted #3388ff55;
+      color: #3388ff; text-decoration: underline; font-size: 0.99em; font-weight: 500;
+      margin-left: 0.14em; border-bottom: 1.2px dotted #3388ff55;
       border-radius: 3px;
       transition: background .17s;
       padding: 0.02em 0.19em;
@@ -259,34 +264,24 @@
       background: #eaf1fb;
       color: #16427c;
     }
-    /* スクロールバーも美しく */
-    ::-webkit-scrollbar { width: 9px; background: #f8fafd;}
-    ::-webkit-scrollbar-thumb { background: #e4e8f3; border-radius: 6px;}
-    @media (max-width: 600px) {
-      main { padding: 0.3em 0.09em 2.2em 0.09em;}
-      .section { padding: 1em 0.35em 1.12em 0.35em;}
-      .colorwheel-wrap { max-width: 99vw;}
-      canvas { max-width: 89vw; }
+    @media (max-width: 650px) {
+      main { padding: 1em 0.04em 2em 0.04em; }
+      .section-card { padding: 1em 0.17em 1.08em 0.17em;}
+      canvas { max-width: 99vw;}
     }
-    /* 軽いタップアニメ */
-    .nav-link, .company-site-link, .info-link { touch-action: manipulation; }
-    .nav-link:active, .company-site-link:active, .info-link:active { filter: brightness(0.95);}
   </style>
 </head>
 <body>
   <header>
     <nav class="nav">
-      <div class="logo" aria-label="Corporate Color Health">企業色相環</div>
-      <div class="nav-menu">
-        <a href="index.html" class="nav-link active" aria-current="page">企業色相環</a>
-        <a href="about.html" class="nav-link">概要</a>
-        <a href="methodology.html" class="nav-link">計算方法</a>
-        <a href="companies.html" class="nav-link">企業一覧</a>
-      </div>
+      <a href="index.html" class="nav-link active">企業色相環</a>
+      <a href="about.html" class="nav-link">概要</a>
+      <a href="methodology.html" class="nav-link">計算方法</a>
+      <a href="companies.html" class="nav-link">企業一覧</a>
     </nav>
   </header>
   <main>
-    <section class="section" id="mainSection">
+    <section class="section-card">
       <h1 class="title-main">企業色相環 <span style="font-size:0.89em; color:#90a2b5; font-weight:500;">Corporate Color Health</span></h1>
       <div class="subtitle">
         企業の多次元特性を<b>色相環</b>と<b>健全度バー</b>で直感的に可視化。<br>
@@ -302,20 +297,24 @@
           <option value="hitachi">日立製作所</option>
         </select>
       </div>
-      <div class="viz-container">
-        <div class="colorwheel-wrap">
-          <canvas id="colorWheel" width="240" height="240" aria-label="企業多次元特性の色相環"></canvas>
+      <div class="viz-cards-wrap">
+        <!-- 色相環カード -->
+        <div class="colorwheel-card">
+          <div class="cw-label">企業特性色相環</div>
+          <canvas id="colorWheel" width="230" height="230" aria-label="企業多次元特性の色相環"></canvas>
         </div>
-      </div>
-      <div class="soundness-wrap">
-        <div class="soundness-labels">
-          <span>健全</span>
-          <span>不健全</span>
+        <!-- 健全度バー -->
+        <div class="soundness-card">
+          <div class="cw-label">経営健全度</div>
+          <div class="soundness-bar-wrap">
+            <span class="soundness-bar-label">健全</span>
+            <div class="soundness-bar" id="soundnessBar">
+              <div class="soundness-marker" id="soundnessMarker"></div>
+            </div>
+            <span class="soundness-bar-label">不健全</span>
+          </div>
+          <div class="soundness-score" id="soundnessValue"></div>
         </div>
-        <div class="soundness-bar" id="soundnessBar">
-          <div class="soundness-marker" id="soundnessMarker"></div>
-        </div>
-        <div class="soundness-score" id="soundnessValue"></div>
       </div>
       <div class="company-info-card" id="companyInfo"></div>
       <div class="meta-info-row" id="metaInfo"></div>
@@ -323,7 +322,7 @@
     </section>
   </main>
   <script>
-    // サンプルデータ（後でfetchに切替可）
+    // サンプルデータ
     const companies = {
       ntt: {
         company_info: {
@@ -406,77 +405,67 @@
         ]
       }
     };
-    // 色相環描画
-    function drawColorWheel(canvasId, dimensionData) {
+
+    // HSV色相環描画
+    function drawHSVColorWheel(canvasId, highlightAngles=[]) {
       const canvas = document.getElementById(canvasId);
       const ctx = canvas.getContext('2d');
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const radius = Math.min(centerX, centerY) - 16;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const dimensions = [
-        { name: '変革性', color: '#FF5555', value: dimensionData.innovation || 0 },
-        { name: '安定性', color: '#5555FF', value: dimensionData.stability || 0 },
-        { name: '社会性', color: '#55FF55', value: dimensionData.social || 0 },
-        { name: '自律性', color: '#FFFF55', value: dimensionData.autonomy || 0 },
-        { name: '伝統性', color: '#AA55FF', value: dimensionData.tradition || 0 },
-        { name: '国際性', color: '#FFAA55', value: dimensionData.global || 0 }
-      ];
-      const sectorAngle = (2 * Math.PI) / dimensions.length;
-      dimensions.forEach((dim, i) => {
-        const startAngle = i * sectorAngle;
-        const endAngle = (i + 1) * sectorAngle;
+      const w = canvas.width, h = canvas.height;
+      const centerX = w/2, centerY = h/2;
+      const outerR = Math.min(w, h)/2 - 2;
+      const innerR = outerR * 0.57;
+      const seg = 30; // 360°/12=30度x12, さらに細かく
+      ctx.clearRect(0,0,w,h);
+      for(let i=0;i<360;i+=seg){
+        const start = (i-90)*Math.PI/180, end = (i+seg-90)*Math.PI/180;
         ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius * dim.value, startAngle, endAngle, false);
-        ctx.lineTo(centerX, centerY);
-        ctx.fillStyle = dim.color;
-        ctx.globalAlpha = 0.93;
-        ctx.shadowColor = "#b3b3b336";
-        ctx.shadowBlur = 3;
+        ctx.arc(centerX, centerY, outerR, start, end, false);
+        ctx.arc(centerX, centerY, innerR, end, start, true);
+        ctx.closePath();
+        // ハイライト領域指定（必要に応じ拡張）
+        let alpha = 1.0;
+        ctx.fillStyle = `hsla(${i}, 75%, 58%, ${alpha})`;
         ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.globalAlpha = 1.0;
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = "#fff";
+        ctx.lineWidth = 1.3;
         ctx.stroke();
-        // ラベル
-        const labelRadius = radius * 1.09 + 11;
-        const labelX = centerX + Math.cos(startAngle + sectorAngle / 2) * labelRadius;
-        const labelY = centerY + Math.sin(startAngle + sectorAngle / 2) * labelRadius + 1.7;
-        ctx.save();
-        ctx.fillStyle = '#666c7b';
-        ctx.font = '13.5px "Noto Sans JP", Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(dim.name, labelX, labelY);
-        ctx.restore();
-      });
-      // 中心ホワイト丸
+      }
+      // 中心白抜き
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
-      ctx.fillStyle = "#fff";
-      ctx.shadowColor = "#bfc6d1cc";
-      ctx.shadowBlur = 8;
-      ctx.globalAlpha = 0.96;
+      ctx.arc(centerX, centerY, innerR-1, 0, Math.PI*2, false);
+      ctx.fillStyle="#fff";
+      ctx.shadowColor="#bbb";
+      ctx.shadowBlur=2.2;
       ctx.fill();
-      ctx.globalAlpha = 1.0;
-      ctx.shadowBlur = 0;
-      ctx.strokeStyle = "#bfc6d1";
-      ctx.lineWidth = 1.4;
-      ctx.stroke();
+      ctx.shadowBlur=0;
     }
 
-    function updateSoundnessBar(barId, markerId, value) {
-      const bar = document.getElementById(barId);
+    // 健全度グレースケールバー描画
+    function drawSoundnessBar(canvasId, value) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      // 横グラデーション
+      const grad = ctx.createLinearGradient(0, h/2, w, h/2);
+      grad.addColorStop(0, "#fff");
+      grad.addColorStop(1, "#111");
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,w,h);
+    }
+
+    // 健全度マーカー位置をセット
+    function updateSoundnessMarker(barWrapId, markerId, value) {
+      const bar = document.getElementById(barWrapId);
       const marker = document.getElementById(markerId);
-      const barWidth = bar.clientWidth;
-      const markerLeft = Math.max(0, Math.min(barWidth - 31, Math.round(value * (barWidth - 31))));
+      const barWidth = bar.clientWidth || 170;
+      // markerサイズ32px
+      const markerLeft = Math.max(0, Math.min(barWidth - 32, Math.round(value * (barWidth - 32))));
       marker.style.left = markerLeft + 'px';
-      marker.textContent = Math.round(value * 100);
+      marker.textContent = Math.round(value*100);
     }
 
+    // 企業情報
     function showCompanyInfo(info) {
       document.getElementById('companyInfo').innerHTML = `
         <div class="company-main">${info.name}<span class="company-code">[${info.code}]</span></div>
@@ -485,14 +474,11 @@
         <a class="company-site-link" href="${info.url}" target="_blank" rel="noopener">公式サイト</a>
       `;
     }
-
     function showMetaAndSource(qdata) {
-      document.getElementById('metaInfo').innerHTML = `
-        最新四半期: <b>${qdata.quarter}</b> ／ <span>データ更新: ${qdata.date_updated}</span>
-      `;
+      document.getElementById('metaInfo').innerHTML = `最新四半期: <b>${qdata.quarter}</b> ／ データ更新: ${qdata.date_updated}`;
       document.getElementById('sourceInfo').innerHTML = `
         <span class="info-label">出典:</span>${qdata.source}<br>
-        <span class="info-label">データ信頼度:</span>
+        <span class="info-label">データ確信度:</span>
         <span style="color:#08c471;font-weight:600;">${qdata.confidence_levels.soundness}</span>
         <a href="methodology.html" class="info-link">計算方法</a>
       `;
@@ -501,8 +487,25 @@
     function renderCompany(companyKey) {
       const company = companies[companyKey];
       const qdata = company.quarterly_data[0];
-      drawColorWheel('colorWheel', qdata.dimensions);
-      updateSoundnessBar('soundnessBar', 'soundnessMarker', qdata.soundness);
+      drawHSVColorWheel('colorWheel');
+      // 健全度バー
+      setTimeout(() => {
+        // 動的幅算出のため
+        const bar = document.getElementById('soundnessBar');
+        if (!document.getElementById('soundnessBarCanvas')) {
+          // 1回だけCanvas追加
+          const canvas = document.createElement('canvas');
+          canvas.width = bar.clientWidth || 172;
+          canvas.height = 23;
+          canvas.style.position = "absolute";
+          canvas.style.left = "0"; canvas.style.top = "0"; canvas.style.width = "100%";
+          canvas.style.height = "100%";
+          canvas.id = "soundnessBarCanvas";
+          bar.insertBefore(canvas, bar.firstChild);
+        }
+        drawSoundnessBar('soundnessBarCanvas', qdata.soundness);
+        updateSoundnessMarker('soundnessBar', 'soundnessMarker', qdata.soundness);
+      }, 30);
       document.getElementById('soundnessValue').textContent = `健全度スコア：${(qdata.soundness * 100).toFixed(1)} / 100`;
       showCompanyInfo(company.company_info);
       showMetaAndSource(qdata);
@@ -513,6 +516,11 @@
     });
     window.addEventListener('DOMContentLoaded', () => {
       renderCompany('ntt');
+    });
+    window.addEventListener('resize', () => {
+      // バーリサイズ再描画
+      const key = document.getElementById('companySelect').value;
+      renderCompany(key);
     });
   </script>
 </body>
