@@ -3,71 +3,242 @@
 <head>
   <meta charset="UTF-8">
   <title>計算方法 | 企業色相環</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="企業色相環で使用している6つの次元（変革性、安定性、社会性、自律性、伝統性、国際性）と健全度スコアの計算方法について解説します。">
-  <!-- 外部CSSファイル -->
+  <meta name="theme-color" content="#4A90E2">
+  
+  <!-- Open Graph / SNSシェア最適化 -->
+  <meta property="og:title" content="計算方法 | 企業色相環">
+  <meta property="og:description" content="企業色相環で使用している6つの次元と健全度スコアの計算方法について解説します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ts-ksato.github.io/ColorHealth/methodology.html">
+  <meta property="og:image" content="assets/images/ogp-image.png">
+  <meta property="og:site_name" content="企業色相環">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- リソース最適化 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="preload" href="css/methodology.css" as="style">
+  
+  <!-- PWA対応 -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/methodology.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">企業色相環</a>
-      <a href="about.html">概要</a>
-      <a href="methodology.html" class="active">計算方法</a>
-      <a href="companies.html">企業一覧</a>
+  <header class="site-header" role="banner">
+    <nav aria-label="メインナビゲーション" class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">企業色相環</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">概要</a></li>
+        <li class="nav-item"><a href="methodology.html" class="nav-link active" aria-current="page">計算方法</a></li>
+        <li class="nav-item"><a href="companies.html" class="nav-link">企業一覧</a></li>
+      </ul>
     </nav>
   </header>
-  <main>
+  
+  <main id="main-content" class="main-content" role="main">
     <div class="container">
-      <h1>算出ロジック・定義</h1>
-      <div class="method-block">
-        <p>
-          <b>企業色相環</b>で用いられる各次元と健全度スコアは、<b>公開企業データ・財務諸表・非財務（ESG）情報・公式発表等</b>をもとに独自アルゴリズムでスコア化しています。<br>
-          数値は0～1で標準化され、定量・定性の双方を反映しています。
-        </p>
-        <table class="method-table">
-          <tr><th>次元</th><th>色</th><th>主な指標例</th></tr>
-          <tr><td>変革性</td><td style="color:#e74c3c">赤</td><td>R&D投資比率、新規事業数、イノベーション推進体制</td></tr>
-          <tr><td>安定性</td><td style="color:#3498db">青</td><td>自己資本比率、連続黒字年数、財務安定性</td></tr>
-          <tr><td>社会性</td><td style="color:#2ecc71">緑</td><td>従業員多様性、地域・社会貢献活動、女性管理職比率</td></tr>
-          <tr><td>自律性</td><td style="color:#f1c40f">黄</td><td>内部昇進比率、独立取締役数、グループ依存度</td></tr>
-          <tr><td>伝統性</td><td style="color:#9b59b6">紫</td><td>創業年、保守的経営指標、ブランド継承性</td></tr>
-          <tr><td>国際性</td><td style="color:#e67e22">橙</td><td>海外売上比率、グローバル拠点数、多言語開示状況</td></tr>
-        </table>
-        <div class="formula">
-          <b>健全度スコア:</b><br>
-          <code>
-            Soundness = 総合財務健全性 × (1 - リスク指標) × 信頼度補正
-          </code>
+      <header class="page-header">
+        <h1 class="page-title">算出ロジック・定義</h1>
+        <p class="page-description">企業色相環の各次元スコアと健全度スコアが、どのようなデータと計算方法で導き出されるかを解説します。</p>
+      </header>
+      
+      <section class="methodology-section" aria-labelledby="calculation-overview">
+        <h2 id="calculation-overview" class="section-title visually-hidden">計算方法の概要</h2>
+        
+        <div class="method-card">
+          <div class="method-intro">
+            <p>
+              <strong>企業色相環</strong>で用いられる各次元と健全度スコアは、<strong>公開企業データ・財務諸表・非財務（ESG）情報・公式発表等</strong>をもとに独自アルゴリズムでスコア化しています。
+            </p>
+            <p>
+              数値は0～1で標準化され、定量・定性の双方を反映しています。
+            </p>
+          </div>
+          
+          <div class="table-container" tabindex="0">
+            <table class="method-table" aria-labelledby="dimension-indicators">
+              <caption id="dimension-indicators" class="table-caption">各次元の指標例</caption>
+              <thead>
+                <tr>
+                  <th scope="col">次元</th>
+                  <th scope="col">色</th>
+                  <th scope="col">主な指標例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="dimension-row innovation">
+                  <td><span class="dimension-name">変革性</span></td>
+                  <td><span class="color-sample innovation-color" aria-hidden="true"></span>赤</td>
+                  <td>R&D投資比率、新規事業数、イノベーション推進体制</td>
+                </tr>
+                <tr class="dimension-row stability">
+                  <td><span class="dimension-name">安定性</span></td>
+                  <td><span class="color-sample stability-color" aria-hidden="true"></span>青</td>
+                  <td>自己資本比率、連続黒字年数、財務安定性</td>
+                </tr>
+                <tr class="dimension-row social">
+                  <td><span class="dimension-name">社会性</span></td>
+                  <td><span class="color-sample social-color" aria-hidden="true"></span>緑</td>
+                  <td>従業員多様性、地域・社会貢献活動、女性管理職比率</td>
+                </tr>
+                <tr class="dimension-row autonomy">
+                  <td><span class="dimension-name">自律性</span></td>
+                  <td><span class="color-sample autonomy-color" aria-hidden="true"></span>黄</td>
+                  <td>内部昇進比率、独立取締役数、グループ依存度</td>
+                </tr>
+                <tr class="dimension-row tradition">
+                  <td><span class="dimension-name">伝統性</span></td>
+                  <td><span class="color-sample tradition-color" aria-hidden="true"></span>紫</td>
+                  <td>創業年、保守的経営指標、ブランド継承性</td>
+                </tr>
+                <tr class="dimension-row global">
+                  <td><span class="dimension-name">国際性</span></td>
+                  <td><span class="color-sample global-color" aria-hidden="true"></span>橙</td>
+                  <td>海外売上比率、グローバル拠点数、多言語開示状況</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="formula-section">
+            <h3 class="formula-title">健全度スコア算出式</h3>
+            
+            <div class="formula-card">
+              <div class="formula-content">
+                <code class="formula-code">
+                  Soundness = 総合財務健全性 × (1 - リスク指標) × 信頼度補正
+                </code>
+                
+                <div class="formula-notes">
+                  <p>
+                    <em>総合財務健全性</em>：財務指標と業績の安定性を評価<br>
+                    <em>リスク指標</em>：発生可能性のあるネガティブ要素<br>
+                    <em>信頼度補正</em>：データソースの質・鮮度による補正
+                  </p>
+                </div>
+              </div>
+              
+              <div class="confidence-levels">
+                <p>
+                  <strong>信頼度</strong>（Confidence level）は、各データソースの鮮度・公表形態・客観性により下記3段階で表示:
+                </p>
+                <ul class="confidence-list">
+                  <li class="confidence-high">
+                    <span class="confidence-indicator high" aria-hidden="true"></span>
+                    <span class="confidence-level">High</span> - 公式開示情報・監査済財務データ
+                  </li>
+                  <li class="confidence-medium">
+                    <span class="confidence-indicator medium" aria-hidden="true"></span>
+                    <span class="confidence-level">Medium</span> - IR資料・公式発表
+                  </li>
+                  <li class="confidence-low">
+                    <span class="confidence-indicator low" aria-hidden="true"></span>
+                    <span class="confidence-level">Low</span> - 推定値・二次情報
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <p>
-          <b>信頼度</b>（Confidence level）は、各データソースの鮮度・公表形態・客観性により「high / medium / low」で表示しています。
-        </p>
-      </div>
-      <div class="disclaimer">
-        ※ 算出アルゴリズム・指標例はプロトタイプ段階です。指標詳細やご意見は開発チームまでご連絡ください。
-      </div>
+        
+        <div class="disclaimer-card">
+          <div class="disclaimer-icon" aria-hidden="true">ℹ️</div>
+          <div class="disclaimer-content">
+            <p>
+              算出アルゴリズム・指標例はプロトタイプ段階です。指標詳細やご意見は開発チームまでご連絡ください。
+            </p>
+            <a href="contact.html" class="feedback-link">フィードバックを送る</a>
+          </div>
+        </div>
+      </section>
+      
+      <section class="methodology-faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="section-title">よくある質問</h2>
+        
+        <div class="faq-container">
+          <details class="faq-item">
+            <summary class="faq-question">データはどのくらいの頻度で更新されますか？</summary>
+            <div class="faq-answer">
+              <p>基本的に四半期ごとの更新を基本としていますが、企業の公式発表や重要イベント発生時には随時更新されます。各スコアの最終更新日は企業詳細ページで確認できます。</p>
+            </div>
+          </details>
+          
+          <details class="faq-item">
+            <summary class="faq-question">業種による偏りはありませんか？</summary>
+            <div class="faq-answer">
+              <p>業種特性を考慮した補正を行っています。例えば製造業とITサービス業ではR&D投資の意味合いが異なるため、業種内での相対評価と絶対評価を組み合わせています。</p>
+            </div>
+          </details>
+          
+          <details class="faq-item">
+            <summary class="faq-question">スコアの解釈はどのように行えばよいですか？</summary>
+            <div class="faq-answer">
+              <p>各次元スコアは企業の特性を表すもので、高いほど「良い」というわけではありません。投資家の価値観や投資戦略に合わせて解釈することが重要です。ただし健全度スコアは、一般的な経営健全性を表す指標として、高いほど安定していると解釈できます。</p>
+            </div>
+          </details>
+        </div>
+      </section>
     </div>
   </main>
   
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">企業色相環</div>
-      <p>企業の多次元特性を可視化し、投資判断をサポートするツール</p>
-      
-      <div class="footer-links">
-        <a href="about.html" class="footer-link">概要</a>
-        <a href="methodology.html" class="footer-link">計算方法</a>
-        <a href="companies.html" class="footer-link">企業一覧</a>
-        <a href="#" class="footer-link">お問い合わせ</a>
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <div class="footer-logo">企業色相環</div>
+        <p class="footer-tagline">企業の多次元特性を可視化し、投資判断をサポートするツール</p>
       </div>
       
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link">概要</a></li>
+          <li><a href="methodology.html" class="footer-link" aria-current="page">計算方法</a></li>
+          <li><a href="companies.html" class="footer-link">企業一覧</a></li>
+          <li><a href="contact.html" class="footer-link">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      
       <div class="copyright">
-        &copy; 2025 企業色相環 - すべての権利を留保します
+        &copy; <span id="current-year">2025</span> 企業色相環 - すべての権利を留保します
       </div>
     </div>
   </footer>
+
+  <!-- スクリプト -->
+  <script>
+    // 著作権表示の年を自動更新
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // テーブル行のハイライト
+    document.querySelectorAll('.method-table tbody tr').forEach(row => {
+      row.addEventListener('mouseenter', function() {
+        this.classList.add('is-highlighted');
+      });
+      
+      row.addEventListener('mouseleave', function() {
+        this.classList.remove('is-highlighted');
+      });
+    });
+    
+    // FAQ項目のアニメーション
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('toggle', function() {
+        if (this.open) {
+          this.classList.add('is-open');
+        } else {
+          this.classList.remove('is-open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
