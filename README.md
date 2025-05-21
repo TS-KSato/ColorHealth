@@ -1,29 +1,29 @@
-# 企業色相環（Corporate Color Wheel）
+# 企業色相環（Corporate Color Health）
 
 <div align="center">
-  <img src="assets/images/logo-placeholder.png" alt="企業色相環ロゴ" width="200"/>
+  <img src="assets/images/color-wheel-logo.svg" alt="企業色相環ロゴ" width="200"/>
   <p>企業を多次元で理解するための新しい視覚化ツール</p>
 </div>
 
 ## 📊 プロジェクト概要
 
-「企業色相環」は、企業の複雑な特性を直感的に理解するための新しい視覚化アプローチを提供する静的ウェブサイトです。従来の単一軸（良い・悪い）や財務指標に偏った企業評価を超え、企業の多面的な特性を「色相環」として、健全経営度を「白黒グラデーション」として表現します。
+「企業色相環」は、企業の複雑な特性を直感的に理解するための新しい視覚化アプローチを提供する静的ウェブサイトです。従来の単一軸（良い・悪い）や財務指標に偏った企業評価を超え、企業の多面的な特性を「カラー分けされた進捗バー」として、健全経営度を「白黒グラデーション」として表現します。
 
 個人投資家、特に初心者から中級者の方々が、数値だけでは見えない企業の特性を把握できるように設計されています。
 
-### 🔍 [デモサイトはこちら](https://yourusername.github.io/corporate-color-wheel/)
+### 🔍 [デモサイトはこちら](https://ts-ksato.github.io/ColorHealth/)
 
 ![サイトプレビュー](assets/images/preview-placeholder.png)
 
 ## ✨ 主な特徴
 
-- **色相環表示**: 6つの次元（変革性、安定性、社会性、自律性、伝統性、国際性）を色相環で視覚化
+- **カラー分け進捗バー**: 6つの次元（変革性、安定性、社会性、自律性、伝統性、国際性）をカラフルな進捗バーで視覚化
 - **健全度評価**: 企業の健全経営度を白（健全）〜黒（不健全）のグラデーションで表現
 - **時系列表示**: 四半期ごとの変化を追跡可能
 - **透明性重視**: すべての計算方法と情報源を明記
 - **モバイル対応**: スマートフォンでも快適に利用可能
 
-## 🎨 色相環の6つの次元
+## 🎨 企業特性の6つの次元
 
 | 色相 | 次元 | 内容 |
 |------|------|------|
@@ -39,7 +39,6 @@
 - HTML5
 - CSS3 (Flexbox/Grid)
 - JavaScript (ES6+)
-- Canvas API
 - 静的JSON
 
 **外部依存性**: なし（純粋なバニラJavaScriptで実装）
@@ -50,7 +49,7 @@
 
 1. リポジトリをクローン
    ```
-   git clone https://github.com/yourusername/corporate-color-wheel.git
+   git clone https://github.com/ts-ksato/ColorHealth.git
    ```
 
 2. お好みのウェブサーバーでホスティング
@@ -74,36 +73,48 @@ corporate-color-wheel/
 ├── company.html            # 個別企業表示ページ
 ├── css/
 │   ├── styles.css          # メインスタイル
-│   └── responsive.css      # レスポンシブ対応
+│   ├── responsive.css      # レスポンシブ対応
+│   ├── index.css           # トップページ専用スタイル
+│   ├── about.css           # 概要ページ専用スタイル
+│   ├── methodology.css     # 計算方法ページ専用スタイル
+│   └── companies.css       # 企業一覧ページ専用スタイル
 ├── js/
 │   ├── main.js             # メイン機能
-│   ├── colorwheel.js       # 色相環描画モジュール
+│   ├── progressbar.js      # 進捗バー描画モジュール
 │   ├── search.js           # 検索・フィルター機能
+│   ├── companies.js        # 企業一覧機能
 │   └── utils.js            # 共通ユーティリティ
 ├── data/
 │   ├── companies.json      # 企業一覧データ
 │   ├── dimensions.json     # 色相次元定義
 │   ├── sectors.json        # 業種区分データ
 │   └── companies/          # 企業別データ
-│       ├── company1.json   # 個別企業データ
+│       ├── TSE-9432.json   # 個別企業データ（NTT）
+│       ├── TSE-6758.json   # 個別企業データ（ソニー）
 │       └── ...
 └── assets/
     ├── images/             # 画像素材
+    │   └── color-wheel-logo.svg  # 色相環ロゴ
     └── icons/              # アイコン素材
 ```
 
 ## 🧩 主要コンポーネント
 
-### 色相環
+### カラー分け進捗バー
 
-色相環は企業の6つの次元をCanvas APIを使って描画します。各次元は0〜1の値で、その大きさに応じてセクターサイズが変化します。
+企業の6つの次元をカラフルな進捗バーで視覚化します。各次元は固有の色とアイコンで表され、0〜100%のスコアで評価されます。
 
 ```javascript
-// 色相環の基本的な描画例
-function drawColorWheel(canvasId, dimensionData) {
-  const canvas = document.getElementById(canvasId);
-  const ctx = canvas.getContext('2d');
-  // ...詳細は colorwheel.js を参照
+// 進捗バーの生成例
+function createProgressBars(dimensions, details, dimensionDefinitions) {
+  // 各次元の設定
+  const dimensionConfigs = [
+    { key: 'innovation', name: '変革性', colorClass: 'red', icon: '💡' },
+    { key: 'stability', name: '安定性', colorClass: 'blue', icon: '🔒' },
+    // ...詳細は progressbar.js を参照
+  ];
+  
+  // ...バー生成処理
 }
 ```
 
@@ -112,10 +123,14 @@ function drawColorWheel(canvasId, dimensionData) {
 健全経営度を白（健全）から黒（不健全）のグラデーションで表現します。
 
 ```javascript
-// 健全度バーの描画例
-function drawSoundnessBar(containerId, soundness) {
-  const container = document.getElementById(containerId);
-  // ...詳細は main.js を参照
+// 健全度バーの更新例
+function updateSoundnessBar(value) {
+  const soundnessBar = document.getElementById('soundnessBar');
+  const soundnessValue = document.getElementById('soundnessValue');
+  const percent = Math.round(value * 100);
+  
+  soundnessBar.style.width = `${percent}%`;
+  soundnessValue.textContent = `${percent}%`;
 }
 ```
 
@@ -125,15 +140,6 @@ function drawSoundnessBar(containerId, soundness) {
 
 ```json
 {
-  "company_info": {
-    "code": "9432",
-    "name": "NTT",
-    "sector": "情報・通信",
-    "market": "東証プライム",
-    "established": 1985,
-    "employees": 303550,
-    "url": "https://www.ntt.co.jp/"
-  },
   "quarterly_data": [
     {
       "quarter": "2023Q3",
@@ -146,6 +152,11 @@ function drawSoundnessBar(containerId, soundness) {
         "autonomy": 0.62,
         "tradition": 0.58,
         "global": 0.70
+      },
+      "dimension_details": {
+        "innovation": "先端技術開発への積極投資と研究所の規模拡大を行う一方、新規事業領域への挑戦も顕著...",
+        "stability": "安定した収益基盤を持ち、長期的な視点での投資判断が特徴...",
+        // ...その他の次元の詳細説明
       },
       "soundness": 0.85,
       "confidence_levels": {
@@ -162,6 +173,25 @@ function drawSoundnessBar(containerId, soundness) {
 }
 ```
 
+企業の基本情報は別ファイルで管理しています：
+
+```json
+{
+  "TSE-9432": {
+    "code": "9432",
+    "exchange": "TSE",
+    "exchange_full": "東京証券取引所",
+    "name": "NTT（日本電信電話）",
+    "sector": "情報・通信",
+    "market": "東証プライム",
+    "established": 1985,
+    "employees": 303550,
+    "url": "https://www.ntt.co.jp/"
+  },
+  // ...他企業データ
+}
+```
+
 ## 📝 情報源と透明性
 
 このプロジェクトでは以下の情報源から企業データを集計しています：
@@ -171,24 +201,22 @@ function drawSoundnessBar(containerId, soundness) {
 - コーポレートガバナンス報告書
 - 各種特許情報データベース
 
-すべての指標の計算方法は [methodology.html](https://yourusername.github.io/corporate-color-wheel/methodology.html) で詳細に公開しています。
+すべての指標の計算方法は [methodology.html](https://ts-ksato.github.io/ColorHealth/methodology.html) で詳細に公開しています。
 
 ## 🤝 貢献方法
 
 このプロジェクトへの貢献を歓迎します！以下の方法で参加できます：
 
-1. **Issue報告**: バグや機能リクエストを[Issueページ](https://github.com/yourusername/corporate-color-wheel/issues)で報告
+1. **Issue報告**: バグや機能リクエストを[Issueページ](https://github.com/ts-ksato/ColorHealth/issues)で報告
 2. **Pull Request**: 改善案や新機能の実装をPull Requestで提案
 3. **データ追加**: 新しい企業データの提供や既存データの改善提案
-
-貢献の際は[CONTRIBUTING.md](CONTRIBUTING.md)のガイドラインをご確認ください。
 
 ## 📈 今後の展望
 
 - より多くの企業データのカバレッジ拡大
 - 高度な分析機能の追加
 - ユーザーフィードバックに基づく改良
-- 潜在的なAPI提供の検討
+- 企業比較機能の強化
 
 ## 📄 ライセンス
 
@@ -203,9 +231,5 @@ function drawSoundnessBar(containerId, soundness) {
 ---
 
 <div align="center">
-  <p>© 2023 企業色相環プロジェクト</p>
-  <p>
-    <a href="https://twitter.com/yourusername">Twitter</a> •
-    <a href="mailto:your-email@example.com">Contact</a>
-  </p>
+  <p>© 2025 企業色相環プロジェクト</p>
 </div>
