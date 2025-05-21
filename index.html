@@ -2,526 +2,166 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>企業色相環 | Corporate Color Health</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f8fafc">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --main-bg: #f8fafc;
-      --card-bg: #fff;
-      --gray-bg: #f4f8fb;
-      --accent: #3388FF;
-      --border: #e3e7ee;
-      --text: #1b2230;
-      --text-sub: #888fa4;
-      --radius: 22px;
-      --shadow: 0 3px 24px #a0c1e81a;
-    }
-    html, body {
-      margin: 0; padding: 0;
-      background: var(--main-bg);
-      font-family: 'Noto Sans JP', 'Roboto', Arial, sans-serif;
-      color: var(--text);
-      font-size: 17px;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-    header {
-      background: #f4f8fb;
-      border-bottom: 1.5px solid var(--border);
-      position: sticky; top: 0; z-index: 10;
-    }
-    .nav {
-      display: flex; justify-content: space-around; align-items: center;
-      gap: 0.1em; padding: 0.7em 0.1em 0.2em 0.1em;
-      background: #f4f8fb;
-    }
-    .nav-link {
-      background: #e2f3f6;
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 1em;
-      border-radius: 15px;
-      padding: 0.33em 1.18em 0.29em 1.18em;
-      margin: 0 0.13em;
-      border: none;
-      outline: none;
-      transition: background 0.13s, color 0.12s;
-      cursor: pointer;
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      box-shadow: 0 1px 3px #b5d5fa1e;
-      border-bottom: 3px solid transparent;
-    }
-    .nav-link.active {
-      background: #8de7d1;
-      color: #146daf;
-      border-bottom: 3px solid #3388ff;
-      box-shadow: 0 1px 5px #abd7ef32;
-      pointer-events: none;
-    }
-    .nav-link:not(.active):hover {
-      background: #d0f6ff;
-      color: #3888ff;
-    }
-    main {
-      max-width: 510px;
-      margin: 0 auto; padding: 1.3em 0.7em 2.2em 0.7em;
-    }
-    .section-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.23em 1.09em 1.44em 1.09em;
-      margin: 1.6em 0 1.7em 0;
-    }
-    .title-main {
-      font-size: 1.26em;
-      font-weight: 700;
-      color: var(--text);
-      margin: 0.4em 0 0.23em 0;
-      letter-spacing: 0.02em;
-    }
-    .subtitle {
-      font-size: 1.02em;
-      color: var(--text-sub);
-      margin: 0 0 1.03em 0;
-      font-weight: 500;
-    }
-    .form-row { margin: 0.65em 0 1.18em 0;}
-    .label {
-      font-size: 1em;
-      font-weight: 600;
-      color: #488;
-      margin-bottom: 0.07em;
-    }
-    .select-custom {
-      appearance: none;
-      -webkit-appearance: none;
-      padding: 0.7em 2.1em 0.7em 1em;
-      border-radius: 12px;
-      border: 1.3px solid var(--border);
-      font-size: 1.06em;
-      background: #f6fafd url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.8em center/1.3em 1.3em;
-      font-family: inherit;
-      font-weight: 500;
-      color: var(--text);
-      box-shadow: 0 1px 2px #b9dbff15;
-      outline: none;
-      transition: border 0.12s;
-      width: 100%;
-    }
-    .select-custom:focus {
-      border: 1.3px solid var(--accent);
-      background-color: #f8fafd;
-    }
-    .viz-cards-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4em;
-      margin: 1.25em 0 1.55em 0;
-    }
-    .colorwheel-card, .soundness-card {
-      background: var(--gray-bg);
-      border-radius: 18px;
-      box-shadow: 0 2px 8px #3388ff10;
-      padding: 1.1em 0.1em 0.7em 0.1em;
-      text-align: center;
-      position: relative;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .soundness-card {
-      min-height: 85px;
-      padding-top: 0.8em;
-    }
-    .cw-label {
-      font-size: 0.97em;
-      color: #6a87a5;
-      margin-bottom: 0.5em;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-    canvas {
-      display: block;
-      width: 99%;
-      max-width: 272px;
-      margin: 0 auto 0.7em auto;
-      background: #f9fbfd;
-      border-radius: 50%;
-    }
-    .soundness-bar-wrap {
-      width: 94%;
-      margin: 0 auto 0.12em auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.7em;
-      min-width: 180px;
-    }
-    .soundness-bar-label {
-      font-size: 0.99em;
-      color: #7f8b9d;
-      min-width: 36px;
-      text-align: center;
-    }
-    .soundness-bar {
-      flex: 1;
-      height: 23px;
-      border-radius: 10px;
-      position: relative;
-      background: none;
-      overflow: visible;
-    }
-    .soundness-marker {
-      position: absolute; top: -7px;
-      width: 32px; height: 32px;
-      background: #3388FF;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      box-shadow: 0 1px 8px #3388ff44;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.11em;
-      font-weight: 700;
-      color: #fff;
-      left: 0;
-      transition: left 0.18s cubic-bezier(.45,1.1,.21,.97);
-      z-index: 2;
-      pointer-events: none;
-      user-select: none;
-    }
-    .soundness-score {
-      font-size: 1.11em;
-      font-weight: 600;
-      color: var(--accent);
-      margin: 0.13em 0 0.16em 0;
-      letter-spacing: 0.01em;
-    }
-    .company-info-card {
-      margin: 0.25em 0 0.35em 0;
-      padding: 1.15em 1.1em 1.07em 1.1em;
-      border-radius: 16px;
-      background: #f6f8fb;
-      box-shadow: 0 1px 8px #bddcff13;
-    }
-    .company-main {
-      font-weight: 700;
-      font-size: 1.13em;
-      color: #25386a;
-      margin-bottom: 0.10em;
-    }
-    .company-code {
-      color: #3388ff; font-weight: 600; font-size: 1em; margin-left: 0.25em;
-      text-decoration: underline dotted;
-    }
-    .company-meta { font-size: 0.98em; color: #657098; margin-bottom: 0.07em;}
-    .company-meta2 { font-size: 0.98em; color: #7a879b;}
-    .company-site-link {
-      display: inline-block; margin: 0.11em 0 0.07em 0; font-size: 0.98em; 
-      font-weight: 500; color: #2d8dd4;
-      border-bottom: 1.6px solid #b6e0ff;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: background .17s;
-      padding: 0.04em 0.20em;
-    }
-    .company-site-link:active, .company-site-link:hover {
-      background: #eaf1fb;
-      color: #16427c;
-    }
-    .meta-info-row {
-      margin: 1.05em 0 0.4em 0;
-      color: #888fa4;
-      font-size: 1.02em;
-    }
-    .source-info-row {
-      margin: 0.13em 0 0 0;
-      font-size: 0.97em;
-      background: #ecf6ff;
-      border-left: 4px solid #3388ff33;
-      padding: 0.7em 0.7em 0.8em 0.99em;
-      border-radius: 10px;
-      color: #4c6182;
-      word-break: break-all;
-      letter-spacing: 0.01em;
-      line-height: 1.7;
-    }
-    .info-label {
-      color: #508ad1; font-weight: 600; margin-right: 0.18em;
-    }
-    .info-link {
-      color: #3388ff; text-decoration: underline; font-size: 0.99em; font-weight: 500;
-      margin-left: 0.14em; border-bottom: 1.2px dotted #3388ff55;
-      border-radius: 3px;
-      transition: background .17s;
-      padding: 0.02em 0.19em;
-    }
-    .info-link:active, .info-link:hover {
-      background: #eaf1fb;
-      color: #16427c;
-    }
-    @media (max-width: 650px) {
-      main { padding: 1em 0.04em 2em 0.04em; }
-      .section-card { padding: 1em 0.17em 1.08em 0.17em;}
-      canvas { max-width: 99vw;}
-    }
-  </style>
+  <title>企業色相環 - 上場企業の多次元特性可視化ツール</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="企業の変革性、安定性、社会性、自律性、伝統性、国際性を可視化する投資家向けのツールです。">
+  <!-- 外部CSSファイル -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
   <header>
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">企業色相環</a>
-      <a href="about.html" class="nav-link">概要</a>
-      <a href="methodology.html" class="nav-link">計算方法</a>
-      <a href="companies.html" class="nav-link">企業一覧</a>
+    <nav>
+      <a href="index.html" class="active">企業色相環</a>
+      <a href="about.html">概要</a>
+      <a href="methodology.html">計算方法</a>
+      <a href="companies.html">企業一覧</a>
     </nav>
   </header>
+  
   <main>
-    <section class="section-card">
-      <h1 class="title-main">企業色相環 <span style="font-size:0.89em; color:#90a2b5; font-weight:500;">Corporate Color Health</span></h1>
-      <div class="subtitle">
-        企業の多次元特性を<b>色相環</b>と<b>健全度バー</b>で直感的に可視化。<br>
-        気になる企業を選ぶだけで、ビジュアルで比較・分析ができます。
+    <section class="hero-section">
+      <h1 class="hero-title">企業色相環</h1>
+      <p class="hero-subtitle">
+        投資判断に役立つ企業特性の視覚化ツール。変革性、安定性、社会性、自律性、伝統性、国際性の6つの次元で企業の特徴を分析し、直感的に理解できるよう表現します。
+      </p>
+      
+      <div class="search-box">
+        <div class="label">企業を検索</div>
+        <input type="text" class="search-input" id="companySearch" placeholder="企業名または証券コードを入力">
+        <button class="btn-search" id="searchButton">検索</button>
       </div>
-      <div class="form-row">
-        <label for="companySelect" class="label">企業を選択</label>
-        <select id="companySelect" class="select-custom" aria-label="企業を選択">
-          <option value="ntt">NTT（日本電信電話）</option>
-          <option value="sony">ソニーグループ</option>
-          <option value="toyota">トヨタ自動車</option>
-          <option value="mitsui">三井物産</option>
-          <option value="hitachi">日立製作所</option>
-        </select>
-      </div>
-      <div class="viz-cards-wrap">
-        <!-- 色相環カード -->
-        <div class="colorwheel-card">
-          <div class="cw-label">企業特性色相環</div>
-          <canvas id="colorWheel" width="230" height="230" aria-label="企業多次元特性の色相環"></canvas>
+      
+      <div class="dimension-sample">
+        <div class="dimension-item">
+          <div class="dimension-color" style="background-color: #e74c3c;">💡</div>
+          <div class="dimension-name">変革性</div>
         </div>
-        <!-- 健全度バー -->
-        <div class="soundness-card">
-          <div class="cw-label">経営健全度</div>
-          <div class="soundness-bar-wrap">
-            <span class="soundness-bar-label">健全</span>
-            <div class="soundness-bar" id="soundnessBar">
-              <div class="soundness-marker" id="soundnessMarker"></div>
-            </div>
-            <span class="soundness-bar-label">不健全</span>
-          </div>
-          <div class="soundness-score" id="soundnessValue"></div>
+        <div class="dimension-item">
+          <div class="dimension-color" style="background-color: #3498db;">🔒</div>
+          <div class="dimension-name">安定性</div>
+        </div>
+        <div class="dimension-item">
+          <div class="dimension-color" style="background-color: #2ecc71;">🌍</div>
+          <div class="dimension-name">社会性</div>
+        </div>
+        <div class="dimension-item">
+          <div class="dimension-color" style="background-color: #f1c40f;">🚀</div>
+          <div class="dimension-name">自律性</div>
+        </div>
+        <div class="dimension-item">
+          <div class="dimension-color" style="background-color: #9b59b6;">🏛️</div>
+          <div class="dimension-name">伝統性</div>
+        </div>
+        <div class="dimension-item">
+          <div class="dimension-color" style="background-color: #e67e22;">🌐</div>
+          <div class="dimension-name">国際性</div>
         </div>
       </div>
-      <div class="company-info-card" id="companyInfo"></div>
-      <div class="meta-info-row" id="metaInfo"></div>
-      <div class="source-info-row" id="sourceInfo"></div>
+    </section>
+    
+    <section class="features-section">
+      <h2 class="features-title">企業色相環の特徴</h2>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-title">多次元分析</h3>
+          <p class="feature-description">
+            財務指標だけでは捉えられない企業の多面的特性を6つの次元で可視化し、バランスを評価します。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">直感的な視覚化</h3>
+          <p class="feature-description">
+            カラー分けされたグラフと詳細な説明で、企業の特徴を瞬時に把握できます。特に投資初心者に最適です。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3 class="feature-title">時系列での変化</h3>
+          <p class="feature-description">
+            四半期ごとのデータで企業特性の変化を追跡し、成長性や方向性を評価できます。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3 class="feature-title">企業比較</h3>
+          <p class="feature-description">
+            複数企業の特性を比較し、業界内でのポジショニングや投資先としての相性を判断できます。
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="companies-section">
+      <h2 class="companies-title">注目企業</h2>
+      
+      <div class="company-list">
+        <a href="company.html?exchange=TSE&code=9432" class="company-card">
+          <div class="company-logo">NTT</div>
+          <div class="company-name">NTT</div>
+          <div class="company-sector">情報・通信</div>
+        </a>
+        
+        <a href="company.html?exchange=TSE&code=6758" class="company-card">
+          <div class="company-logo">SONY</div>
+          <div class="company-name">ソニーグループ</div>
+          <div class="company-sector">電気機器</div>
+        </a>
+        
+        <a href="company.html?exchange=TSE&code=7203" class="company-card">
+          <div class="company-logo">TOYOTA</div>
+          <div class="company-name">トヨタ自動車</div>
+          <div class="company-sector">輸送用機器</div>
+        </a>
+        
+        <a href="company.html?exchange=TSE&code=8031" class="company-card">
+          <div class="company-logo">三井</div>
+          <div class="company-name">三井物産</div>
+          <div class="company-sector">卸売業</div>
+        </a>
+        
+        <a href="company.html?exchange=TSE&code=6501" class="company-card">
+          <div class="company-logo">日立</div>
+          <div class="company-name">日立製作所</div>
+          <div class="company-sector">電気機器</div>
+        </a>
+        
+        <a href="companies.html" class="company-card">
+          <div class="company-logo">+</div>
+          <div class="company-name">もっと見る</div>
+          <div class="company-sector">企業一覧へ</div>
+        </a>
+      </div>
     </section>
   </main>
-  <script>
-    // サンプルデータ
-    const companies = {
-      ntt: {
-        company_info: {
-          code: "9432", name: "NTT（日本電信電話）",
-          sector: "情報・通信", market: "東証プライム",
-          established: 1985, employees: 303550, url: "https://www.ntt.co.jp/"
-        },
-        quarterly_data: [
-          {
-            quarter: "2023Q3", date_updated: "2023-11-30",
-            source: "2023年第2四半期決算短信, 2023年有価証券報告書",
-            dimensions: { innovation: 0.75, stability: 0.68, social: 0.45, autonomy: 0.62, tradition: 0.58, global: 0.70 },
-            soundness: 0.85,
-            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "high", global: "high", soundness: "high" }
-          }
-        ]
-      },
-      sony: {
-        company_info: {
-          code: "6758", name: "ソニーグループ",
-          sector: "電気機器", market: "東証プライム",
-          established: 1946, employees: 108900, url: "https://www.sony.com/ja/"
-        },
-        quarterly_data: [
-          {
-            quarter: "2023Q3", date_updated: "2023-12-01",
-            source: "2023年第2四半期決算短信",
-            dimensions: { innovation: 0.79, stability: 0.60, social: 0.56, autonomy: 0.72, tradition: 0.61, global: 0.85 },
-            soundness: 0.83,
-            confidence_levels: { innovation: "high", stability: "high", social: "medium", autonomy: "high", tradition: "medium", global: "high", soundness: "high" }
-          }
-        ]
-      },
-      toyota: {
-        company_info: {
-          code: "7203", name: "トヨタ自動車",
-          sector: "輸送用機器", market: "東証プライム",
-          established: 1937, employees: 370870, url: "https://global.toyota/jp/"
-        },
-        quarterly_data: [
-          {
-            quarter: "2023Q3", date_updated: "2023-12-03",
-            source: "2023年第2四半期決算短信",
-            dimensions: { innovation: 0.68, stability: 0.74, social: 0.59, autonomy: 0.57, tradition: 0.77, global: 0.95 },
-            soundness: 0.90,
-            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "high", global: "high", soundness: "high" }
-          }
-        ]
-      },
-      mitsui: {
-        company_info: {
-          code: "8031", name: "三井物産",
-          sector: "卸売業", market: "東証プライム",
-          established: 1947, employees: 46335, url: "https://www.mitsui.com/jp/ja/"
-        },
-        quarterly_data: [
-          {
-            quarter: "2023Q3", date_updated: "2023-11-28",
-            source: "2023年第2四半期決算短信",
-            dimensions: { innovation: 0.59, stability: 0.72, social: 0.62, autonomy: 0.49, tradition: 0.65, global: 0.82 },
-            soundness: 0.80,
-            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "medium", global: "high", soundness: "medium" }
-          }
-        ]
-      },
-      hitachi: {
-        company_info: {
-          code: "6501", name: "日立製作所",
-          sector: "電気機器", market: "東証プライム",
-          established: 1910, employees: 323540, url: "https://www.hitachi.co.jp/"
-        },
-        quarterly_data: [
-          {
-            quarter: "2023Q3", date_updated: "2023-11-25",
-            source: "2023年第2四半期決算短信",
-            dimensions: { innovation: 0.74, stability: 0.65, social: 0.54, autonomy: 0.60, tradition: 0.62, global: 0.80 },
-            soundness: 0.78,
-            confidence_levels: { innovation: "medium", stability: "high", social: "medium", autonomy: "medium", tradition: "medium", global: "high", soundness: "medium" }
-          }
-        ]
-      }
-    };
-
-    // HSV色相環描画
-    function drawHSVColorWheel(canvasId, highlightAngles=[]) {
-      const canvas = document.getElementById(canvasId);
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width, h = canvas.height;
-      const centerX = w/2, centerY = h/2;
-      const outerR = Math.min(w, h)/2 - 2;
-      const innerR = outerR * 0.57;
-      const seg = 30; // 360°/12=30度x12, さらに細かく
-      ctx.clearRect(0,0,w,h);
-      for(let i=0;i<360;i+=seg){
-        const start = (i-90)*Math.PI/180, end = (i+seg-90)*Math.PI/180;
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, outerR, start, end, false);
-        ctx.arc(centerX, centerY, innerR, end, start, true);
-        ctx.closePath();
-        // ハイライト領域指定（必要に応じ拡張）
-        let alpha = 1.0;
-        ctx.fillStyle = `hsla(${i}, 75%, 58%, ${alpha})`;
-        ctx.fill();
-        ctx.strokeStyle = "#fff";
-        ctx.lineWidth = 1.3;
-        ctx.stroke();
-      }
-      // 中心白抜き
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, innerR-1, 0, Math.PI*2, false);
-      ctx.fillStyle="#fff";
-      ctx.shadowColor="#bbb";
-      ctx.shadowBlur=2.2;
-      ctx.fill();
-      ctx.shadowBlur=0;
-    }
-
-    // 健全度グレースケールバー描画
-    function drawSoundnessBar(canvasId, value) {
-      const canvas = document.getElementById(canvasId);
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width, h = canvas.height;
-      // 横グラデーション
-      const grad = ctx.createLinearGradient(0, h/2, w, h/2);
-      grad.addColorStop(0, "#fff");
-      grad.addColorStop(1, "#111");
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0,0,w,h);
-    }
-
-    // 健全度マーカー位置をセット
-    function updateSoundnessMarker(barWrapId, markerId, value) {
-      const bar = document.getElementById(barWrapId);
-      const marker = document.getElementById(markerId);
-      const barWidth = bar.clientWidth || 170;
-      // markerサイズ32px
-      const markerLeft = Math.max(0, Math.min(barWidth - 32, Math.round(value * (barWidth - 32))));
-      marker.style.left = markerLeft + 'px';
-      marker.textContent = Math.round(value*100);
-    }
-
-    // 企業情報
-    function showCompanyInfo(info) {
-      document.getElementById('companyInfo').innerHTML = `
-        <div class="company-main">${info.name}<span class="company-code">[${info.code}]</span></div>
-        <div class="company-meta">業種: ${info.sector} ／ 市場: ${info.market}</div>
-        <div class="company-meta2">設立: ${info.established} ／ 従業員数: ${info.employees.toLocaleString()}名</div>
-        <a class="company-site-link" href="${info.url}" target="_blank" rel="noopener">公式サイト</a>
-      `;
-    }
-    function showMetaAndSource(qdata) {
-      document.getElementById('metaInfo').innerHTML = `最新四半期: <b>${qdata.quarter}</b> ／ データ更新: ${qdata.date_updated}`;
-      document.getElementById('sourceInfo').innerHTML = `
-        <span class="info-label">出典:</span>${qdata.source}<br>
-        <span class="info-label">データ確信度:</span>
-        <span style="color:#08c471;font-weight:600;">${qdata.confidence_levels.soundness}</span>
-        <a href="methodology.html" class="info-link">計算方法</a>
-      `;
-    }
-
-    function renderCompany(companyKey) {
-      const company = companies[companyKey];
-      const qdata = company.quarterly_data[0];
-      drawHSVColorWheel('colorWheel');
-      // 健全度バー
-      setTimeout(() => {
-        // 動的幅算出のため
-        const bar = document.getElementById('soundnessBar');
-        if (!document.getElementById('soundnessBarCanvas')) {
-          // 1回だけCanvas追加
-          const canvas = document.createElement('canvas');
-          canvas.width = bar.clientWidth || 172;
-          canvas.height = 23;
-          canvas.style.position = "absolute";
-          canvas.style.left = "0"; canvas.style.top = "0"; canvas.style.width = "100%";
-          canvas.style.height = "100%";
-          canvas.id = "soundnessBarCanvas";
-          bar.insertBefore(canvas, bar.firstChild);
-        }
-        drawSoundnessBar('soundnessBarCanvas', qdata.soundness);
-        updateSoundnessMarker('soundnessBar', 'soundnessMarker', qdata.soundness);
-      }, 30);
-      document.getElementById('soundnessValue').textContent = `健全度スコア：${(qdata.soundness * 100).toFixed(1)} / 100`;
-      showCompanyInfo(company.company_info);
-      showMetaAndSource(qdata);
-    }
-
-    document.getElementById('companySelect').addEventListener('change', function(e) {
-      renderCompany(this.value);
-    });
-    window.addEventListener('DOMContentLoaded', () => {
-      renderCompany('ntt');
-    });
-    window.addEventListener('resize', () => {
-      // バーリサイズ再描画
-      const key = document.getElementById('companySelect').value;
-      renderCompany(key);
-    });
-  </script>
+  
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">企業色相環</div>
+      <p>企業の多次元特性を可視化し、投資判断をサポートするツール</p>
+      
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">概要</a>
+        <a href="methodology.html" class="footer-link">計算方法</a>
+        <a href="companies.html" class="footer-link">企業一覧</a>
+        <a href="#" class="footer-link">お問い合わせ</a>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 企業色相環 - すべての権利を留保します
+      </div>
+    </div>
+  </footer>
+  
+  <!-- 外部JavaScriptファイル -->
+  <script src="js/utils.js"></script>
+  <script src="js/search.js"></script>
 </body>
 </html>
