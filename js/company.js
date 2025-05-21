@@ -84,34 +84,28 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // 6つの次元進捗バー描画
   function renderProgressBars(dimensions, details, defs) {
-    const container = document.getElementById('progressContainer');
-    const config = [
-      { key: 'innovation', color: '#e74c3c', icon: '💡', name: '変革性' },
-      { key: 'stability', color: '#3498db', icon: '🔒', name: '安定性' },
-      { key: 'social', color: '#2ecc71', icon: '🌱', name: '社会性' },
-      { key: 'autonomy', color: '#f1c40f', icon: '🤝', name: '自律性' },
-      { key: 'tradition', color: '#9b59b6', icon: '🏛️', name: '伝統性' },
-      { key: 'global', color: '#e67e22', icon: '🌍', name: '国際性' },
-    ];
-    container.innerHTML = config.map(dim => {
-      const val = dimensions[dim.key] ?? 0;
-      const percent = Math.round(val * 100);
-      const detail = details[dim.key] || '';
-      return `
-        <div class="progress-item" style="border-color: ${dim.color}">
-          <div class="progress-header">
-            <span class="progress-icon">${dim.icon}</span>
-            <span class="progress-label">${dim.name}</span>
-            <span class="progress-value">${percent}%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="background: ${dim.color}; width: ${percent}%;"></div>
-          </div>
-          <div class="detail">${detail}</div>
+  const container = document.getElementById('progressContainer');
+  // dimensions.jsonの定義順でループ（安定・拡張性重視）
+  container.innerHTML = Object.keys(defs).map(key => {
+    const def = defs[key];
+    const val = dimensions[key] ?? 0;
+    const percent = Math.round(val * 100);
+    const detail = details[key] || '';
+    return `
+      <div class="progress-item" style="border-color: ${def.color}">
+        <div class="progress-header">
+          <span class="progress-icon">${def.icon}</span>
+          <span class="progress-label">${def.name}</span>
+          <span class="progress-value">${percent}%</span>
         </div>
-      `;
-    }).join('');
-  }
+        <div class="progress-bar">
+          <div class="progress" style="background: ${def.color}; width: ${percent}%;"></div>
+        </div>
+        <div class="detail">${detail}</div>
+      </div>
+    `;
+  }).join('');
+}
 
   // 健全度バー描画
   function updateSoundnessBar(val) {
