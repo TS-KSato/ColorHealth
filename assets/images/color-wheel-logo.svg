@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="110" cy="110" r="100" fill="#fff" stroke="#e4ecfb" stroke-width="4"/>
+  <path d="M110 110 L110 10 A100 100 0 0 1 210 110 Z" fill="#e74c3c" opacity="0.9"/>
+  <path d="M110 110 L210 110 A100 100 0 0 1 160 188.5 Z" fill="#3498db" opacity="0.9"/>
+  <path d="M110 110 L160 188.5 A100 100 0 0 1 60 188.5 Z" fill="#2ecc71" opacity="0.9"/>
+  <path d="M110 110 L60 188.5 A100 100 0 0 1 10 110 Z" fill="#f1c40f" opacity="0.9"/>
+  <path d="M110 110 L10 110 A100 100 0 0 1 60 31.5 Z" fill="#9b59b6" opacity="0.9"/>
+  <path d="M110 110 L60 31.5 A100 100 0 0 1 110 10 Z" fill="#e67e22" opacity="0.9"/>
+  <circle cx="110" cy="110" r="28" fill="#fff" stroke="#d4dae6" stroke-width="2"/>
+  
+  <!-- 軸線 -->
+  <line x1="110" y1="10" x2="110" y2="210" stroke="#f8f9fa" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="10" y1="110" x2="210" y2="110" stroke="#f8f9fa" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="35" y1="35" x2="185" y2="185" stroke="#f8f9fa" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="35" y1="185" x2="185" y2="35" stroke="#f8f9fa" stroke-width="1.5" stroke-dasharray="3,3"/>
+  
+  <!-- ラベル -->
+  <text x="110" y="20" text-anchor="middle" font-family="Arial" font-size="12" fill="#444">変革性</text>
+  <text x="200" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#444">安定性</text>
+  <text x="110" y="205" text-anchor="middle" font-family="Arial" font-size="12" fill="#444">社会性</text>
+  <text x="20" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#444">自律性</text>
+  <text x="50" y="40" text-anchor="middle" font-family="Arial" font-size="12" fill="#444">伝統性</text>
+  <text x="170" y="40" text-anchor="middle" font-family="Arial" font-size="12" fill="#444">国際性</text>
+</svg>
