@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function getCompanyKey() {
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
-  return params.get("key") || "ntt";
+  const code = params.get("code") || "9432";
+  const exchange = params.get("exchange") || "TSE";
+  return `${exchange}-${code}`;
 }
 
 // 企業データ読み込み
