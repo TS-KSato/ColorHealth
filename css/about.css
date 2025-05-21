@@ -1,259 +1,677 @@
-/* ================================================
-   概要ページのスタイル - about.css
-   企業色相環 (Corporate Color Health) プロジェクト
-   ================================================ */
+/* ========================================================
+   企業色相環 - 概要ページスタイル
+   
+   目次:
+   1. 設定・基本
+   2. レイアウト構造
+   3. ヘッダー・ナビゲーション
+   4. コンテンツスタイル
+   5. 次元カード
+   6. ロゴセクション
+   7. フッター
+   8. ユーティリティ
+   9. アニメーション
+   10. メディアクエリ
+   ======================================================== */
 
-/* 変数定義 - カラーパレットとレイアウト値 */
+/* ------------------------------------------------------
+   1. 設定・基本
+   ------------------------------------------------------ */
 :root {
-  /* プライマリーカラー */
-  --primary-text: #2c3e50;
-  --secondary-text: #5a6c7d;
-  --background: #ffffff;
-  --card-shadow: rgba(0, 0, 0, 0.05);
-  --card-shadow-hover: rgba(0, 0, 0, 0.1);
+  /* カラーパレット */
+  --color-primary: #4A90E2;
+  --color-secondary: #50E3C2;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #5a6c7d;
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-border: #e1e4e8;
   
-  /* フィーチャーカードのアイコン背景色 */
-  --feature-innovation-bg: rgba(231, 76, 60, 0.1);
-  --feature-stability-bg: rgba(52, 152, 219, 0.1);
-  --feature-social-bg: rgba(46, 204, 113, 0.1);
-  --feature-autonomy-bg: rgba(241, 196, 15, 0.1);
-  --feature-tradition-bg: rgba(155, 89, 182, 0.1);
-  --feature-global-bg: rgba(230, 126, 34, 0.1);
+  /* 次元カラー */
+  --color-innovation: #e74c3c;
+  --color-stability: #3498db;
+  --color-social: #2ecc71;
+  --color-autonomy: #f1c40f;
+  --color-tradition: #9b59b6;
+  --color-global: #e67e22;
   
-  /* フィーチャーカードのアイコン色 */
-  --feature-innovation: #e74c3c;
-  --feature-stability: #3498db;
-  --feature-social: #2ecc71;
-  --feature-autonomy: #f1c40f;
-  --feature-tradition: #9b59b6;
-  --feature-global: #e67e22;
+  /* 次元カラー (薄) */
+  --color-innovation-light: rgba(231, 76, 60, 0.1);
+  --color-stability-light: rgba(52, 152, 219, 0.1);
+  --color-social-light: rgba(46, 204, 113, 0.1);
+  --color-autonomy-light: rgba(241, 196, 15, 0.1);
+  --color-tradition-light: rgba(155, 89, 182, 0.1);
+  --color-global-light: rgba(230, 126, 34, 0.1);
   
-  /* スペーシング */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.8rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
+  /* 間隔 - 可変スペーシング */
+  --space-3xs: clamp(0.25rem, 0.5vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.75vw, 0.75rem);
+  --space-xs: clamp(0.75rem, 1vw, 1rem);
+  --space-sm: clamp(1rem, 1.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 2vw, 2rem);
+  --space-lg: clamp(2rem, 3vw, 3rem);
+  --space-xl: clamp(3rem, 4vw, 4rem);
   
-  /* フォントサイズ */
-  --font-sm: 1rem;
-  --font-md: 1.12rem; 
-  --font-lg: 1.3rem;
-  --font-xl: 2.5rem;
+  /* サイズ */
+  --content-width: min(92%, 1140px);
+  --content-narrow: min(88%, 800px);
+  --card-size: min(100%, 320px);
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-full: 9999px;
+  
+  /* 字体 */
+  --font-family-base: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* 文字サイズ */
+  --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
+  --font-size-base: clamp(1rem, 2.75vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 3vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 3.5vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 4vw, 1.875rem);
+  --font-size-2xl: clamp(1.875rem, 5vw, 2.25rem);
+  
+  /* 行間 */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
   
   /* アニメーション */
-  --transition-speed: 0.3s;
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 効果 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(74, 144, 226, 0.3);
 }
 
-/* アクセシビリティヘルパークラス */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  /* iOSのセーフエリア対応 */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* アクセシビリティ補助 */
 .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
-  margin: -1px;
   padding: 0;
+  margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
+  white-space: nowrap;
+  border-width: 0;
 }
 
-/* 概要セクションスタイル */
-.about-section {
-  font-size: var(--font-md);
-  line-height: 1.8;
-  margin-bottom: var(--spacing-lg);
-  color: var(--primary-text);
+/* タッチデバイス最適化 */
+@media (hover: none) {
+  :root {
+    --card-size: min(100%, 280px);
+  }
 }
 
-.about-section p {
-  margin-bottom: 1.2em;
+/* ------------------------------------------------------
+   2. レイアウト構造
+   ------------------------------------------------------ */
+.container {
+  width: var(--content-width);
+  margin-inline: auto;
+  padding: 0 var(--space-xs);
 }
 
-/* リストスタイル */
-.about-points {
-  margin: 1.7em 0 2.2em 1.4em;
-  padding-left: var(--spacing-xs);
+.main-content {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-xl);
 }
 
-.about-points li {
-  margin-bottom: var(--spacing-sm);
-  font-size: 1.03em;
-  list-style-type: none;
+.page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  text-align: center;
   position: relative;
 }
 
-/* フィーチャーグリッドレイアウト */
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-md);
-  margin: var(--spacing-xl) 0 var(--spacing-lg) 0;
+/* 見出し装飾 */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primary);
+  margin: var(--space-xs) auto 0;
+  border-radius: var(--border-radius-full);
 }
 
-/* フィーチャーカードスタイル */
-.feature-card {
-  background: var(--background);
-  border-radius: 16px;
-  padding: 1.8rem;
-  box-shadow: 0 8px 25px var(--card-shadow);
-  transition: all var(--transition-speed) ease;
+/* ------------------------------------------------------
+   3. ヘッダー・ナビゲーション 
+   ------------------------------------------------------ */
+.site-header {
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-nav {
+  padding: var(--space-xs) 0;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: clamp(0.5rem, 4vw, 3rem);
+  padding: var(--space-xs) 0;
+}
+
+.nav-item {
+  display: flex;
+}
+
+.nav-link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+  background-color: rgba(74, 144, 226, 0.05);
+}
+
+.nav-link.active {
+  color: #fff;
+  background-color: var(--color-secondary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ------------------------------------------------------
+   4. コンテンツスタイル
+   ------------------------------------------------------ */
+.about-section {
+  max-width: var(--content-narrow);
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.lead-text {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.about-section p {
+  margin-bottom: var(--space-md);
+}
+
+.feature-list {
+  margin: var(--space-lg) 0;
+  list-style: none;
+}
+
+.feature-item {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-base);
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-right: var(--space-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.cta-text {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-top: var(--space-lg);
+  padding: var(--space-sm);
+  background-color: rgba(74, 144, 226, 0.05);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--border-radius-sm);
+}
+
+/* ------------------------------------------------------
+   5. 次元カード
+   ------------------------------------------------------ */
+.dimensions-section {
+  margin-bottom: var(--space-xl);
+}
+
+.dimensions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-size), 1fr));
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.dimension-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: var(--space-md);
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-bounce), box-shadow var(--transition-normal);
+  cursor: pointer;
+  will-change: transform;
+  position: relative;
+  isolation: isolate;
+  height: 100%;
 }
 
-/* ホバーと​​フォーカス効果 */
-.feature-card:hover,
-.feature-card:focus {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px var(--card-shadow-hover);
+/* ホバーとフォーカスの効果 */
+.dimension-card:hover,
+.dimension-card:focus,
+.dimension-card.is-hovered,
+.dimension-card.is-focused {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.dimension-card:focus-visible {
   outline: none;
+  box-shadow: var(--shadow-focus), var(--shadow-md);
 }
 
-.feature-card:focus-visible {
-  box-shadow: 0 0 0 3px #4a90e2, 0 15px 35px var(--card-shadow-hover);
-}
-
-/* フィーチャーアイコン共通スタイル */
-.feature-icon {
-  font-size: var(--font-xl);
-  margin-bottom: var(--spacing-md);
-  width: 70px;
-  height: 70px;
+/* アイコンスタイル */
+.dimension-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: #f5f7fa;
+  width: 70px;
+  height: 70px;
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--border-radius-full);
+  transition: transform var(--transition-bounce);
 }
 
-/* 各フィーチャーカード固有スタイル */
-.feature-card:nth-child(1) .feature-icon {
-  background-color: var(--feature-innovation-bg);
-  color: var(--feature-innovation);
+.dimension-card:hover .dimension-icon,
+.dimension-card:focus .dimension-icon,
+.dimension-card.is-hovered .dimension-icon,
+.dimension-card.is-focused .dimension-icon {
+  transform: scale(1.1);
 }
 
-.feature-card:nth-child(2) .feature-icon {
-  background-color: var(--feature-stability-bg);
-  color: var(--feature-stability);
+/* 次元別アイコン色 */
+.dimension-icon.innovation {
+  background-color: var(--color-innovation-light);
+  color: var(--color-innovation);
 }
 
-.feature-card:nth-child(3) .feature-icon {
-  background-color: var(--feature-social-bg);
-  color: var(--feature-social);
+.dimension-icon.stability {
+  background-color: var(--color-stability-light);
+  color: var(--color-stability);
 }
 
-.feature-card:nth-child(4) .feature-icon {
-  background-color: var(--feature-autonomy-bg);
-  color: var(--feature-autonomy);
+.dimension-icon.social {
+  background-color: var(--color-social-light);
+  color: var(--color-social);
 }
 
-.feature-card:nth-child(5) .feature-icon {
-  background-color: var(--feature-tradition-bg);
-  color: var(--feature-tradition);
+.dimension-icon.autonomy {
+  background-color: var(--color-autonomy-light);
+  color: var(--color-autonomy);
 }
 
-.feature-card:nth-child(6) .feature-icon {
-  background-color: var(--feature-global-bg);
-  color: var(--feature-global);
+.dimension-icon.tradition {
+  background-color: var(--color-tradition-light);
+  color: var(--color-tradition);
 }
 
-/* フィーチャータイトルとテキスト */
-.feature-title {
-  font-size: var(--font-lg);
-  color: var(--primary-text);
-  margin-bottom: 0.7rem;
+.dimension-icon.global {
+  background-color: var(--color-global-light);
+  color: var(--color-global);
 }
 
-.feature-description {
-  color: var(--secondary-text);
-  line-height: 1.6;
+.dimension-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+  position: relative;
 }
 
-/* ロゴ画像コンテナ */
-.about-img {
+.dimension-description {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm);
+}
+
+/* ------------------------------------------------------
+   6. ロゴセクション
+   ------------------------------------------------------ */
+.logo-section {
+  padding: var(--space-md) 0;
   text-align: center;
-  margin: 2.5em 0 1em 0;
 }
 
-.color-wheel-logo {
+.logo-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-sm);
+  border-radius: var(--border-radius-full);
+  background-color: rgba(80, 227, 194, 0.05);
+  transition: transform var(--transition-normal);
+}
+
+.logo-container:hover {
+  transform: rotate(15deg);
+}
+
+.logo-image {
   width: 220px;
-  max-width: 90vw;
+  max-width: 80vw;
   height: auto;
-  opacity: 0.88;
+  opacity: 0.9;
 }
 
-/* フッター内のリスト整形 */
+/* ------------------------------------------------------
+   7. フッター
+   ------------------------------------------------------ */
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) 0;
+  margin-top: var(--space-xl);
+}
+
+.footer-container {
+  width: var(--content-width);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.footer-branding {
+  margin-bottom: var(--space-md);
+}
+
+.footer-logo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.footer-tagline {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
 .footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  list-style: none;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
 }
 
-/* プリントメディア用スタイル */
-@media print {
-  .feature-card {
-    box-shadow: none;
-    border: 1px solid #eee;
-    page-break-inside: avoid;
-  }
-  
-  .feature-grid {
-    display: block;
-  }
-  
-  .feature-card {
-    margin-bottom: 2em;
-  }
-  
-  header, footer {
-    display: none;
-  }
+.footer-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  padding: var(--space-2xs) var(--space-xs);
 }
 
-/* モバイル対応 */
-@media screen and (max-width: 768px) {
-  .about-section {
-    font-size: 1.05rem;
-  }
-  
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .feature-card {
-    padding: 1.5rem;
-  }
-  
-  .about-points li {
-    font-size: 1em;
-  }
-  
-  .color-wheel-logo {
-    width: 180px;
-  }
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--color-primary);
 }
 
-/* ダークモードサポート（オプション） */
-@media (prefers-color-scheme: dark) {
+.copyright {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-md);
+}
+
+/* ------------------------------------------------------
+   8. ユーティリティ
+   ------------------------------------------------------ */
+/* アクセシビリティフォーカス */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* 最適なテキスト配置 */
+.text-center {
+  text-align: center;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ------------------------------------------------------
+   9. アニメーション
+   ------------------------------------------------------ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dimension-card {
+  animation: fadeIn var(--transition-normal) backwards;
+}
+
+.dimension-card:nth-child(1) { animation-delay: 100ms; }
+.dimension-card:nth-child(2) { animation-delay: 200ms; }
+.dimension-card:nth-child(3) { animation-delay: 300ms; }
+.dimension-card:nth-child(4) { animation-delay: 400ms; }
+.dimension-card:nth-child(5) { animation-delay: 500ms; }
+.dimension-card:nth-child(6) { animation-delay: 600ms; }
+
+/* ------------------------------------------------------
+   10. メディアクエリ
+   ------------------------------------------------------ */
+/* タブレット */
+@media screen and (max-width: 992px) {
   :root {
-    --primary-text: #ecf0f1;
-    --secondary-text: #bdc3c7;
-    --background: #2c3e50;
-    --card-shadow: rgba(0, 0, 0, 0.2);
-    --card-shadow-hover: rgba(0, 0, 0, 0.3);
+    --content-width: 92%;
+  }
+  
+  .dimensions-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+/* スマートフォン */
+@media screen and (max-width: 768px) {
+  :root {
+    --content-width: 94%;
+    --space-md: clamp(1.25rem, 3vw, 1.5rem);
+  }
+  
+  .nav-list {
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+  }
+  
+  .nav-link {
+    padding: var(--space-2xs) var(--space-xs);
+    font-size: var(--font-size-sm);
+  }
+  
+  .about-section {
+    padding: var(--space-sm);
+  }
+  
+  .dimensions-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--space-sm);
+  }
+  
+  .dimension-card {
+    padding: var(--space-sm);
+  }
+  
+  .dimension-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+  }
+}
+
+/* 小型スマートフォン */
+@media screen and (max-width: 480px) {
+  :root {
+    --content-width: 96%;
+    --space-sm: clamp(0.75rem, 2vw, 1rem);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .dimension-title {
+    font-size: var(--font-size-md);
+  }
+  
+  .dimension-description {
+    font-size: var(--font-size-xs);
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+/* プリントスタイル */
+@media print {
+  .site-header, 
+  .site-footer {
+    display: none;
   }
   
   body {
-    background-color: #1a2533;
+    color: #000;
+    background: #fff;
   }
   
-  .feature-card {
-    background-color: #34495e;
+  .dimension-card {
+    box-shadow: none;
+    border: 1px solid #eee;
+    break-inside: avoid;
+  }
+  
+  .dimensions-grid {
+    display: block;
+  }
+  
+  .dimension-card {
+    margin-bottom: 2em;
+    page-break-inside: avoid;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-border: #333333;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.4);
+  }
+  
+  .dimension-card {
+    background-color: #252525;
+  }
+  
+  .dimension-icon.innovation { background-color: rgba(231, 76, 60, 0.15); }
+  .dimension-icon.stability { background-color: rgba(52, 152, 219, 0.15); }
+  .dimension-icon.social { background-color: rgba(46, 204, 113, 0.15); }
+  .dimension-icon.autonomy { background-color: rgba(241, 196, 15, 0.15); }
+  .dimension-icon.tradition { background-color: rgba(155, 89, 182, 0.15); }
+  .dimension-icon.global { background-color: rgba(230, 126, 34, 0.15); }
+}
+
+/* 高コントラストモード対応 */
+@media (forced-colors: active) {
+  .dimension-card {
+    border: 1px solid CanvasText;
+  }
+  
+  .dimension-icon {
+    border: 1px solid CanvasText;
   }
 }
