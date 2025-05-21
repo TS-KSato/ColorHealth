@@ -2,32 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>企業色相環とは - About | Corporate Color Health</title>
+  <title>概要 | 企業色相環</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    :root {
-      --main-bg: #f8fafc;
-      --card-bg: #fff;
-      --primary: #3887ff;
-      --border: #e4e8ee;
-      --text: #212529;
-      --accent: #59c3c3;
-      --nav: #f1f5f9;
-    }
-    html, body { min-height:100vh; margin:0; padding:0; font-family:'Noto Sans JP','Segoe UI',Arial,sans-serif; background:var(--main-bg); color:var(--text); }
-    header { background:var(--nav); box-shadow:0 2px 8px #2c36572b; padding:0 0 4px 0; }
-    nav { display:flex; gap:1.6rem; padding:1.2rem 1rem 0.5rem 1rem; font-size:1.1rem; }
-    nav a { text-decoration:none; color:var(--primary); font-weight:600; padding:0.3rem 0.7rem; border-radius:10px; transition:background .2s; }
-    nav a.active, nav a:hover { background:var(--accent); color:#fff; }
-    .container { max-width:680px; margin:2rem auto; background:var(--card-bg); padding:2rem 1.2rem; border-radius:14px; box-shadow:0 2px 8px #2c365710; }
-    h1 { font-size:1.5rem; margin-bottom:1.1rem; }
-    .about-section { font-size:1.12rem; line-height:1.8; margin-bottom:2rem;}
-    .about-points { margin:1.7em 0 2.2em 1.4em; }
-    .about-points li { margin-bottom:0.8em; font-size:1.03em; }
-    .about-img { text-align:center; margin:2em 0 0 0; }
-    .about-img img { width:220px; max-width:90vw; opacity:0.88; }
-    @media (max-width:600px) { .container{padding:1.3rem 0.4rem;} nav{font-size:1rem; gap:1rem;} }
-  </style>
+  <meta name="description" content="企業色相環は企業の多次元的な特性を色と形で直感的に伝える可視化サイトです。変革性、安定性、社会性、自律性、伝統性、国際性の6次元で企業を評価します。">
+  <!-- 外部CSSファイル -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
   <header>
@@ -57,21 +38,77 @@
           投資判断や企業理解の新しい「インスピレーション」としてご活用ください。
         </p>
       </div>
-      <div class="about-img">
-        <!-- 擬似アイコン例（SVG） -->
-        <svg width="180" height="180" viewBox="0 0 180 180">
-          <circle cx="90" cy="90" r="75" fill="#fff" stroke="#c3dafb" stroke-width="3"/>
-          <path d="M90 90 L90 15 A75 75 0 0 1 165 90 Z" fill="#FF5555" />
-          <path d="M90 90 L165 90 A75 75 0 0 1 126.45 156.45 Z" fill="#5555FF" />
-          <path d="M90 90 L126.45 156.45 A75 75 0 0 1 53.55 156.45 Z" fill="#55FF55" />
-          <path d="M90 90 L53.55 156.45 A75 75 0 0 1 15 90 Z" fill="#FFFF55" />
-          <path d="M90 90 L15 90 A75 75 0 0 1 53.55 23.55 Z" fill="#AA55FF" />
-          <path d="M90 90 L53.55 23.55 A75 75 0 0 1 90 15 Z" fill="#FFAA55" />
-          <circle cx="90" cy="90" r="22" fill="#fff" stroke="#bfc6d1" stroke-width="1.5"/>
-        </svg>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3 class="feature-title">変革性</h3>
+          <p class="feature-description">
+            革新への投資、チャレンジ精神、変化への適応力を評価します。技術革新や新規事業への積極性を示します。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">安定性</h3>
+          <p class="feature-description">
+            財務健全性、持続可能な経営、リスク管理能力を評価します。長期的な成長の土台となる要素です。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3 class="feature-title">社会性</h3>
+          <p class="feature-description">
+            環境配慮、社会貢献、ステークホルダーとの関係を評価します。企業の社会的責任に対する姿勢を示します。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">自律性</h3>
+          <p class="feature-description">
+            個の尊重、創造性、柔軟な組織文化を評価します。イノベーションを生み出す組織の風土を示します。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🏛️</div>
+          <h3 class="feature-title">伝統性</h3>
+          <p class="feature-description">
+            歴史・伝統の尊重、専門性の深さ、ブランド力を評価します。長年にわたって培われた企業の強みを示します。
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3 class="feature-title">国際性</h3>
+          <p class="feature-description">
+            グローバル展開、多様性受容、異文化適応力を評価します。世界市場での競争力とポテンシャルを示します。
+          </p>
+        </div>
       </div>
-      <p style="margin-top:1.5em; color:#6c7ba3; font-size:0.99em;">Corporate Color Health Project ©︎ 2024</p>
+      <div class="about-img">
+        <img src="assets/images/color-wheel-logo.svg" alt="企業色相環ロゴ" class="color-wheel-logo">
+      </div>
     </div>
   </main>
+  
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">企業色相環</div>
+      <p>企業の多次元特性を可視化し、投資判断をサポートするツール</p>
+      
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">概要</a>
+        <a href="methodology.html" class="footer-link">計算方法</a>
+        <a href="companies.html" class="footer-link">企業一覧</a>
+        <a href="#" class="footer-link">お問い合わせ</a>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 企業色相環 - すべての権利を留保します
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
