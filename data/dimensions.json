@@ -17,14 +17,14 @@
     "name": "社会性",
     "description": "環境配慮、社会貢献、ステークホルダーとの関係",
     "color": "#2ecc71",
-    "icon": "🌍",
+    "icon": "🌱",
     "weight": 1.0
   },
   "autonomy": {
     "name": "自律性",
     "description": "個の尊重、創造性、柔軟な組織文化",
     "color": "#f1c40f",
-    "icon": "🚀",
+    "icon": "🤝",
     "weight": 1.0
   },
   "tradition": {
@@ -38,7 +38,7 @@
     "name": "国際性",
     "description": "グローバル展開、多様性受容、異文化適応力",
     "color": "#e67e22",
-    "icon": "🌐",
+    "icon": "🌍",
     "weight": 1.0
   }
 }
