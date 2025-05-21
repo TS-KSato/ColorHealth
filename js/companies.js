@@ -130,3 +130,12 @@ function renderCompanies(companies) {
     list.innerHTML = `<div class="no-results">該当する企業が見つかりません。</div>`;
     return;
   }
+  
+  // 企業カード生成
+  list.innerHTML = filtered.map(c => `
+  <div class="company-card">
+    <a class="company-link" href="company.html?exchange=${c.exchange.toLowerCase()}&code=${c.code.toLowerCase()}">${c.name}</a>
+    <div class="company-meta">${c.sector}・${c.market}・[${c.code}]</div>
+  </div>
+`).join('');
+}
