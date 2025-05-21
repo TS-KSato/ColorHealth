@@ -1,52 +1,90 @@
-// js/colorwheel.js
-export function drawColorWheel(canvasId, dimensionData) {
-  const canvas = typeof canvasId === 'string' ? document.getElementById(canvasId) : canvasId;
-  const ctx = canvas.getContext('2d');
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-  const radius = Math.min(centerX, centerY) - 12;
-  const dims = [
-    { name: '変革性', color: '#FF5555', value: dimensionData.innovation || 0 },
-    { name: '安定性', color: '#5555FF', value: dimensionData.stability || 0 },
-    { name: '社会性', color: '#55FF55', value: dimensionData.social || 0 },
-    { name: '自律性', color: '#FFFF55', value: dimensionData.autonomy || 0 },
-    { name: '伝統性', color: '#AA55FF', value: dimensionData.tradition || 0 },
-    { name: '国際性', color: '#FFAA55', value: dimensionData.global || 0 }
-  ];
-  const sectorAngle = (2 * Math.PI) / dims.length;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  dims.forEach((dim, i) => {
-    const startAngle = i * sectorAngle;
-    const endAngle = (i + 1) * sectorAngle;
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    ctx.arc(centerX, centerY, radius * dim.value, startAngle, endAngle, false);
-    ctx.lineTo(centerX, centerY);
-    ctx.fillStyle = dim.color;
-    ctx.globalAlpha = 0.93;
-    ctx.fill();
-    ctx.globalAlpha = 1.0;
-    ctx.strokeStyle = '#eee';
-    ctx.lineWidth = 2.5;
-    ctx.stroke();
-    // ラベル
-    const labelRadius = radius * 1.08 + 12;
-    const labelX = centerX + Math.cos(startAngle + sectorAngle / 2) * labelRadius;
-    const labelY = centerY + Math.sin(startAngle + sectorAngle / 2) * labelRadius + 2;
-    ctx.fillStyle = '#555';
-    ctx.font = '13px "Noto Sans JP", Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(dim.name, labelX, labelY);
+// 企業特性の5段階表示を行うモジュール
+
+// 特性の色相マッピング
+const dimensionHues = {
+  innovation: 0,    // 赤
+  stability: 240,   // 青
+  social: 120,      // 緑
+  autonomy: 60,     // 黄
+  tradition: 285,   // 紫
+  global: 30        // 橙
+};
+
+// 特性の日本語名
+const dimensionNames = {
+  innovation: '変革性',
+  stability: '安定性',
+  social: '社会性',
+  autonomy: '自律性',
+  tradition: '伝統性',
+  global: '国際性',
+  soundness: '健全性'
+};
+
+// 連続値から5段階のインデックスを計算
+function getActiveIndex(value) {
+  return Math.min(Math.floor(value * 5), 4);
+}
+
+// 5段階の四角形表示を構築
+function createDimensionSquares(dimensionId, value, isSoundness = false) {
+  const container = document.querySelector(`#${dimensionId}-row .dimension-squares`);
+  if (!container) return;
+  
+  // コンテナをクリア
+  container.innerHTML = '';
+  
+  // アクティブなインデックスを計算
+  const activeIndex = getActiveIndex(value);
+  
+  // 5つの四角形を作成
+  for (let i = 0; i < 5; i++) {
+    const square = document.createElement('div');
+    square.className = 'square';
+    
+    if (isSoundness) {
+      // 健全性は白から黒へのグレースケール
+      if (i === activeIndex) {
+        // アクティブな四角のグレースケール
+        const colors = ['#FFFFFF', '#d3d3d5', '#a0a0a0', '#666465', '#000000'];
+        square.style.backgroundColor = colors[i];
+        square.style.borderColor = (i === 0) ? '#cccccc' : (i === 4 ? '#333333' : '#bbb');
+      } else {
+        // 非アクティブな四角
+        square.style.backgroundColor = '#f0f0f0';
+        square.style.borderColor = '#e0e0e0';
+      }
+    } else {
+      // 特性はそれぞれの色相で表現
+      const hue = dimensionHues[dimensionId];
+      if (i === activeIndex) {
+        // アクティブな四角
+        square.style.backgroundColor = `hsl(${hue}, 80%, 60%)`;
+        square.style.borderColor = `hsl(${hue}, 60%, 50%)`;
+      } else {
+        // 非アクティブな四角
+        square.style.backgroundColor = `hsl(${hue}, 50%, 85%)`;
+        square.style.borderColor = `hsl(${hue}, 40%, 75%)`;
+      }
+    }
+    
+    container.appendChild(square);
+  }
+}
+
+// 企業の全特性データを表示
+function renderDimensionData(dimensions, soundness) {
+  // 各特性を5段階表示
+  Object.keys(dimensions).forEach(dimension => {
+    createDimensionSquares(dimension, dimensions[dimension]);
   });
-  // 中心丸
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, 18, 0, 2 * Math.PI);
-  ctx.fillStyle = "#fff";
-  ctx.globalAlpha = 0.93;
-  ctx.fill();
-  ctx.globalAlpha = 1.0;
-  ctx.strokeStyle = "#bfc6d1";
-  ctx.lineWidth = 1.4;
-  ctx.stroke();
+  
+  // 健全性を5段階表示
+  createDimensionSquares('soundness', soundness, true);
+  
+  // 健全性のスコア表示
+  const soundnessValueEl = document.getElementById('soundnessValue');
+  if (soundnessValueEl) {
+    soundnessValueEl.textContent = `健全度スコア：${(soundness * 100).toFixed(1)} / 100`;
+  }
 }
