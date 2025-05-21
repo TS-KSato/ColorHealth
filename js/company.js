@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   const params = new URLSearchParams(location.search);
   const exchange = params.get('exchange');
   const code = params.get('code');
-  const key = `${exchange}-${code}`;
+  const key = `${exchange}-${code}`.toLowerCase();
+  const companyDetailPath = `data/companies/${key}.json`;
+
 
   // 2. データパス（必要に応じてパスを調整）
   const basePath = 'data/';
