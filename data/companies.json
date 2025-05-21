@@ -1,6 +1,8 @@
 {
-  "ntt": {
+  "TSE-9432": {
     "code": "9432",
+    "exchange": "TSE",
+    "exchange_full": "東京証券取引所",
     "name": "NTT（日本電信電話）",
     "sector": "情報・通信",
     "market": "東証プライム",
@@ -8,8 +10,10 @@
     "employees": 303550,
     "url": "https://www.ntt.co.jp/"
   },
-  "sony": {
+  "TSE-6758": {
     "code": "6758",
+    "exchange": "TSE",
+    "exchange_full": "東京証券取引所",
     "name": "ソニーグループ",
     "sector": "電気機器",
     "market": "東証プライム",
@@ -17,8 +21,10 @@
     "employees": 108900,
     "url": "https://www.sony.com/ja/"
   },
-  "toyota": {
+  "TSE-7203": {
     "code": "7203",
+    "exchange": "TSE",
+    "exchange_full": "東京証券取引所",
     "name": "トヨタ自動車",
     "sector": "輸送用機器",
     "market": "東証プライム",
@@ -26,8 +32,10 @@
     "employees": 370870,
     "url": "https://global.toyota/jp/"
   },
-  "mitsui": {
+  "TSE-8031": {
     "code": "8031",
+    "exchange": "TSE",
+    "exchange_full": "東京証券取引所",
     "name": "三井物産",
     "sector": "卸売業",
     "market": "東証プライム",
@@ -35,8 +43,10 @@
     "employees": 46335,
     "url": "https://www.mitsui.com/jp/ja/"
   },
-  "hitachi": {
+  "TSE-6501": {
     "code": "6501",
+    "exchange": "TSE",
+    "exchange_full": "東京証券取引所",
     "name": "日立製作所",
     "sector": "電気機器",
     "market": "東証プライム",
