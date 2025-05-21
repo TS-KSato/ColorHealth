@@ -1,0 +1,124 @@
+/* 概要ページのスタイル */
+.about-section {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.about-points {
+  margin: 1.7em 0 2.2em 1.4em;
+  padding-left: 0.5em;
+}
+
+.about-points li {
+  margin-bottom: 0.8em;
+  font-size: 1.03em;
+  list-style-type: none;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0 2rem 0;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f5f7fa;
+}
+
+.feature-card:nth-child(1) .feature-icon {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.feature-card:nth-child(2) .feature-icon {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+.feature-card:nth-child(3) .feature-icon {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+.feature-card:nth-child(4) .feature-icon {
+  background-color: rgba(241, 196, 15, 0.1);
+  color: #f1c40f;
+}
+
+.feature-card:nth-child(5) .feature-icon {
+  background-color: rgba(155, 89, 182, 0.1);
+  color: #9b59b6;
+}
+
+.feature-card:nth-child(6) .feature-icon {
+  background-color: rgba(230, 126, 34, 0.1);
+  color: #e67e22;
+}
+
+.feature-title {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 0.7rem;
+}
+
+.feature-description {
+  color: #5a6c7d;
+  line-height: 1.6;
+}
+
+.about-img {
+  text-align: center;
+  margin: 2.5em 0 1em 0;
+}
+
+.color-wheel-logo {
+  width: 220px;
+  max-width: 90vw;
+  opacity: 0.88;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .about-section {
+    font-size: 1.05rem;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+  
+  .about-points li {
+    font-size: 1em;
+  }
+}

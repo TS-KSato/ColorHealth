@@ -1,0 +1,82 @@
+/* 計算方法ページのスタイル */
+.method-block {
+  font-size: 1.09rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.method-table {
+  margin: 1.8em 0;
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.method-table th,
+.method-table td {
+  padding: 0.8em 1em;
+  border-bottom: 1px solid #e3e9f1;
+  font-size: 0.98em;
+  text-align: left;
+}
+
+.method-table th {
+  background: #f2f7fb;
+  font-weight: 600;
+  color: #3a4659;
+}
+
+.method-table tr:last-child td {
+  border-bottom: none;
+}
+
+.method-table tr:hover td {
+  background: #f8fbff;
+}
+
+.formula {
+  background: #f5faff;
+  border-left: 4px solid #59c3c3;
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  font-size: 1.08em;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formula code {
+  display: block;
+  padding: 0.8em 0;
+  font-family: 'Consolas', 'Monaco', monospace;
+  color: #2c3e50;
+}
+
+.disclaimer {
+  margin: 2em 0 1em 0;
+  color: #777;
+  font-size: 0.97em;
+  background: #f8f9fa;
+  padding: 1em;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .method-block {
+    font-size: 1rem;
+  }
+  
+  .method-table th,
+  .method-table td {
+    padding: 0.6em 0.5em;
+    font-size: 0.9em;
+  }
+  
+  .formula {
+    padding: 0.8em 1em;
+    font-size: 1em;
+  }
+}
