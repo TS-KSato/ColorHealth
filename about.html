@@ -5,110 +5,144 @@
   <title>概要 | 企業色相環</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="企業色相環は企業の多次元的な特性を色と形で直感的に伝える可視化サイトです。変革性、安定性、社会性、自律性、伝統性、国際性の6次元で企業を評価します。">
+  
+  <!-- Open Graph Protocol -->
+  <meta property="og:title" content="概要 | 企業色相環">
+  <meta property="og:description" content="企業の多次元的な特性を色と形で直感的に伝える可視化サイト">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ts-ksato.github.io/ColorHealth/about.html">
+  <meta property="og:image" content="assets/images/ogp-image.png">
+  
   <!-- 外部CSSファイル -->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/about.css">
+  
+  <!-- プリロード -->
+  <link rel="preload" href="assets/images/color-wheel-logo.svg" as="image">
+  
+  <!-- favicon -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 <body>
-  <header>
-    <nav>
+  <header role="banner">
+    <nav aria-label="メインナビゲーション">
       <a href="index.html">企業色相環</a>
-      <a href="about.html" class="active">概要</a>
+      <a href="about.html" class="active" aria-current="page">概要</a>
       <a href="methodology.html">計算方法</a>
       <a href="companies.html">企業一覧</a>
     </nav>
   </header>
-  <main>
+  
+  <main id="main-content" role="main">
     <div class="container">
       <h1>「企業色相環」とは？</h1>
-      <div class="about-section">
+      
+      <section class="about-section" aria-labelledby="about-description">
+        <h2 id="about-description" class="visually-hidden">サイト概要</h2>
         <p>
-          <b>企業色相環</b>は、個人投資家や企業分析に関心のある全ての人に向けて、企業の多次元的な特徴を色と形で"直感的"に伝えるための新しい可視化サイトです。<br>
-          <br>
-          従来の数値やレーティングだけでは捉えきれない「変革性・安定性・社会性・自律性・伝統性・国際性」の6次元を独自の色相環（カラーホイール）で表現し、<b>健全度</b>は白～黒のグラデーションバーで一目で確認できます。
+          <strong>企業色相環</strong>は、個人投資家や企業分析に関心のある全ての人に向けて、企業の多次元的な特徴を色と形で"直感的"に伝えるための新しい可視化サイトです。
         </p>
+        <p>
+          従来の数値やレーティングだけでは捉えきれない「変革性・安定性・社会性・自律性・伝統性・国際性」の6次元を独自の色相環（カラーホイール）で表現し、<strong>健全度</strong>は白～黒のグラデーションバーで一目で確認できます。
+        </p>
+        
         <ul class="about-points">
-          <li>✔ <b>6色のセクター</b>で多様な企業性格を可視化</li>
-          <li>✔ <b>健全度バー</b>で経営の総合健全性をシンプルに判定</li>
-          <li>✔ <b>透明性</b>重視の計算方法とデータ出典明記</li>
+          <li>✔ <strong>6色のセクター</strong>で多様な企業性格を可視化</li>
+          <li>✔ <strong>健全度バー</strong>で経営の総合健全性をシンプルに判定</li>
+          <li>✔ <strong>透明性</strong>重視の計算方法とデータ出典明記</li>
           <li>✔ スマホ・PC問わず見やすい明快なデザイン</li>
         </ul>
+        
         <p>
           投資判断や企業理解の新しい「インスピレーション」としてご活用ください。
         </p>
-      </div>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">💡</div>
-          <h3 class="feature-title">変革性</h3>
-          <p class="feature-description">
-            革新への投資、チャレンジ精神、変化への適応力を評価します。技術革新や新規事業への積極性を示します。
-          </p>
+      </section>
+      
+      <section aria-labelledby="features-heading">
+        <h2 id="features-heading" class="visually-hidden">6つの評価軸</h2>
+        <div class="feature-grid">
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon" aria-hidden="true">💡</div>
+            <h3 class="feature-title">変革性</h3>
+            <p class="feature-description">
+              革新への投資、チャレンジ精神、変化への適応力を評価します。技術革新や新規事業への積極性を示します。
+            </p>
+          </article>
+          
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon" aria-hidden="true">🔒</div>
+            <h3 class="feature-title">安定性</h3>
+            <p class="feature-description">
+              財務健全性、持続可能な経営、リスク管理能力を評価します。長期的な成長の土台となる要素です。
+            </p>
+          </article>
+          
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon" aria-hidden="true">🌍</div>
+            <h3 class="feature-title">社会性</h3>
+            <p class="feature-description">
+              環境配慮、社会貢献、ステークホルダーとの関係を評価します。企業の社会的責任に対する姿勢を示します。
+            </p>
+          </article>
+          
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon" aria-hidden="true">🚀</div>
+            <h3 class="feature-title">自律性</h3>
+            <p class="feature-description">
+              個の尊重、創造性、柔軟な組織文化を評価します。イノベーションを生み出す組織の風土を示します。
+            </p>
+          </article>
+          
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon" aria-hidden="true">🏛️</div>
+            <h3 class="feature-title">伝統性</h3>
+            <p class="feature-description">
+              歴史・伝統の尊重、専門性の深さ、ブランド力を評価します。長年にわたって培われた企業の強みを示します。
+            </p>
+          </article>
+          
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon" aria-hidden="true">🌐</div>
+            <h3 class="feature-title">国際性</h3>
+            <p class="feature-description">
+              グローバル展開、多様性受容、異文化適応力を評価します。世界市場での競争力とポテンシャルを示します。
+            </p>
+          </article>
         </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3 class="feature-title">安定性</h3>
-          <p class="feature-description">
-            財務健全性、持続可能な経営、リスク管理能力を評価します。長期的な成長の土台となる要素です。
-          </p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🌍</div>
-          <h3 class="feature-title">社会性</h3>
-          <p class="feature-description">
-            環境配慮、社会貢献、ステークホルダーとの関係を評価します。企業の社会的責任に対する姿勢を示します。
-          </p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3 class="feature-title">自律性</h3>
-          <p class="feature-description">
-            個の尊重、創造性、柔軟な組織文化を評価します。イノベーションを生み出す組織の風土を示します。
-          </p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🏛️</div>
-          <h3 class="feature-title">伝統性</h3>
-          <p class="feature-description">
-            歴史・伝統の尊重、専門性の深さ、ブランド力を評価します。長年にわたって培われた企業の強みを示します。
-          </p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🌐</div>
-          <h3 class="feature-title">国際性</h3>
-          <p class="feature-description">
-            グローバル展開、多様性受容、異文化適応力を評価します。世界市場での競争力とポテンシャルを示します。
-          </p>
-        </div>
-      </div>
+      </section>
+      
       <div class="about-img">
-        <img src="assets/images/color-wheel-logo.svg" alt="企業色相環ロゴ" class="color-wheel-logo">
+        <img src="assets/images/color-wheel-logo.svg" alt="企業色相環のカラーホイールロゴ - 6つの評価軸を表す円形の図" class="color-wheel-logo" width="220" height="220">
       </div>
     </div>
   </main>
   
-  <footer>
+  <footer role="contentinfo">
     <div class="footer-content">
       <div class="footer-logo">企業色相環</div>
       <p>企業の多次元特性を可視化し、投資判断をサポートするツール</p>
       
-      <div class="footer-links">
-        <a href="about.html" class="footer-link">概要</a>
-        <a href="methodology.html" class="footer-link">計算方法</a>
-        <a href="companies.html" class="footer-link">企業一覧</a>
-        <a href="#" class="footer-link">お問い合わせ</a>
-      </div>
+      <nav aria-label="フッターナビゲーション" class="footer-nav">
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link" aria-current="page">概要</a></li>
+          <li><a href="methodology.html" class="footer-link">計算方法</a></li>
+          <li><a href="companies.html" class="footer-link">企業一覧</a></li>
+          <li><a href="contact.html" class="footer-link">お問い合わせ</a></li>
+        </ul>
+      </nav>
       
       <div class="copyright">
-        &copy; 2025 企業色相環 - すべての権利を留保します
+        &copy; <span id="current-year">2025</span> 企業色相環 - すべての権利を留保します
       </div>
     </div>
   </footer>
+
+  <!-- スクリプト - 現在の年を自動更新 -->
+  <script>
+    // 著作権表示の年を自動更新
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
