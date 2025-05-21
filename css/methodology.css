@@ -1,82 +1,696 @@
-/* 計算方法ページのスタイル */
-.method-block {
-  font-size: 1.09rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
+/* ========================================================
+   企業色相環 - 計算方法ページスタイル
+   
+   目次:
+   1. 設定・基本
+   2. コンテナ・レイアウト
+   3. ページヘッダー
+   4. 計算方法セクション
+   5. 次元テーブル
+   6. 計算式カード
+   7. 信頼度レベル
+   8. 注釈カード
+   9. FAQ
+   10. ユーティリティ
+   11. アニメーション
+   12. メディアクエリ
+   ======================================================== */
+
+/* ------------------------------------------------------
+   1. 設定・基本
+   ------------------------------------------------------ */
+:root {
+  /* カラーパレット - 基本 */
+  --color-primary: #4A90E2;
+  --color-secondary: #50E3C2;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #5a6c7d;
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-surface-alt: #f2f7fb;
+  --color-border: #e1e4e8;
+  
+  /* 次元カラー */
+  --color-innovation: #e74c3c;
+  --color-stability: #3498db;
+  --color-social: #2ecc71;
+  --color-autonomy: #f1c40f;
+  --color-tradition: #9b59b6;
+  --color-global: #e67e22;
+  
+  /* 次元カラー (薄) */
+  --color-innovation-light: rgba(231, 76, 60, 0.1);
+  --color-stability-light: rgba(52, 152, 219, 0.1);
+  --color-social-light: rgba(46, 204, 113, 0.1);
+  --color-autonomy-light: rgba(241, 196, 15, 0.1);
+  --color-tradition-light: rgba(155, 89, 182, 0.1);
+  --color-global-light: rgba(230, 126, 34, 0.1);
+  
+  /* 信頼度レベルカラー */
+  --color-confidence-high: #27ae60;
+  --color-confidence-medium: #f39c12;
+  --color-confidence-low: #e74c3c;
+  
+  /* 間隔 - 可変スペーシング */
+  --space-3xs: clamp(0.25rem, 0.5vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.75vw, 0.75rem);
+  --space-xs: clamp(0.75rem, 1vw, 1rem);
+  --space-sm: clamp(1rem, 1.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 2vw, 2rem);
+  --space-lg: clamp(2rem, 3vw, 3rem);
+  --space-xl: clamp(3rem, 4vw, 4rem);
+  
+  /* サイズ */
+  --content-width: min(92%, 1140px);
+  --content-narrow: min(88%, 800px);
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  
+  /* 字体 */
+  --font-family-base: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* 文字サイズ */
+  --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
+  --font-size-base: clamp(1rem, 2.75vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 3vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 3.5vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 4vw, 1.875rem);
+  --font-size-2xl: clamp(1.875rem, 5vw, 2.25rem);
+  
+  /* 行間 */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* アニメーション */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 効果 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+
+/* アクセシビリティ補助 */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ------------------------------------------------------
+   2. コンテナ・レイアウト
+   ------------------------------------------------------ */
+.container {
+  width: var(--content-width);
+  margin-inline: auto;
+  padding: 0 var(--space-xs);
+}
+
+.main-content {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-xl);
+}
+
+.methodology-section {
+  margin-bottom: var(--space-xl);
+}
+
+/* ------------------------------------------------------
+   3. ページヘッダー
+   ------------------------------------------------------ */
+.page-header {
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.page-description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  max-width: 800px;
+  margin-inline: auto;
+  line-height: var(--line-height-relaxed);
+}
+
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+  position: relative;
+}
+
+/* 見出し装飾 */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primary);
+  margin: var(--space-xs) auto 0;
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------
+   4. 計算方法セクション
+   ------------------------------------------------------ */
+.method-card {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+}
+
+.method-intro {
+  margin-bottom: var(--space-md);
+  line-height: var(--line-height-relaxed);
+}
+
+.method-intro p {
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.method-intro strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+/* ------------------------------------------------------
+   5. 次元テーブル
+   ------------------------------------------------------ */
+.table-container {
+  margin: var(--space-md) 0;
+  overflow-x: auto;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-background);
+}
+
+.table-caption {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  padding: var(--space-sm);
+  background-color: var(--color-surface-alt);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  text-align: left;
 }
 
 .method-table {
-  margin: 1.8em 0;
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   overflow: hidden;
 }
 
 .method-table th,
 .method-table td {
-  padding: 0.8em 1em;
-  border-bottom: 1px solid #e3e9f1;
-  font-size: 0.98em;
+  padding: var(--space-sm) var(--space-md);
   text-align: left;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .method-table th {
-  background: #f2f7fb;
-  font-weight: 600;
-  color: #3a4659;
+  background-color: var(--color-surface-alt);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .method-table tr:last-child td {
   border-bottom: none;
 }
 
-.method-table tr:hover td {
-  background: #f8fbff;
+.dimension-row {
+  transition: background-color var(--transition-fast);
 }
 
-.formula {
-  background: #f5faff;
-  border-left: 4px solid #59c3c3;
-  padding: 1em 1.2em;
-  margin: 1.5em 0;
-  font-size: 1.08em;
-  border-radius: 0 8px 8px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.dimension-row.is-highlighted {
+  background-color: var(--color-surface);
 }
 
-.formula code {
+.dimension-name {
+  font-weight: var(--font-weight-medium);
+}
+
+.color-sample {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin-right: var(--space-2xs);
+  vertical-align: middle;
+}
+
+.innovation-color { background-color: var(--color-innovation); }
+.stability-color { background-color: var(--color-stability); }
+.social-color { background-color: var(--color-social); }
+.autonomy-color { background-color: var(--color-autonomy); }
+.tradition-color { background-color: var(--color-tradition); }
+.global-color { background-color: var(--color-global); }
+
+/* ホバー効果 */
+.dimension-row.innovation:hover { background-color: var(--color-innovation-light); }
+.dimension-row.stability:hover { background-color: var(--color-stability-light); }
+.dimension-row.social:hover { background-color: var(--color-social-light); }
+.dimension-row.autonomy:hover { background-color: var(--color-autonomy-light); }
+.dimension-row.tradition:hover { background-color: var(--color-tradition-light); }
+.dimension-row.global:hover { background-color: var(--color-global-light); }
+
+/* ------------------------------------------------------
+   6. 計算式カード
+   ------------------------------------------------------ */
+.formula-section {
+  margin-top: var(--space-lg);
+}
+
+.formula-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.formula-card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.formula-content {
+  position: relative;
+  padding: var(--space-md);
+  background-color: rgba(74, 144, 226, 0.05);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: var(--space-md);
+}
+
+.formula-code {
   display: block;
-  padding: 0.8em 0;
-  font-family: 'Consolas', 'Monaco', monospace;
-  color: #2c3e50;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-md);
+  padding: var(--space-sm) 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  color: var(--color-text-primary);
 }
 
-.disclaimer {
-  margin: 2em 0 1em 0;
-  color: #777;
-  font-size: 0.97em;
-  background: #f8f9fa;
-  padding: 1em;
-  border-radius: 8px;
-  line-height: 1.6;
+.formula-notes {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
 }
 
-/* モバイル対応 */
-@media (max-width: 768px) {
-  .method-block {
-    font-size: 1rem;
+.formula-notes p {
+  margin: 0;
+}
+
+.formula-notes em {
+  color: var(--color-text-primary);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+}
+
+/* ------------------------------------------------------
+   7. 信頼度レベル
+   ------------------------------------------------------ */
+.confidence-levels {
+  padding: var(--space-sm) 0;
+}
+
+.confidence-levels p {
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-base);
+}
+
+.confidence-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0;
+}
+
+.confidence-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+  padding: var(--space-xs) 0;
+}
+
+.confidence-indicator {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin-right: var(--space-sm);
+}
+
+.confidence-indicator.high {
+  background-color: var(--color-confidence-high);
+}
+
+.confidence-indicator.medium {
+  background-color: var(--color-confidence-medium);
+}
+
+.confidence-indicator.low {
+  background-color: var(--color-confidence-low);
+}
+
+.confidence-level {
+  font-weight: var(--font-weight-medium);
+  margin-right: var(--space-xs);
+}
+
+/* ------------------------------------------------------
+   8. 注釈カード
+   ------------------------------------------------------ */
+.disclaimer-card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.disclaimer-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.disclaimer-content {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.disclaimer-content p {
+  margin: 0 0 var(--space-xs);
+}
+
+.feedback-link {
+  display: inline-block;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--space-xs);
+  transition: color var(--transition-fast);
+}
+
+.feedback-link:hover,
+.feedback-link:focus {
+  color: #2c70e0;
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------
+   9. FAQ
+   ------------------------------------------------------ */
+.methodology-faq {
+  margin-top: var(--space-xl);
+}
+
+.faq-container {
+  max-width: var(--content-narrow);
+  margin-inline: auto;
+}
+
+.faq-item {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-md);
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: var(--space-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question::after {
+  content: "▼";
+  font-size: 0.8em;
+  transition: transform var(--transition-normal);
+  margin-left: var(--space-sm);
+}
+
+.faq-item[open] .faq-question::after {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 var(--space-md) var(--space-md);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.faq-answer p {
+  margin-top: 0;
+}
+
+/* ------------------------------------------------------
+   10. ユーティリティ
+   ------------------------------------------------------ */
+/* アクセシビリティフォーカス */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------
+   11. アニメーション
+   ------------------------------------------------------ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); max-height: 0; }
+  to { opacity: 1; transform: translateY(0); max-height: 500px; }
+}
+
+.faq-item {
+  animation: fadeIn var(--transition-normal) backwards;
+}
+
+.faq-item:nth-child(1) { animation-delay: 100ms; }
+.faq-item:nth-child(2) { animation-delay: 200ms; }
+.faq-item:nth-child(3) { animation-delay: 300ms; }
+
+.faq-item[open] .faq-answer {
+  animation: slideDown var(--transition-normal);
+}
+
+/* ------------------------------------------------------
+   12. メディアクエリ
+   ------------------------------------------------------ */
+/* タブレット */
+@media screen and (max-width: 992px) {
+  :root {
+    --content-width: 92%;
+  }
+  
+  .method-card {
+    padding: var(--space-sm);
+  }
+}
+
+/* スマートフォン */
+@media screen and (max-width: 768px) {
+  :root {
+    --content-width: 94%;
+    --content-narrow: 94%;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .method-table {
+    font-size: var(--font-size-sm);
   }
   
   .method-table th,
   .method-table td {
-    padding: 0.6em 0.5em;
-    font-size: 0.9em;
+    padding: var(--space-xs) var(--space-sm);
   }
   
-  .formula {
-    padding: 0.8em 1em;
-    font-size: 1em;
+  .formula-code {
+    font-size: var(--font-size-base);
+    overflow-x: auto;
+  }
+  
+  .disclaimer-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .disclaimer-icon {
+    margin-bottom: var(--space-xs);
+  }
+}
+
+/* 小型スマートフォン */
+@media screen and (max-width: 480px) {
+  :root {
+    --content-width: 96%;
+    --space-sm: clamp(0.75rem, 2vw, 1rem);
+  }
+  
+  .method-table {
+    font-size: var(--font-size-xs);
+  }
+  
+  .confidence-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: var(--space-sm);
+  }
+  
+  .confidence-indicator {
+    margin-bottom: var(--space-2xs);
+  }
+  
+  .faq-question {
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .faq-answer {
+    padding: 0 var(--space-sm) var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* プリントスタイル */
+@media print {
+  .site-header, 
+  .site-footer {
+    display: none;
+  }
+  
+  body {
+    color: #000;
+    background: #fff;
+  }
+  
+  .method-card,
+  .formula-card,
+  .disclaimer-card,
+  .faq-item {
+    box-shadow: none;
+    border: 1px solid #eee;
+    break-inside: avoid;
+  }
+  
+  .faq-item[open] .faq-question::after {
+    display: none;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-surface-alt: #2a2a2a;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-border: #333333;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.4);
+    
+    /* ダークモード時の次元カラーを若干明るく */
+    --color-innovation-light: rgba(231, 76, 60, 0.15);
+    --color-stability-light: rgba(52, 152, 219, 0.15);
+    --color-social-light: rgba(46, 204, 113, 0.15);
+    --color-autonomy-light: rgba(241, 196, 15, 0.15);
+    --color-tradition-light: rgba(155, 89, 182, 0.15);
+    --color-global-light: rgba(230, 126, 34, 0.15);
+    
+    /* 信頼度レベルの調整 */
+    --color-confidence-high: #2ecc71;
+    --color-confidence-medium: #f1c40f;
+    --color-confidence-low: #e74c3c;
+  }
+  
+  .formula-content {
+    background-color: rgba(74, 144, 226, 0.1);
+  }
+}
+
+/* 高コントラストモード対応 */
+@media (forced-colors: active) {
+  .method-table {
+    border: 1px solid CanvasText;
+  }
+  
+  .color-sample,
+  .confidence-indicator {
+    border: 1px solid CanvasText;
+  }
+  
+  .formula-content {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* 横向き時の調整（タブレット・モバイル） */
+@media screen and (max-width: 992px) and (orientation: landscape) {
+  .table-container {
+    max-height: 70vh;
+    overflow-y: auto;
   }
 }
