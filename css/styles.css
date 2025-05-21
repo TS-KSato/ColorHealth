@@ -315,24 +315,3 @@ h1 {
   background-color: #f8f9fa;
   border-radius: 8px;
 }
-
-.legend-item {
-  display: flex;
-  align-items: center;
-}
-
-.legend-color {
-  width: 15px;
-  height: 15px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-
-@media (max-width: 600px) {
-  nav { font-size: 0.99rem; gap: 1rem; }
-  .container { padding: 1.1rem 0.2rem; }
-  .progress-item, .soundness-item { padding: 10px; }
-  .icon, .soundness-icon { width: 35px; height: 35px; font-size: 22px; }
-  .label { font-size: 16px; }
-  .value { font-size: 18px; }
-}
