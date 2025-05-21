@@ -1,0 +1,66 @@
+{
+  "quarterly_data": [
+    {
+      "quarter": "2023Q3",
+      "date_updated": "2023-11-30",
+      "source": "2023年第2四半期決算短信, 2023年有価証券報告書",
+      "dimensions": {
+        "innovation": 0.75,
+        "stability": 0.68,
+        "social": 0.45,
+        "autonomy": 0.62,
+        "tradition": 0.58,
+        "global": 0.70
+      },
+      "dimension_details": {
+        "innovation": "先端技術開発への積極投資と研究所の規模拡大を行う一方、新規事業領域への挑戦も顕著。IOWN構想を中心に次世代インフラの開発を主導し、業界全体の変革を促している。",
+        "stability": "安定した収益基盤を持ち、長期的な視点での投資判断が特徴。財務健全性は高く、リスク管理体制も整備されているが、事業環境の変化への対応速度に課題がある。",
+        "social": "環境負荷低減への取り組みを強化しているが、具体的な成果はこれからの段階。地域社会との連携やダイバーシティ推進など、社会的責任を意識した経営姿勢が見られる。",
+        "autonomy": "階層的な組織構造が残るものの、部署レベルでの裁量権拡大を進めている。従業員の自律的な成長を支援するプログラムも充実し始めている。",
+        "tradition": "長い歴史と専門性の高さが強みだが、その伝統が時に変革の障壁になることも。顧客からの信頼度は高く、ブランド価値の維持に成功している。",
+        "global": "アジア、米国、欧州での事業展開を加速し、従来の国内中心から脱却しつつある。クロスボーダーM&Aも積極的に実施し、グローバルプレゼンスの向上に注力している。"
+      },
+      "soundness": 0.85,
+      "confidence_levels": {
+        "innovation": "medium",
+        "stability": "high",
+        "social": "medium",
+        "autonomy": "medium",
+        "tradition": "high",
+        "global": "high",
+        "soundness": "high"
+      }
+    },
+    {
+      "quarter": "2023Q2",
+      "date_updated": "2023-08-15",
+      "source": "2023年第1四半期決算短信",
+      "dimensions": {
+        "innovation": 0.72,
+        "stability": 0.70,
+        "social": 0.43,
+        "autonomy": 0.60,
+        "tradition": 0.58,
+        "global": 0.65
+      },
+      "dimension_details": {
+        "innovation": "研究開発投資を前年比5%増加し、次世代通信技術の特許取得数も増加傾向。新規事業創出の取り組みも進展している。",
+        "stability": "収益性の向上と財務基盤の強化が進み、中長期的な成長投資の余力が増している。リスク管理体制も適切に機能している。",
+        "social": "環境目標の設定と削減施策を開始したが、具体的な成果はまだ限定的。社会貢献活動も拡大途上にある。",
+        "autonomy": "部門間の壁を低くする組織改革を進め、従業員の自律性向上に向けた制度改革を実施中。",
+        "tradition": "長年培った技術力とブランド価値を維持しつつ、新たな事業領域への挑戦も模索している。",
+        "global": "海外売上比率は前年同期比2ポイント増加し、グローバル人材の育成も強化している最中。"
+      },
+      "soundness": 0.82,
+      "confidence_levels": {
+        "innovation": "medium",
+        "stability": "high",
+        "social": "medium",
+        "autonomy": "medium",
+        "tradition": "high",
+        "global": "medium",
+        "soundness": "high"
+      }
+    }
+  ]
+}
