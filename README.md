@@ -48,97 +48,86 @@
 このプロジェクトは静的HTMLサイトなので、特別なビルドプロセスは必要ありません。
 
 1. リポジトリをクローン
-   ```
-   git clone https://github.com/ts-ksato/ColorHealth.git
-   ```
+git clone https://github.com/ts-ksato/ColorHealth.git
 
 2. お好みのウェブサーバーでホスティング
-   - ローカル開発: VSCodeのLive Serverなど
-   - 本番環境: GitHub Pages（推奨）
+- ローカル開発: VSCodeのLive Serverなど
+- 本番環境: GitHub Pages（推奨）
 
 3. GitHub Pagesへのデプロイ
-   ```
-   git push origin main
-   ```
-   ※ リポジトリ設定でGitHub Pagesを有効にしてください
+git push origin main
+※ リポジトリ設定でGitHub Pagesを有効にしてください
 
 ## 📁 プロジェクト構造
 
-```
 corporate-color-wheel/
-├── index.html              # トップページ
-├── about.html              # サイト説明ページ
-├── methodology.html        # 計算方法解説ページ
-├── companies.html          # 企業一覧ページ
-├── company.html            # 個別企業表示ページ
+├── index.html # トップページ
+├── about.html # サイト説明ページ
+├── methodology.html # 計算方法解説ページ
+├── companies.html # 企業一覧ページ（js/companies.jsを利用）
+├── company.html # 個別企業表示ページ（js/company.jsを利用 ← NEW!）
 ├── css/
-│   ├── styles.css          # メインスタイル
-│   ├── responsive.css      # レスポンシブ対応
-│   ├── index.css           # トップページ専用スタイル
-│   ├── about.css           # 概要ページ専用スタイル
-│   ├── methodology.css     # 計算方法ページ専用スタイル
-│   └── companies.css       # 企業一覧ページ専用スタイル
+│ ├── styles.css # メインスタイル
+│ ├── responsive.css # レスポンシブ対応
+│ ├── index.css # トップページ専用スタイル
+│ ├── about.css # 概要ページ専用スタイル
+│ ├── methodology.css # 計算方法ページ専用スタイル
+│ └── companies.css # 企業一覧ページ専用スタイル
 ├── js/
-│   ├── main.js             # メイン機能
-│   ├── progressbar.js      # 進捗バー描画モジュール
-│   ├── search.js           # 検索・フィルター機能
-│   ├── companies.js        # 企業一覧機能
-│   └── utils.js            # 共通ユーティリティ
+│ ├── main.js # メイン機能
+│ ├── companies.js # 企業一覧機能（companies.htmlでのみ利用）
+│ ├── company.js # 個別企業ページ機能（company.htmlでのみ利用 ← NEW!）
+│ ├── progressbar.js # 進捗バー描画モジュール
+│ ├── search.js # 検索・フィルター機能
+│ └── utils.js # 共通ユーティリティ
 ├── data/
-│   ├── companies.json      # 企業一覧データ
-│   ├── dimensions.json     # 色相次元定義
-│   ├── sectors.json        # 業種区分データ
-│   └── companies/          # 企業別データ
-│       ├── TSE-9432.json   # 個別企業データ（NTT）
-│       ├── TSE-6758.json   # 個別企業データ（ソニー）
-│       └── ...
+│ ├── companies.json # 企業一覧データ
+│ ├── dimensions.json # 色相次元定義
+│ ├── sectors.json # 業種区分データ
+│ └── companies/ # 企業別データ
+│ ├── TSE-9432.json # 個別企業データ（NTT）
+│ ├── TSE-6758.json # 個別企業データ（ソニー）
+│ └── ...
 └── assets/
-    ├── images/             # 画像素材
-    │   └── color-wheel-logo.svg  # 色相環ロゴ
-    └── icons/              # アイコン素材
-```
+├── images/ # 画像素材
+│ └── color-wheel-logo.svg # 色相環ロゴ
+└── icons/ # アイコン素材
+
+
+---
 
 ## 🧩 主要コンポーネント
 
-### カラー分け進捗バー
+### 企業一覧ページ（companies.html）
 
-企業の6つの次元をカラフルな進捗バーで視覚化します。各次元は固有の色とアイコンで表され、0〜100%のスコアで評価されます。
+- **js/companies.js** を使用
+- 検索・絞り込み・リスト表示（社名/業種/市場）・健全度ミニバー
+- 各企業名をクリックで company.html へ遷移
 
-```javascript
-// 進捗バーの生成例
-function createProgressBars(dimensions, details, dimensionDefinitions) {
-  // 各次元の設定
-  const dimensionConfigs = [
-    { key: 'innovation', name: '変革性', colorClass: 'red', icon: '💡' },
-    { key: 'stability', name: '安定性', colorClass: 'blue', icon: '🔒' },
-    // ...詳細は progressbar.js を参照
-  ];
-  
-  // ...バー生成処理
-}
-```
+### 個別企業ページ（company.html）
 
-### 健全度バー
-
-健全経営度を白（健全）から黒（不健全）のグラデーションで表現します。
+- **js/company.js** を使用（NEW!）
+- URLパラメータ（exchange, code）で企業判別
+- 企業基本情報＋四半期データ（時系列選択可）
+- 6つの次元（変革性・安定性・社会性・自律性・伝統性・国際性）のカラーバー
+- 健全度バー・詳細解説・信頼度表示・情報源を動的に描画
+- 完全クライアントサイド（fetchで該当JSONのみ取得）
 
 ```javascript
-// 健全度バーの更新例
-function updateSoundnessBar(value) {
-  const soundnessBar = document.getElementById('soundnessBar');
-  const soundnessValue = document.getElementById('soundnessValue');
-  const percent = Math.round(value * 100);
-  
-  soundnessBar.style.width = `${percent}%`;
-  soundnessValue.textContent = `${percent}%`;
-}
-```
+// company.js（主要部分イメージ）
+fetch('data/companies.json')
+  .then(res => res.json())
+  .then(companies => {
+    // exchange/codeから該当企業を取得
+    // ...
+  });
 
-## 📊 データ構造
-
-企業データは以下のようなJSON形式で管理されています：
-
-```json
+fetch('data/companies/TSE-9432.json')
+  .then(res => res.json())
+  .then(detail => {
+    // 四半期データ・次元値などを描画
+    // ...
+  });
 {
   "quarterly_data": [
     {
@@ -171,11 +160,6 @@ function updateSoundnessBar(value) {
     }
   ]
 }
-```
-
-企業の基本情報は別ファイルで管理しています：
-
-```json
 {
   "TSE-9432": {
     "code": "9432",
@@ -190,46 +174,45 @@ function updateSoundnessBar(value) {
   },
   // ...他企業データ
 }
-```
-
-## 📝 情報源と透明性
-
+📝 情報源と透明性
 このプロジェクトでは以下の情報源から企業データを集計しています：
 
-- 有価証券報告書、四半期報告書（EDINET）
-- 企業のIR資料（決算短信、統合報告書等）
-- コーポレートガバナンス報告書
-- 各種特許情報データベース
+有価証券報告書、四半期報告書（EDINET）
 
-すべての指標の計算方法は [methodology.html](https://ts-ksato.github.io/ColorHealth/methodology.html) で詳細に公開しています。
+企業のIR資料（決算短信、統合報告書等）
 
-## 🤝 貢献方法
+コーポレートガバナンス報告書
 
+各種特許情報データベース
+
+すべての指標の計算方法は methodology.html で詳細に公開しています。
+
+🤝 貢献方法
 このプロジェクトへの貢献を歓迎します！以下の方法で参加できます：
 
-1. **Issue報告**: バグや機能リクエストを[Issueページ](https://github.com/ts-ksato/ColorHealth/issues)で報告
-2. **Pull Request**: 改善案や新機能の実装をPull Requestで提案
-3. **データ追加**: 新しい企業データの提供や既存データの改善提案
+Issue報告: バグや機能リクエストをIssueページで報告
 
-## 📈 今後の展望
+Pull Request: 改善案や新機能の実装をPull Requestで提案
 
-- より多くの企業データのカバレッジ拡大
-- 高度な分析機能の追加
-- ユーザーフィードバックに基づく改良
-- 企業比較機能の強化
+データ追加: 新しい企業データの提供や既存データの改善提案
 
-## 📄 ライセンス
+📈 今後の展望
+より多くの企業データのカバレッジ拡大
 
-このプロジェクトは[MITライセンス](LICENSE)のもとで公開されています。
+高度な分析機能の追加
 
-## 🙏 謝辞
+ユーザーフィードバックに基づく改良
 
-- すべてのコントリビューター
-- データソースとして活用させていただいている各企業
-- フィードバックを提供してくださったユーザーの皆様
+企業比較機能の強化
 
----
+📄 ライセンス
+このプロジェクトはMITライセンスのもとで公開されています。
 
-<div align="center">
-  <p>© 2025 企業色相環プロジェクト</p>
-</div>
+🙏 謝辞
+すべてのコントリビューター
+
+データソースとして活用させていただいている各企業
+
+フィードバックを提供してくださったユーザーの皆様
+
+<div align="center"> <p>© 2025 企業色相環プロジェクト</p> </div>
