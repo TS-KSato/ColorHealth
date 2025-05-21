@@ -135,7 +135,7 @@ function renderCompanies(companies) {
   list.innerHTML = filtered.map(c => `
     <div class="company-card">
       <div>
-        <a class="company-link" href="company.html?exchange=${c.exchange}&code=${c.code}">${c.name}</a>
+        <a class="company-link" href="company.html?exchange=${c.exchange.toLowerCase()}&code=${c.code.toLowerCase()}">${c.name}</a>
         <div class="company-meta">${c.sector}・${c.market}・[${c.code}]</div>
       </div>
       <div class="mini-bar" title="健全度スコア: ${Math.round(c.soundness * 100)}%">
