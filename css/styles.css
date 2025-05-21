@@ -20,3 +20,55 @@ html, body {
   background: var(--main-bg);
   color: var(--text);
 }
+/* 5段階表示のためのスタイル */
+.dimensions-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dimension-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dimension-label {
+  width: 80px;
+  font-weight: 500;
+  text-align: right;
+  padding-right: 15px;
+  color: #555;
+}
+
+.dimension-squares {
+  display: flex;
+  gap: 6px;
+}
+
+.square {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+  .dimension-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .dimension-label {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  .square {
+    width: 25px;
+    height: 25px;
+  }
+}
