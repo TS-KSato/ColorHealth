@@ -1,37 +1,47 @@
-[
-  {
-    "key": "ntt",
+{
+  "ntt": {
     "code": "9432",
     "name": "NTT（日本電信電話）",
     "sector": "情報・通信",
-    "market": "東証プライム"
+    "market": "東証プライム",
+    "established": 1985,
+    "employees": 303550,
+    "url": "https://www.ntt.co.jp/"
   },
-  {
-    "key": "sony",
+  "sony": {
     "code": "6758",
     "name": "ソニーグループ",
     "sector": "電気機器",
-    "market": "東証プライム"
+    "market": "東証プライム",
+    "established": 1946,
+    "employees": 108900,
+    "url": "https://www.sony.com/ja/"
   },
-  {
-    "key": "toyota",
+  "toyota": {
     "code": "7203",
     "name": "トヨタ自動車",
     "sector": "輸送用機器",
-    "market": "東証プライム"
+    "market": "東証プライム",
+    "established": 1937,
+    "employees": 370870,
+    "url": "https://global.toyota/jp/"
   },
-  {
-    "key": "mitsui",
+  "mitsui": {
     "code": "8031",
     "name": "三井物産",
     "sector": "卸売業",
-    "market": "東証プライム"
+    "market": "東証プライム",
+    "established": 1947,
+    "employees": 46335,
+    "url": "https://www.mitsui.com/jp/ja/"
   },
-  {
-    "key": "hitachi",
+  "hitachi": {
     "code": "6501",
     "name": "日立製作所",
     "sector": "電気機器",
-    "market": "東証プライム"
+    "market": "東証プライム",
+    "established": 1910,
+    "employees": 323540,
+    "url": "https://www.hitachi.co.jp/"
   }
-]
+}
