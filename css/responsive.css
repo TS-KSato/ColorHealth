@@ -1,7 +1,82 @@
-@media (max-width:600px) {
-  .container { padding: 1.1rem 0.2rem; }
-  nav { font-size: 1rem; gap: 1rem; }
-  .viz-row { flex-direction: column; gap: 1.3rem; }
-  canvas { max-width: 98vw; }
-  .soundness-bar { width: 96vw; }
+/* レスポンシブ対応のスタイル */
+@media (max-width: 600px) {
+  nav { 
+    font-size: 0.99rem; 
+    gap: 1rem; 
+  }
+  
+  .container { 
+    padding: 1.1rem 0.2rem; 
+  }
+  
+  .progress-item, 
+  .soundness-item { 
+    padding: 10px; 
+  }
+  
+  .icon, 
+  .soundness-icon { 
+    width: 35px; 
+    height: 35px; 
+    font-size: 22px; 
+  }
+  
+  .label { 
+    font-size: 16px; 
+  }
+  
+  .value { 
+    font-size: 18px; 
+  }
+
+  .legend {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .legend-item {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .detail {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .quarter-row {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .quarter-select {
+    width: 90%;
+  }
+  
+  .meta-info, 
+  .source-info, 
+  .confidence-list {
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .progress-item {
+    padding: 12px;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .legend {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 }
