@@ -1,149 +1,677 @@
-/* 企業一覧ページのスタイル */
-.filter-row {
+/* ========================================================
+   企業色相環 - 企業一覧ページスタイル
+   
+   目次:
+   1. 設定・基本
+   2. ページヘッダー
+   3. 検索・フィルタセクション
+   4. 企業カード
+   5. 健全度バー
+   6. 状態表示
+   7. ボタン
+   8. アニメーション
+   9. メディアクエリ
+   ======================================================== */
+
+/* ------------------------------------------------------
+   1. 設定・基本
+   ------------------------------------------------------ */
+:root {
+  /* カラーパレット - 基本 */
+  --color-primary: #4A90E2;
+  --color-secondary: #59c3c3;
+  --color-tertiary: #3887ff;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #5a6c7d;
+  --color-text-tertiary: #7f8c8d;
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-surface-alt: #f2f7fb;
+  --color-border: #e1e4e8;
+  --color-input-border: #d1dae6;
+  --color-input-focus: #3887ff;
+  
+  /* 機能色 */
+  --color-success: #27ae60;
+  --color-warning: #f39c12;
+  --color-danger: #e74c3c;
+  --color-info: #3498db;
+  
+  /* 間隔 - 可変スペーシング */
+  --space-3xs: clamp(0.25rem, 0.5vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.75vw, 0.75rem);
+  --space-xs: clamp(0.75rem, 1vw, 1rem);
+  --space-sm: clamp(1rem, 1.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 2vw, 2rem);
+  --space-lg: clamp(2rem, 3vw, 3rem);
+  --space-xl: clamp(3rem, 4vw, 4rem);
+  
+  /* サイズ */
+  --content-width: min(92%, 1140px);
+  --content-narrow: min(88%, 800px);
+  --border-radius-sm: 8px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 9999px;
+  
+  /* 字体 */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* 文字サイズ */
+  --font-size-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 2.5vw, 1rem);
+  --font-size-base: clamp(1rem, 2.75vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 3vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 3.5vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 4vw, 1.875rem);
+  --font-size-2xl: clamp(1.875rem, 5vw, 2.25rem);
+  
+  /* 行間 */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* アニメーション */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* 効果 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-input: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 3px rgba(56, 135, 255, 0.4);
+  --shadow-button: 0 4px 6px rgba(56, 135, 255, 0.25);
+  --shadow-button-hover: 0 6px 12px rgba(56, 135, 255, 0.3);
+}
+
+/* アクセシビリティヘルパー */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ------------------------------------------------------
+   2. ページヘッダー
+   ------------------------------------------------------ */
+.page-header {
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.page-description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  max-width: var(--content-narrow);
+  margin-inline: auto;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ------------------------------------------------------
+   3. 検索・フィルタセクション
+   ------------------------------------------------------ */
+.search-section {
+  margin-bottom: var(--space-lg);
+}
+
+.search-controls {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-md);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.filter-group {
   display: flex;
-  gap: 0.7em;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.filter-label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+}
+
+.filter-input,
+.filter-select {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-base);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-input);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: var(--color-input-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.filter-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
   flex-wrap: wrap;
-  margin: 1.2em 0 1.6em 0;
 }
 
-.filter-row input, 
-.filter-row select {
-  padding: 0.44em 0.8em;
-  font-size: 1em;
-  border: 1px solid #d1dae6;
-  border-radius: 7px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+.search-status {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  padding: var(--space-xs);
+  background-color: rgba(74, 144, 226, 0.05);
+  border-radius: var(--border-radius-sm);
 }
 
-.btn-primary {
-  background: #3887ff;
-  color: #fff;
-  border: none;
-  padding: 0.44em 1.3em;
-  border-radius: 7px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  background: #2c70e0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(56, 135, 255, 0.2);
-}
-
-.btn-secondary {
-  background: #e0e5ed;
-  color: #222;
-  border: none;
-  padding: 0.44em 1.3em;
-  border-radius: 7px;
-  margin-left: 0.5em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background: #d0d5dd;
-  transform: translateY(-2px);
+/* ------------------------------------------------------
+   4. 企業カード
+   ------------------------------------------------------ */
+.companies-container {
+  position: relative;
 }
 
 .company-list {
-  margin: 1.3em 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 .company-card {
-  background: #f7fbfe;
-  border: 1.2px solid #e4e8ee;
-  border-radius: 10px;
-  padding: 1em 1.3em;
-  margin-bottom: 1.05em;
-  box-shadow: 0 1px 3px rgba(208, 224, 250, 0.1);
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.3s ease;
-}
-
-.company-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(189, 220, 255, 0.15);
-}
-
-.company-link {
-  color: #3887ff;
-  font-weight: 600;
+  transition: all var(--transition-normal);
   text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
 }
 
-.company-link:hover {
-  text-decoration: underline;
+.company-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.company-card:hover,
+.company-card:focus {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(74, 144, 226, 0.3);
+}
+
+.company-card:hover::before,
+.company-card:focus::before {
+  opacity: 1;
+}
+
+.company-card:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus), var(--shadow-md);
+}
+
+.company-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.company-name {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.company-card:hover .company-name,
+.company-card:focus .company-name {
+  color: var(--color-primary);
 }
 
 .company-meta {
-  font-size: 0.99em;
-  color: #686868;
-  margin-top: 0.3em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+.company-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.company-meta-icon {
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+.company-code {
+  font-family: monospace;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------
+   5. 健全度バー
+   ------------------------------------------------------ */
+.soundness-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: var(--space-md);
+  flex-shrink: 0;
+}
+
+.soundness-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
 }
 
 .mini-bar {
-  background: linear-gradient(to right, #fff, #000);
-  height: 9px;
-  border-radius: 4px;
+  background: linear-gradient(to right, #ffffff, #000000);
+  height: 12px;
+  border-radius: var(--border-radius-full);
   position: relative;
-  width: 85px;
-  margin-left: 1.2em;
+  width: 100px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .mini-marker {
   position: absolute;
-  top: -2.5px;
-  width: 12px;
-  height: 13px;
-  background: #3887ff;
-  border-radius: 3px;
-  border: 1.2px solid #fff;
-  left: 0;
-  box-shadow: 0 1px 3px rgba(89, 195, 195, 0.13);
+  top: -3px;
+  width: 16px;
+  height: 18px;
+  background-color: var(--color-tertiary);
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--color-background);
+  box-shadow: 0 2px 4px rgba(56, 135, 255, 0.3);
+  transition: transform var(--transition-fast);
 }
 
-.no-results {
-  color: #a66;
-  font-size: 1.1em;
-  padding: 1.5em;
+.company-card:hover .mini-marker,
+.company-card:focus .mini-marker {
+  transform: scale(1.1);
+}
+
+.soundness-value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+/* ------------------------------------------------------
+   6. 状態表示
+   ------------------------------------------------------ */
+.loading-state,
+.empty-state {
   text-align: center;
-  background: #fff5f5;
-  border-radius: 8px;
-  margin-top: 1em;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--color-text-secondary);
 }
 
-/* モバイル対応 */
-@media (max-width: 768px) {
-  .filter-row {
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(74, 144, 226, 0.2);
+  border-left-color: var(--color-primary);
+  border-radius: var(--border-radius-full);
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--space-md);
+}
+
+.empty-state {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-sm);
+  opacity: 0.6;
+}
+
+.empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.empty-description {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-md);
+}
+
+/* ------------------------------------------------------
+   7. ボタン
+   ------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  min-width: 120px;
+}
+
+.btn-primary {
+  background-color: var(--color-tertiary);
+  color: var(--color-background);
+  box-shadow: var(--shadow-button);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #2c70e0;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus), var(--shadow-button-hover);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-button);
+}
+
+.btn-secondary {
+  background-color: #e0e5ed;
+  color: var(--color-text-primary);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #d0d5dd;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-icon {
+  font-size: 1.1em;
+}
+
+/* ------------------------------------------------------
+   8. アニメーション
+   ------------------------------------------------------ */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.company-card {
+  animation: fadeIn var(--transition-normal) backwards;
+}
+
+.company-card:nth-child(1) { animation-delay: 50ms; }
+.company-card:nth-child(2) { animation-delay: 100ms; }
+.company-card:nth-child(3) { animation-delay: 150ms; }
+.company-card:nth-child(4) { animation-delay: 200ms; }
+.company-card:nth-child(5) { animation-delay: 250ms; }
+.company-card:nth-child(6) { animation-delay: 300ms; }
+.company-card:nth-child(7) { animation-delay: 350ms; }
+.company-card:nth-child(8) { animation-delay: 400ms; }
+
+/* ------------------------------------------------------
+   9. メディアクエリ
+   ------------------------------------------------------ */
+/* タブレット */
+@media screen and (max-width: 992px) {
+  :root {
+    --content-width: 92%;
+  }
+  
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-actions {
+    justify-content: stretch;
+  }
+  
+  .btn {
+    flex: 1;
+  }
+}
+
+/* スマートフォン */
+@media screen and (max-width: 768px) {
+  :root {
+    --content-width: 94%;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .page-description {
+    font-size: var(--font-size-base);
+  }
+  
+  .search-controls {
+    padding: var(--space-sm);
+  }
+  
+  .filter-grid {
+    gap: var(--space-sm);
+  }
+  
+  .filter-actions {
     flex-direction: column;
-    gap: 0.5em;
+    gap: var(--space-xs);
   }
   
-  .filter-row input, 
-  .filter-row select {
+  .btn {
     width: 100%;
-  }
-  
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    margin: 0.5em 0 0 0;
-    padding: 0.6em;
+    min-width: auto;
   }
   
   .company-card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1em 0.8em;
+    gap: var(--space-sm);
+  }
+  
+  .company-info {
+    width: 100%;
+  }
+  
+  .company-meta {
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+  
+  .soundness-indicator {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0;
   }
   
   .mini-bar {
-    margin: 1em 0 0 0;
-    width: 100%;
+    width: 120px;
+  }
+}
+
+/* 小型スマートフォン */
+@media screen and (max-width: 480px) {
+  :root {
+    --content-width: 96%;
+  }
+  
+  .search-controls {
+    padding: var(--space-xs);
+  }
+  
+  .company-card {
+    padding: var(--space-sm);
+  }
+  
+  .company-name {
+    font-size: var(--font-size-base);
+  }
+  
+  .company-meta {
+    font-size: var(--font-size-xs);
+  }
+  
+  .mini-bar {
+    width: 100px;
+    height: 10px;
+  }
+  
+  .mini-marker {
+    width: 14px;
+    height: 16px;
+    top: -3px;
+  }
+  
+  .soundness-value {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* プリントスタイル */
+@media print {
+  .search-controls {
+    display: none;
+  }
+  
+  .company-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+  
+  .company-card:hover,
+  .company-card:focus {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .loading-state,
+  .empty-state {
+    display: none;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-surface-alt: #252525;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-text-tertiary: #808080;
+    --color-border: #333333;
+    --color-input-border: #3a4659;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+    --shadow-button: 0 4px 6px rgba(56, 135, 255, 0.15);
+    --shadow-button-hover: 0 6px 12px rgba(56, 135, 255, 0.2);
+  }
+  
+  .filter-input,
+  .filter-select {
+    background-color: #2a2a2a;
+    color: var(--color-text-primary);
+  }
+  
+  .mini-bar {
+    background: linear-gradient(to right, #333333, #000000);
+  }
+  
+  .btn-secondary {
+    background-color: #3a3a3a;
+    color: var(--color-text-primary);
+  }
+  
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    background-color: #4a4a4a;
+  }
+}
+
+/* 高コントラストモード対応 */
+@media (forced-colors: active) {
+  .company-card,
+  .search-controls,
+  .btn,
+  .mini-bar,
+  .mini-marker {
+    border: 1px solid CanvasText;
+  }
+  
+  .loading-spinner {
+    border-left-color: CanvasText;
   }
 }
