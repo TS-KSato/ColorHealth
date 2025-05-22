@@ -1,0 +1,172 @@
+{
+  "name": "企業色相環 - 上場企業の多次元特性可視化ツール",
+  "short_name": "企業色相環",
+  "description": "企業の変革性、安定性、社会性、自律性、伝統性、国際性を可視化する投資家向けのツールです。6つの次元で企業特性を分析し、投資判断をサポートします。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#4A90E2",
+  "background_color": "#ffffff",
+  "lang": "ja",
+  "dir": "ltr",
+  "categories": [
+    "finance",
+    "business",
+    "productivity",
+    "utilities"
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-mobile-1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "企業検索画面"
+    },
+    {
+      "src": "assets/images/screenshot-mobile-2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow", 
+      "label": "企業詳細分析画面"
+    },
+    {
+      "src": "assets/images/screenshot-desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "デスクトップ版企業一覧"
+    }
+  ],
+  "icons": [
+    {
+      "src": "assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "企業検索",
+      "short_name": "検索",
+      "description": "企業を検索して分析を開始",
+      "url": "/companies.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-search.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "計算方法",
+      "short_name": "計算式",
+      "description": "評価ロジックと計算方法を確認",
+      "url": "/methodology.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-methodology.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "注目企業",
+      "short_name": "注目",
+      "description": "注目企業の一覧を表示",
+      "url": "/?section=featured",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-featured.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "protocol_handlers": [],
+  "file_handlers": [],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
