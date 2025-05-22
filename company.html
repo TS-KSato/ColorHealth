@@ -3,85 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <title>企業詳細 | 企業色相環</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="企業の6つの次元（変革性、安定性、社会性、自律性、伝統性、国際性）と健全度スコアの詳細分析。">
+  <meta name="theme-color" content="#4A90E2">
+  
+  <!-- Open Graph / SNSシェア最適化 -->
+  <meta property="og:title" content="企業詳細 | 企業色相環">
+  <meta property="og:description" content="企業の6つの次元と健全度スコアの詳細分析。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ts-ksato.github.io/ColorHealth/company.html">
+  <meta property="og:image" content="assets/images/ogp-image.png">
+  <meta property="og:site_name" content="企業色相環">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- リソース最適化 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="preload" href="css/company.css" as="style">
+  
+  <!-- PWA対応 -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/company.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">企業色相環</a>
-      <a href="about.html">概要</a>
-      <a href="methodology.html">計算方法</a>
-      <a href="companies.html">企業一覧</a>
+  <header class="site-header" role="banner">
+    <nav aria-label="メインナビゲーション" class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">企業色相環</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">概要</a></li>
+        <li class="nav-item"><a href="methodology.html" class="nav-link">計算方法</a></li>
+        <li class="nav-item"><a href="companies.html" class="nav-link">企業一覧</a></li>
+      </ul>
     </nav>
   </header>
-  <main>
-    <div class="container" id="container">
-      <h1 id="companyName">企業詳細</h1>
-      <div class="basic-info" id="basicInfo"></div>
-      <div class="quarter-row">
-        <span class="quarter-label">四半期データ:</span>
-        <select class="quarter-select" id="quarterSelect"></select>
-      </div>
+  
+  <main id="main-content" class="main-content" role="main">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html">ホーム</a></li>
+          <li class="breadcrumb-item"><a href="companies.html">企業一覧</a></li>
+          <li class="breadcrumb-item" aria-current="page" id="breadcrumbCurrent">企業詳細</li>
+        </ol>
+      </nav>
       
-      <div class="legend">
-        <div class="legend-item">
-          <div class="legend-color" style="background-color: #e74c3c;"></div>
-          <span>変革性</span>
+      <header class="company-header">
+        <h1 id="companyName" class="company-title">企業詳細</h1>
+        <div class="company-basic-info" id="basicInfo">
+          <!-- 基本情報がJavaScriptで動的に挿入される -->
         </div>
-        <div class="legend-item">
-          <div class="legend-color" style="background-color: #3498db;"></div>
-          <span>安定性</span>
+        
+        <div class="quarter-controls">
+          <label for="quarterSelect" class="quarter-label">四半期データ:</label>
+          <select class="quarter-select" id="quarterSelect" aria-describedby="quarter-helper">
+            <!-- 四半期オプションがJavaScriptで動的に挿入される -->
+          </select>
+          <p id="quarter-helper" class="quarter-helper">データを表示する四半期を選択してください。</p>
         </div>
-        <div class="legend-item">
-          <div class="legend-color" style="background-color: #2ecc71;"></div>
-          <span>社会性</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color" style="background-color: #f1c40f;"></div>
-          <span>自律性</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color" style="background-color: #9b59b6;"></div>
-          <span>伝統性</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color" style="background-color: #e67e22;"></div>
-          <span>国際性</span>
-        </div>
-      </div>
+      </header>
       
-      <div class="progress-container" id="progressContainer">
-        <!-- 進捗バーが動的に挿入される場所 -->
-      </div>
+      <section class="legend-section" aria-labelledby="legend-heading">
+        <h2 id="legend-heading" class="legend-title">評価軸の色分け</h2>
+        
+        <div class="legend-grid">
+          <div class="legend-item innovation">
+            <div class="legend-color" aria-hidden="true"></div>
+            <span class="legend-name">変革性</span>
+            <span class="legend-description">革新・技術開発</span>
+          </div>
+          <div class="legend-item stability">
+            <div class="legend-color" aria-hidden="true"></div>
+            <span class="legend-name">安定性</span>
+            <span class="legend-description">財務・経営基盤</span>
+          </div>
+          <div class="legend-item social">
+            <div class="legend-color" aria-hidden="true"></div>
+            <span class="legend-name">社会性</span>
+            <span class="legend-description">ESG・社会貢献</span>
+          </div>
+          <div class="legend-item autonomy">
+            <div class="legend-color" aria-hidden="true"></div>
+            <span class="legend-name">自律性</span>
+            <span class="legend-description">独立性・創造性</span>
+          </div>
+          <div class="legend-item tradition">
+            <div class="legend-color" aria-hidden="true"></div>
+            <span class="legend-name">伝統性</span>
+            <span class="legend-description">歴史・ブランド</span>
+          </div>
+          <div class="legend-item global">
+            <div class="legend-color" aria-hidden="true"></div>
+            <span class="legend-name">国際性</span>
+            <span class="legend-description">グローバル展開</span>
+          </div>
+        </div>
+      </section>
       
-      <div class="soundness-container">
-        <div class="soundness-item">
-          <div class="soundness-header">
-            <div class="soundness-icon">📊</div>
-            <div class="label-container">
-              <div class="label">企業健全度</div>
-              <div class="sub-label">総合的な企業の健全性評価</div>
+      <section class="dimensions-section" aria-labelledby="dimensions-heading">
+        <h2 id="dimensions-heading" class="section-title">6次元評価</h2>
+        
+        <div class="progress-container" id="progressContainer">
+          <!-- 進捗バーがJavaScriptで動的に挿入される -->
+        </div>
+      </section>
+      
+      <section class="soundness-section" aria-labelledby="soundness-heading">
+        <h2 id="soundness-heading" class="section-title">企業健全度</h2>
+        
+        <div class="soundness-container">
+          <div class="soundness-item">
+            <div class="soundness-header">
+              <div class="soundness-icon" aria-hidden="true">📊</div>
+              <div class="soundness-info">
+                <div class="soundness-title">企業健全度</div>
+                <div class="soundness-subtitle">総合的な企業の健全性評価</div>
+              </div>
+              <div class="soundness-value" id="soundnessValue">85%</div>
             </div>
-            <div class="value" id="soundnessValue">85%</div>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" id="soundnessBar" style="background: linear-gradient(to right, #2980b9, #3498db); width: 85%;"></div>
-          </div>
-          <div class="detail" style="border-color: #3498db;">
-            企業健全度は財務状況、ガバナンス体制、持続可能性、市場競争力などの総合評価です。スコアが高いほど、企業の経営基盤が強固で将来的にも持続的な成長が期待できることを示します。
+            <div class="progress-bar">
+              <div class="progress soundness-progress" id="soundnessBar" style="width: 85%;"></div>
+            </div>
+            <div class="soundness-detail">
+              企業健全度は財務状況、ガバナンス体制、持続可能性、市場競争力などの総合評価です。スコアが高いほど、企業の経営基盤が強固で将来的にも持続的な成長が期待できることを示します。
+            </div>
           </div>
         </div>
-      </div>
+      </section>
       
-      <div class="meta-info" id="metaInfo"></div>
-      <div class="source-info" id="sourceInfo"></div>
-      <div class="confidence-list" id="confidenceList"></div>
+      <section class="data-info-section" aria-labelledby="data-info-heading">
+        <h2 id="data-info-heading" class="section-title">データ情報</h2>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <h3 class="info-card-title">データ更新情報</h3>
+            <div class="meta-info" id="metaInfo">
+              <!-- メタ情報がJavaScriptで動的に挿入される -->
+            </div>
+          </div>
+          
+          <div class="info-card">
+            <h3 class="info-card-title">データソース</h3>
+            <div class="source-info" id="sourceInfo">
+              <!-- ソース情報がJavaScriptで動的に挿入される -->
+            </div>
+          </div>
+          
+          <div class="info-card confidence-card">
+            <h3 class="info-card-title">信頼度レベル</h3>
+            <div class="confidence-list" id="confidenceList">
+              <!-- 信頼度情報がJavaScriptで動的に挿入される -->
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="actions-section">
+        <div class="action-buttons">
+          <a href="companies.html" class="btn btn-secondary">
+            <span class="btn-icon" aria-hidden="true">←</span>
+            <span class="btn-text">企業一覧に戻る</span>
+          </a>
+          <button class="btn btn-primary" onclick="window.print()">
+            <span class="btn-icon" aria-hidden="true">🖨️</span>
+            <span class="btn-text">印刷</span>
+          </button>
+        </div>
+      </section>
     </div>
   </main>
   
-  <!-- 外部ファイル読み込み -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <div class="footer-logo">企業色相環</div>
+        <p class="footer-tagline">企業の多次元特性を可視化し、投資判断をサポートするツール</p>
+      </div>
+      
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link">概要</a></li>
+          <li><a href="methodology.html" class="footer-link">計算方法</a></li>
+          <li><a href="companies.html" class="footer-link">企業一覧</a></li>
+          <li><a href="contact.html" class="footer-link">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      
+      <div class="copyright">
+        &copy; <span id="current-year">2025</span> 企業色相環 - すべての権利を留保します
+      </div>
+    </div>
+  </footer>
+  
+  <!-- スクリプト -->
+  <script>
+    // 著作権表示の年を自動更新
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+  
+  <!-- 企業詳細データ表示機能 -->
+  <script src="js/utils.js"></script>
   <script src="js/company.js"></script>
 </body>
 </html>
