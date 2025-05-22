@@ -3,64 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <title>企業一覧 | 企業色相環</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="上場企業の多次元特性を可視化した企業一覧。変革性、安定性、社会性、自律性、伝統性、国際性の6軸で企業を比較できます。">
-  <!-- 外部CSSファイル -->
+  <meta name="theme-color" content="#4A90E2">
+  
+  <!-- Open Graph / SNSシェア最適化 -->
+  <meta property="og:title" content="企業一覧 | 企業色相環">
+  <meta property="og:description" content="上場企業の多次元特性を可視化した企業一覧。6軸で企業を比較できます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ts-ksato.github.io/ColorHealth/companies.html">
+  <meta property="og:image" content="assets/images/ogp-image.png">
+  <meta property="og:site_name" content="企業色相環">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- リソース最適化 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="preload" href="css/companies.css" as="style">
+  
+  <!-- PWA対応 -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/companies.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">企業色相環</a>
-      <a href="about.html">概要</a>
-      <a href="methodology.html">計算方法</a>
-      <a href="companies.html" class="active">企業一覧</a>
+  <header class="site-header" role="banner">
+    <nav aria-label="メインナビゲーション" class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">企業色相環</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">概要</a></li>
+        <li class="nav-item"><a href="methodology.html" class="nav-link">計算方法</a></li>
+        <li class="nav-item"><a href="companies.html" class="nav-link active" aria-current="page">企業一覧</a></li>
+      </ul>
     </nav>
   </header>
-  <main>
+  
+  <main id="main-content" class="main-content" role="main">
     <div class="container">
-      <h1>企業一覧・検索</h1>
-      <div class="filter-row">
-        <input type="text" id="filterName" placeholder="社名キーワード">
-        <select id="filterSector">
-          <option value="">業種を選択</option>
-          <option value="情報・通信">情報・通信</option>
-          <option value="電気機器">電気機器</option>
-          <option value="輸送用機器">輸送用機器</option>
-          <option value="卸売業">卸売業</option>
-        </select>
-        <select id="filterMarket">
-          <option value="">市場区分</option>
-          <option value="東証プライム">東証プライム</option>
-        </select>
-        <button id="filterBtn" class="btn-primary">検索</button>
-        <button id="resetBtn" class="btn-secondary">リセット</button>
-      </div>
-      <div class="company-list" id="companyList"></div>
+      <header class="page-header">
+        <h1 class="page-title">企業一覧・検索</h1>
+        <p class="page-description">上場企業を6つの次元で分析・比較できます。業種や市場区分でフィルタリングして、投資対象を効率的に探しましょう。</p>
+      </header>
+      
+      <section class="search-section" aria-labelledby="search-heading">
+        <h2 id="search-heading" class="visually-hidden">企業検索・フィルタ</h2>
+        
+        <div class="search-controls">
+          <div class="filter-grid">
+            <div class="filter-group">
+              <label for="filterName" class="filter-label">企業名・キーワード</label>
+              <input type="text" id="filterName" class="filter-input" placeholder="例：トヨタ、NTT、7203" autocomplete="off">
+            </div>
+            
+            <div class="filter-group">
+              <label for="filterSector" class="filter-label">業種</label>
+              <select id="filterSector" class="filter-select">
+                <option value="">すべての業種</option>
+                <option value="情報・通信">情報・通信</option>
+                <option value="電気機器">電気機器</option>
+                <option value="輸送用機器">輸送用機器</option>
+                <option value="卸売業">卸売業</option>
+                <option value="化学">化学</option>
+                <option value="機械">機械</option>
+                <option value="建設業">建設業</option>
+                <option value="金融業">金融業</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="filterMarket" class="filter-label">市場区分</label>
+              <select id="filterMarket" class="filter-select">
+                <option value="">すべての市場</option>
+                <option value="東証プライム">東証プライム</option>
+                <option value="東証スタンダード">東証スタンダード</option>
+                <option value="東証グロース">東証グロース</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="filter-actions">
+            <button id="filterBtn" class="btn btn-primary" type="button">
+              <span class="btn-icon" aria-hidden="true">🔍</span>
+              <span class="btn-text">検索</span>
+            </button>
+            <button id="resetBtn" class="btn btn-secondary" type="button">
+              <span class="btn-icon" aria-hidden="true">↻</span>
+              <span class="btn-text">リセット</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="search-status" id="searchStatus" aria-live="polite" aria-atomic="true">
+          <span id="resultsCount">検索結果: -</span>
+        </div>
+      </section>
+      
+      <section class="companies-section" aria-labelledby="companies-heading">
+        <h2 id="companies-heading" class="visually-hidden">企業一覧</h2>
+        
+        <div class="companies-container">
+          <div class="company-list" id="companyList" role="list">
+            <!-- 企業カードがJavaScriptで動的に挿入される -->
+          </div>
+          
+          <div class="loading-state" id="loadingState">
+            <div class="loading-spinner" aria-hidden="true"></div>
+            <p>企業データを読み込み中...</p>
+          </div>
+          
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon" aria-hidden="true">🔍</div>
+            <h3 class="empty-title">検索結果がありません</h3>
+            <p class="empty-description">検索条件を変更して再度お試しください。</p>
+            <button class="btn btn-secondary" onclick="document.getElementById('resetBtn').click()">
+              検索条件をリセット
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
   
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">企業色相環</div>
-      <p>企業の多次元特性を可視化し、投資判断をサポートするツール</p>
-      
-      <div class="footer-links">
-        <a href="about.html" class="footer-link">概要</a>
-        <a href="methodology.html" class="footer-link">計算方法</a>
-        <a href="companies.html" class="footer-link">企業一覧</a>
-        <a href="#" class="footer-link">お問い合わせ</a>
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-branding">
+        <div class="footer-logo">企業色相環</div>
+        <p class="footer-tagline">企業の多次元特性を可視化し、投資判断をサポートするツール</p>
       </div>
       
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link">概要</a></li>
+          <li><a href="methodology.html" class="footer-link">計算方法</a></li>
+          <li><a href="companies.html" class="footer-link" aria-current="page">企業一覧</a></li>
+          <li><a href="contact.html" class="footer-link">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      
       <div class="copyright">
-        &copy; 2025 企業色相環 - すべての権利を留保します
+        &copy; <span id="current-year">2025</span> 企業色相環 - すべての権利を留保します
       </div>
     </div>
   </footer>
   
-  <!-- 外部JavaScriptファイル -->
+  <!-- スクリプト -->
+  <script>
+    // 著作権表示の年を自動更新
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+  
+  <!-- 企業データ管理・検索機能 -->
   <script src="js/utils.js"></script>
   <script src="js/companies.js"></script>
 </body>
